@@ -11,7 +11,7 @@
 
   
   <title>
-    计算机系统第四章课后作业 |
+    操作系统小班讨论GPU图形接口虚拟化技术 |
     
     Ycx&#39;Blog
   </title>
@@ -25,25 +25,20 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="2.61  123456789101112#include&quot;stdio.h&quot;#include&quot;stdlib.h&quot;int judge(int x)&#123;    return ((x+1)||x||(!(x&gt;&gt;24)+1)||(!(x&amp;0xff)));&#125;int main()&#123;  int x;  scanf(&amp;quo">
+  <meta name="description" content="原理 GPU图形接口虚拟化的原理主要是通过软件和硬件技术，将单个物理GPU资源虚拟化成多个独立的虚拟显卡资源，从而可以供多个虚拟机或用户同时使用。 在没有虚拟化的情况下，物理GPU直接与单一的主机操作系统和应用程序交互，为其提供图形处理能力。虚拟化后，GPU的物理资源（如处理器核心、显存等）被抽象、封装成多个独立的虚拟GPU（vGPU），每个vGPU可以被单独分配给不同的虚拟机。这样，多个虚拟机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机系统第四章课后作业">
-<meta property="og:url" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/index.html">
+<meta property="og:title" content="操作系统小班讨论GPU图形接口虚拟化技术">
+<meta property="og:url" content="https://ycx6666.github.io/2024/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E7%8F%AD%E8%AE%A8%E8%AE%BAGPU%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E3%80%81%20-%20%E5%89%AF%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Ycx&#39;Blog">
-<meta property="og:description" content="2.61  123456789101112#include&quot;stdio.h&quot;#include&quot;stdlib.h&quot;int judge(int x)&#123;    return ((x+1)||x||(!(x&gt;&gt;24)+1)||(!(x&amp;0xff)));&#125;int main()&#123;  int x;  scanf(&amp;quo">
+<meta property="og:description" content="原理 GPU图形接口虚拟化的原理主要是通过软件和硬件技术，将单个物理GPU资源虚拟化成多个独立的虚拟显卡资源，从而可以供多个虚拟机或用户同时使用。 在没有虚拟化的情况下，物理GPU直接与单一的主机操作系统和应用程序交互，为其提供图形处理能力。虚拟化后，GPU的物理资源（如处理器核心、显存等）被抽象、封装成多个独立的虚拟GPU（vGPU），每个vGPU可以被单独分配给不同的虚拟机。这样，多个虚拟机">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324110351074.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112741611.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112902304.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142831618.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142847715.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324152512538.png">
-<meta property="article:published_time" content="2024-03-21T05:44:57.000Z">
-<meta property="article:modified_time" content="2024-04-14T12:26:48.636Z">
+<meta property="og:image" content="https://s2.loli.net/2024/04/15/nEa6i517DIrXSfK.png">
+<meta property="article:published_time" content="2024-04-15T09:37:44.076Z">
+<meta property="article:modified_time" content="2024-04-15T09:39:07.830Z">
 <meta property="article:author" content="Ycx.Cc">
-<meta property="article:tag" content="计算机系统">
+<meta property="article:tag" content="GPU虚拟化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324110351074.png">
+<meta name="twitter:image" content="https://s2.loli.net/2024/04/15/nEa6i517DIrXSfK.png">
   
     <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
   
@@ -173,7 +168,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.jpg" alt="计算机系统第四章课后作业">
+    <img fetchpriority="high" src="/images/banner.jpg" alt="操作系统小班讨论GPU图形接口虚拟化技术">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -182,7 +177,7 @@
           
           
             <a href="/" id="logo">
-              <h1>计算机系统第四章课后作业</h1>
+              <h1>操作系统小班讨论GPU图形接口虚拟化技术</h1>
             </a>
           
         
@@ -204,7 +199,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#261"><span class="toc-number">1.</span> <span class="toc-text"> 2.61</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#271"><span class="toc-number">2.</span> <span class="toc-text"> 2.71</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#287"><span class="toc-number">3.</span> <span class="toc-text"> 2.87</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#288"><span class="toc-number">4.</span> <span class="toc-text"> 2.88</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E7%9A%84gpu%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text"> 主流的GPU虚拟化技术：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gpu%E5%9B%BE%E5%BD%A2%E5%8C%96%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text"> GPU图形化接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">4.</span> <span class="toc-text"> 其中的关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%99%841%E5%85%B3%E4%BA%8Eintel-gvt%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.0.1.</span> <span class="toc-text"> 附1：关于Intel GVT的三种模式介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%99%842%E8%8B%B1%E4%BC%9F%E8%BE%BEnvidiavgpu%E6%9E%B6%E6%9E%84"><span class="toc-number">4.0.2.</span> <span class="toc-text"> 附2：英伟达(NVIDIA)vGPU架构</span></a></li></ol></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -274,18 +269,18 @@
 </aside>
 
           
-          <section id="main"><article id="post-计算机系统作业1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-操作系统小班讨论GPU图形接口虚拟化技术、 - 副本" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     <div class="article-meta">
       <div class="article-date wow slideInLeft">
-  <a href="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/" class="article-date-link">
-    <time datetime="2024-03-21T05:44:57.000Z" itemprop="datePublished">2024-03-21</time>
+  <a href="/2024/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E7%8F%AD%E8%AE%A8%E8%AE%BAGPU%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E3%80%81%20-%20%E5%89%AF%E6%9C%AC/" class="article-date-link">
+    <time datetime="2024-04-15T09:37:44.076Z" itemprop="datePublished">2024-04-15</time>
   </a>
 </div>
 
       
   <div class="article-category wow slideInLeft">
-    <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%9A/">作业</a>
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
   </div>
 
 
@@ -295,89 +290,136 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="261"><a class="markdownIt-Anchor" href="#261"></a> 2.61</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324110351074.png" alt="image-20240324110351074"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">judge</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ((x+<span class="number">1</span>)||x||(!(x&gt;&gt;<span class="number">24</span>)+<span class="number">1</span>)||(!(x&amp;<span class="number">0xff</span>)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="type">int</span> x;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, judge(x));</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="271"><a class="markdownIt-Anchor" href="#271"></a> 2.71</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112741611.png" alt="image-20240324112741611"></p>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112902304.png" alt="image-20240324112902304"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">packed_t</span>; </span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">xbyte</span><span class="params">(<span class="type">packed_t</span> word, <span class="type">int</span> bytenum)</span> </span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">return</span> ((<span class="type">int</span>)(word&lt;&lt;((<span class="number">3</span>-bytenum)&lt;&lt;<span class="number">3</span>)))&gt;&gt;<span class="number">24</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="type">int</span> x,num;-</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x,&amp;num);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;0x%hx&quot;</span>, xbyte(x,num));</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="287"><a class="markdownIt-Anchor" href="#287"></a> 2.87</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142831618.png" alt="image-20240324142831618"></p>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142847715.png" alt="image-20240324142847715"></p>
-<table>
-<thead>
-<tr>
-<th>格式A</th>
-<th>格式A</th>
-<th>格式B</th>
-<th>格式B</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>位</td>
-<td>值</td>
-<td>位</td>
-<td>值</td>
-</tr>
-<tr>
-<td>1 01110 001</td>
-<td>-9/16</td>
-<td>1 0110 0010</td>
-<td>-9/16</td>
-</tr>
-<tr>
-<td>0 10110 101</td>
-<td>208</td>
-<td>0 1110 1010</td>
-<td>208</td>
-</tr>
-<tr>
-<td>1 00111 110</td>
-<td>-7/1024</td>
-<td>1 0000 0111</td>
-<td>-7/1024</td>
-</tr>
-<tr>
-<td>0 00000 101</td>
-<td>5/2^17</td>
-<td>0 0000 0001</td>
-<td>1/1024</td>
-</tr>
-<tr>
-<td>1 11011 000</td>
-<td>-2^12</td>
-<td>1 1110 1111</td>
-<td>-248</td>
-</tr>
-<tr>
-<td>0 11000 100</td>
-<td>768</td>
-<td>0 1111 0000</td>
-<td>+∞</td>
-</tr>
-</tbody>
-</table>
-<h3 id="288"><a class="markdownIt-Anchor" href="#288"></a> 2.88</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324152512538.png" alt="image-20240324152512538"></p>
-<p>**A:**正确，int转float，double转float有可能小数部分损失，但两者仍然相等</p>
-<p>**B:**错误，当x、y其中一者为INT_MAX，其他一个为整数时，会导致int溢出，导致两者不相等</p>
-<p>**C:**正确，改变运算顺序并不影响浮点数相加运算</p>
-<p>**D:**正确，改变运算顺序并不影响浮点数相乘运算</p>
-<p>**E:**错误，当dx=0，dy=1或者dx=1，dy=0时，会导致除法表达式不成立从而不总是为0。</p>
+        <h3 id="原理"><a class="markdownIt-Anchor" href="#原理"></a> 原理</h3>
+<p>GPU图形接口虚拟化的原理主要是通过软件和硬件技术，将单个物理GPU资源虚拟化成多个独立的虚拟显卡资源，从而可以供多个虚拟机或用户同时使用。</p>
+<p>在没有虚拟化的情况下，物理GPU直接与单一的主机操作系统和应用程序交互，为其提供图形处理能力。虚拟化后，GPU的物理资源（如处理器核心、显存等）被抽象、封装成多个独立的虚拟GPU（vGPU），每个vGPU可以被单独分配给不同的虚拟机。这样，多个虚拟机就能够共享同一个物理GPU的资源，同时享有GPU加速的优势。</p>
+<h3 id="主流的gpu虚拟化技术"><a class="markdownIt-Anchor" href="#主流的gpu虚拟化技术"></a> 主流的GPU虚拟化技术：</h3>
+<ol>
+<li><strong>NVIDIA vGPU:</strong> NVIDIA的虚拟GPU(vGPU)技术使得一块物理GPU可以被分割为多个独立的虚拟GPU，每个虚拟GPU都可以被一个虚拟机独立使用。每个虚拟GPU都有自己的分配的GPU内存和独立的GPU调度，此外NVIDIA的vGPU支持CUDA和OpenCL，可以运行AI和深度学习工作负载。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://docs.nvidia.com/grid/16.0/grid-vgpu-user-guide/index.html">参考：vGPU使用文档</a></p>
+<ol start="2">
+<li><strong>AMD MxGPU:</strong> AMD的MxGPU是另一款主流的GPU虚拟化解决方案，它使用基于硬件的SR-IOV（Single Root I/O Virtualization）技术，将一个物理PCIe GPU变成多个PCIe vGPU，每个PCIe vGPU直接透传给虚拟机，实现多虚拟机共享一个物理GPU。每个虚拟机都有自己的虚拟GPU，并且可以使用标准的AMD驱动和开发工具。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/683147438">参考：AMD与NVIDIA vGPU方案对比</a></p>
+<p><a target="_blank" rel="noopener" href="https://community.amd.com/t5/visual-cloud/sr-iov-baser-gpu-virtualization-for-a-true-workstation/ba-p/414277">参考：SR-IOV-Baser GPU 虚拟化，实现真正的工作状态</a></p>
+<ol start="3">
+<li><strong>Intel GVT-g:</strong> Intel的图形虚拟化技术GVT-g可以将一个物理GPU分割成多个虚拟GPU，每个虚拟GPU可以被一个虚拟机使用。GVT-g使用软件调度来管理多个虚拟GPU的共享访问，支持Windows和Linux虚拟机，并且可以使虚拟机运行游戏和图形设计软件。</li>
+</ol>
+<p>​	英特尔 GVT-g 是一种为英特尔 GPU（Broadwell 和更高版本）提供中介设备直通的技术。它可用于虚拟化多个客户机虚拟机的 GPU，从而有效地在虚拟机中提供近乎本机的图形性能，并且仍允许主机正常使用虚拟化 GPU。如果希望在没有专用 GPU 的超极本上运行的 Windows 虚拟机中加速图形，以实现完全设备直通</p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Intel_GVT-g">参考：英特尔GVT-g</a></p>
+<ol start="4">
+<li><strong>Virgil 3D project:</strong> Virgil是一个开源项目，旨在允许模拟出的虚拟硬件有GPU，从而为虚拟机提供3D硬件加速。Virgil 3D还可以向客户虚拟机翻译OpenGL和其他GPU命令。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://lwn.net/Articles/611212/">参考：Virgil 3D：虚拟 GPU </a></p>
+<h3 id="gpu图形化接口"><a class="markdownIt-Anchor" href="#gpu图形化接口"></a> GPU图形化接口</h3>
+<p>GPU图形接口虚拟化涉及将GPU的图形渲染能力划分并分配给多个虚拟机或用户，从而使它们能够独立运行图形密集型的应用程序。这包括3D建模、图形设计、视频编辑和游戏等。图形接口虚拟化允许在虚拟环境中使用GPU来进行硬件加速的图形处理，可以显著提升远程桌面和云游戏的体验。</p>
+<p>一些关键的技术和产品包括：</p>
+<ol>
+<li>
+<p><strong>NVIDIA GRID</strong>:</p>
+<ul>
+<li>NVIDIA GRID可用于提供虚拟桌面和应用程序的硬件加速图形。</li>
+<li>利用NVIDIA的Kepler及更高架构的GPU，其中的vGPU（虚拟GPU）技术可以将单个GPU划分成多个虚拟GPU实例供用户使用。</li>
+<li>支持多种虚拟化环境，包括VMware vSphere/ESXi, Citrix XenServer以及云服务如Amazon Web Services。</li>
+</ul>
+</li>
+<li>
+<p><strong>AMD Multiuser GPU (MxGPU)</strong>:</p>
+<ul>
+<li>基于SR-IOV（单根I/O虚拟化）的技术，AMD的MxGPU技术能在GPU硬件级别上实现虚拟化。</li>
+<li>不同于NVIDIA的软件虚拟化方案，MxGPU提供了硬件隔离，旨在提高安全性。</li>
+<li>每个虚拟机都有自己的虚拟GPU，可以直接运行AMD的原生图形驱动。</li>
+</ul>
+</li>
+<li>
+<p><strong>Intel Graphics Virtualization Technology (Intel GVT)</strong>:</p>
+<ul>
+<li>Intel GVT分成几个模式，GVT-d, GVT-g 和 GVT-s。</li>
+<li>GVT-g允许一个物理GPU在多个VM之间分享，每个虚拟机可以独立访问它的虚拟GPU资源。</li>
+</ul>
+</li>
+<li>
+<p><strong>Virglrenderer(Virgil 3D project)</strong>:</p>
+<ul>
+<li>Virglrenderer是一个实现3D加速的项目，它通过GNU/Linux上的QEMU使用GPU硬件加速，提供OpenGL加速渲染。</li>
+<li>它允许客户机通过虚拟化的环境使用GPU，提供图形加速。</li>
+</ul>
+</li>
+<li>
+<p><strong>VMware vSphere / Horizon View</strong>:</p>
+<ul>
+<li>VMware的vSphere提供GPU虚拟化方案，通过DirectX或OpenGL</li>
+</ul>
+</li>
+</ol>
+<h3 id="其中的关键技术"><a class="markdownIt-Anchor" href="#其中的关键技术"></a> 其中的关键技术</h3>
+<ol>
+<li>
+<p><strong>虚拟化软件或Hypervisor</strong>：</p>
+<ul>
+<li>它是虚拟化的核心，控制并管理物理硬件资源与虚拟机之间的分配与调度。</li>
+<li>Hypervisor在物理主机和虚拟机之间提供一层抽象，拦截虚拟机的硬件请求，并将这些请求转换为对实际物理硬件的操作。</li>
+</ul>
+</li>
+<li>
+<p><strong>虚拟GPU (vGPU) 技术</strong>：</p>
+<ul>
+<li>物理GPU被分割成多个vGPU实例，每个实例都有自己的一部分GPU资源，比如一定量的显存、GPU核心的时间片等。</li>
+<li>每个虚拟机都认为它有自己的GPU，实际上只是使用了物理GPU的一部分资源。</li>
+</ul>
+</li>
+<li>
+<p><strong>图形驱动和API虚拟化</strong>：</p>
+<ul>
+<li>图形驱动程序需要能够理解vGPU，并且转换虚拟机的图形调用到物理GPU。</li>
+<li>API虚拟化确保了虚拟环境中的图形API调用（如OpenGL或DirectX）可以正确解释并映射到物理硬件。</li>
+</ul>
+</li>
+<li>
+<p><strong>资源管理和调度</strong>：</p>
+<ul>
+<li>虚拟化平台需要合理管理和调度物理GPU资源给各个vGPU实例。</li>
+<li>好的调度策略可以保证所有虚拟机的图形任务公平且有效率地执行。</li>
+</ul>
+</li>
+<li>
+<p><strong>直通 (Pass-Through) 和SR-IOV技术</strong>：</p>
+<ul>
+<li>直通技术不涉及资源分割，它允许一个虚拟机直接控制和访问一个物理GPU，提供几乎原生的性能。</li>
+<li>SR-IOV技术允许一个物理设备呈现为多个分离的虚拟化设备，每个都可以被直接分配给虚拟机。</li>
+</ul>
+</li>
+</ol>
+<h5 id="附1关于intel-gvt的三种模式介绍"><a class="markdownIt-Anchor" href="#附1关于intel-gvt的三种模式介绍"></a> 附1：关于Intel GVT的三种模式介绍</h5>
+<ol>
+<li>
+<p><strong>GVT-d（直通式/Direct Assignment）</strong>：</p>
+<p>GVT-d是一种完全分配的虚拟化方法，将物理GPU直接分配给一个虚拟机使用。在这种模式下，虚拟机可以直接访问GPU的全部功能，它能提供几乎等同于物理机上的GPU性能。由于GPU被完全分配了，所以同一时间只能有一个虚拟机使用这块GPU，不支持资源共享。</p>
+</li>
+<li>
+<p><strong>GVT-g（时间共享/Time-sharing）</strong>：</p>
+<p>GVT-g是一种基于时间片的共享GPU资源方法。它将GPU资源分割成多个独立的虚拟GPU（vGPU实例），每个虚拟机获得一个vGPU实例。每个vGPU能够访问物理GPU的一部分资源，并且可以根据时间片轮流访问GPU，以此实现同时多个虚拟机共享GPU资源。这种方法可以支持多用户或多任务场景，适用于需要为多个虚拟机提供图形加速的情况。</p>
+</li>
+<li>
+<p><strong>GVT-s（空间共享/Space-sharing）</strong>：</p>
+<p>GVT-s与GVT-g相似，都是共享模式，但它通常是在具有SR-IOV（Single Root I/O Virtualization）支持的GPU上使用的。GVT-s通过将GPU的资源划分成多个虚拟功能（VF），然后这些VF可以静态分配给不同的虚拟机。这种模式适合于那些需要固定且隔离GPU资源的场合，每个VF都有独立的GPU资源，不与其他VF共享。</p>
+</li>
+</ol>
+<h5 id="附2英伟达nvidiavgpu架构"><a class="markdownIt-Anchor" href="#附2英伟达nvidiavgpu架构"></a> 附2：英伟达(NVIDIA)vGPU架构</h5>
+<p><img src="https://s2.loli.net/2024/04/15/nEa6i517DIrXSfK.png" alt="image-20240415170250289"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/" data-id="clv0rpnu7000utsmcf02maavb" data-title="计算机系统第四章课后作业" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E7%8F%AD%E8%AE%A8%E8%AE%BAGPU%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E3%80%81%20-%20%E5%89%AF%E6%9C%AC/" data-id="clv0rpnty0008tsmc0pbjdebb" data-title="操作系统小班讨论GPU图形接口虚拟化技术" class="article-share-link">分享</a>
       
       
       
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag">计算机系统</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPU%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag">GPU虚拟化</a></li></ul>
 
 
     </footer>
@@ -386,35 +428,19 @@
     
   <nav id="article-nav" class="wow fadeInUp">
     
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          
-          
-            <img data-src="/covers/covers.yml" data-sizes="auto" alt="数据库系统第三章课后作业" class="lazyload">
-          
-        
-        <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%89/"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-          
-            数据库系统第三章课后作业
-          
-        </h3>
-      </div>
-    
     
     <div class="article-nav-link-wrap article-nav-link-right">
       
         
         
-          <img data-src="/covers/infinity-69874635.jpg" data-sizes="auto" alt="Express" class="lazyload">
+          <img data-src="/covers/QQ图片20221115162133.jpg" data-sizes="auto" alt="数据库复习" class="lazyload">
         
       
-      <a href="/2019/11/Express%E4%BD%BF%E7%94%A8/"></a>
+      <a href="/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A01-md/"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
         
-          Express
+          数据库复习
         
       </h3>
     </div>
@@ -487,7 +513,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#261"><span class="toc-number">1.</span> <span class="toc-text"> 2.61</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#271"><span class="toc-number">2.</span> <span class="toc-text"> 2.71</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#287"><span class="toc-number">3.</span> <span class="toc-text"> 2.87</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#288"><span class="toc-number">4.</span> <span class="toc-text"> 2.88</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text"> 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%B5%81%E7%9A%84gpu%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text"> 主流的GPU虚拟化技术：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gpu%E5%9B%BE%E5%BD%A2%E5%8C%96%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text"> GPU图形化接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">4.</span> <span class="toc-text"> 其中的关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%99%841%E5%85%B3%E4%BA%8Eintel-gvt%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.0.1.</span> <span class="toc-text"> 附1：关于Intel GVT的三种模式介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%99%842%E8%8B%B1%E4%BC%9F%E8%BE%BEnvidiavgpu%E6%9E%B6%E6%9E%84"><span class="toc-number">4.0.2.</span> <span class="toc-text"> 附2：英伟达(NVIDIA)vGPU架构</span></a></li></ol></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">

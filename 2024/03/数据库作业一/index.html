@@ -25,15 +25,15 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="##习题一  标识每个表的主键和外键：  学院表（Department）：主键是 deptNo。 学生表（Student）：主键是 studentNo。deptNo 是外键，引用了学院表（Department）的deptNo。 课程表（Course）：主键是 courseNo。deptNo 是外键，引用学院表（Department）的deptNo。 教师表（Teacher）：主键是 teacher">
+  <meta name="description" content="##习题一   标识每个表的主键和外键：  学院表（Department）：主键是 deptNo。 学生表（Student）：主键是 studentNo。deptNo 是外键，引用了学院表（Department）的deptNo。 课程表（Course）：主键是 courseNo。deptNo 是外键，引用学院表（Department）的deptNo。 教师表（Teacher）：主键是 teache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统第一、二章课后作业">
 <meta property="og:url" content="https://ycx6666.github.io/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%80/index.html">
 <meta property="og:site_name" content="Ycx&#39;Blog">
-<meta property="og:description" content="##习题一  标识每个表的主键和外键：  学院表（Department）：主键是 deptNo。 学生表（Student）：主键是 studentNo。deptNo 是外键，引用了学院表（Department）的deptNo。 课程表（Course）：主键是 courseNo。deptNo 是外键，引用学院表（Department）的deptNo。 教师表（Teacher）：主键是 teacher">
+<meta property="og:description" content="##习题一   标识每个表的主键和外键：  学院表（Department）：主键是 deptNo。 学生表（Student）：主键是 studentNo。deptNo 是外键，引用了学院表（Department）的deptNo。 课程表（Course）：主键是 courseNo。deptNo 是外键，引用学院表（Department）的deptNo。 教师表（Teacher）：主键是 teache">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-21T05:44:57.000Z">
-<meta property="article:modified_time" content="2024-04-13T12:59:13.136Z">
+<meta property="article:modified_time" content="2024-04-14T13:59:36.830Z">
 <meta property="article:author" content="Ycx.Cc">
 <meta property="article:tag" content="数据库系统">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text">习题二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%B8%89"><span class="toc-number">2.</span> <span class="toc-text">习题三</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text"> 习题二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%B8%89"><span class="toc-number">2.</span> <span class="toc-text"> 习题三</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -208,15 +208,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">10</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">13</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -290,7 +290,8 @@
       
         <p>##习题一</p>
 <ol>
-<li><p>标识每个表的主键和外键：</p>
+<li>
+<p>标识每个表的主键和外键：</p>
 <ul>
 <li>学院表（Department）：主键是 <code>deptNo</code>。</li>
 <li>学生表（Student）：主键是 <code>studentNo</code>。<code>deptNo</code> 是外键，引用了学院表（Department）的<code>deptNo</code>。</li>
@@ -302,35 +303,49 @@
 <li>排课表（Dispatch）：主键是 <code>courseNo</code>、<code>semester</code>、<code>classNo</code>、<code>period</code>、<code>weekday</code> 的组合。<code>classroomNo</code> 是外键，引用教室表（Classroom）的<code>classroomNo</code>。</li>
 </ul>
 </li>
-<li><p>域约束：</p>
+<li>
+<p>域约束：</p>
 <ul>
 <li>课程表（Course）中的 <code>credit</code> 字段：域约束为数值类型，取值范围取决于学校的学分制度。</li>
 <li>教师表（Teacher）中的 <code>rank</code> 字段：域约束为字符串类型,取值范围是预定义的职称集合，例如 {‘助教’, ‘讲师’, ‘副教授’, ‘教授’} 等。</li>
 </ul>
 </li>
-<li><p>使用关系代数生成以下用户所需业务数据：</p>
+<li>
+<p>使用关系代数生成以下用户所需业务数据：</p>
 <p>(a)</p>
-<p>​	<br>$$<br>\Pi_{studentNo, name, birthday}(\sigma_{sex &#x3D; ‘女’ \land YEAR(birthday) &#x3D; 2000}(Student))<br>$$<br>​	</p>
-<p>(b)<br>$$<br>\Pi_{Course.courseNo, Course.name, Enroll.semester, Course.credit, Enroll.score}(Enroll ⨝_{Enroll.courseNo&#x3D;Course.courseNo \land Enroll.studentNo&#x3D;’200843407’} Course)<br>$$</p>
-<p>(c)<br>$$<br>\Pi_{Student.studentNo,Student.name,Student.sex}(\sigma_{semester&#x3D;’2011-1’ \ landcourseNo&#x3D;’G61030009’}(Enroll) \Join _{Enroll.student&#x3D;Student.studentNo}Student)<br>$$</p>
-<h2 id="习题二"><a href="#习题二" class="headerlink" title="习题二"></a>习题二</h2><p>（1）</p>
+<p>​</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>N</mi><mi>o</mi><mo separator="true">,</mo><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo separator="true">,</mo><mi>b</mi><mi>i</mi><mi>r</mi><mi>t</mi><mi>h</mi><mi>d</mi><mi>a</mi><mi>y</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>s</mi><mi>e</mi><mi>x</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><msup><mtext>女</mtext><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo>∧</mo><mi>Y</mi><mi>E</mi><mi>A</mi><mi>R</mi><mo stretchy="false">(</mo><mi>b</mi><mi>i</mi><mi>r</mi><mi>t</mi><mi>h</mi><mi>d</mi><mi>a</mi><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>2000</mn></mrow></msub><mo stretchy="false">(</mo><mi>S</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{studentNo, name, birthday}(\sigma_{sex = &#x27;女&#x27; \land YEAR(birthday) = 2000}(Student))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">x</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mtight"><span class="mord cjk_fallback mtight">女</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mbin mtight">∧</span><span class="mord mathnormal mtight" style="margin-right:0.22222em;">Y</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">b</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mclose mtight">)</span><span class="mrel mtight">=</span><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<p>​</p>
+<p>(b)</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>C</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi>N</mi><mi>o</mi><mo separator="true">,</mo><mi>C</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi mathvariant="normal">.</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo separator="true">,</mo><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>e</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>t</mi><mi>e</mi><mi>r</mi><mo separator="true">,</mo><mi>C</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>t</mi><mo separator="true">,</mo><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><msub><mtext>⨝</mtext><mrow><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi>N</mi><mi>o</mi><mo>=</mo><mi>C</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi>N</mi><mi>o</mi><mo>∧</mo><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>N</mi><mi>o</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mn>20084340</mn><msup><mn>7</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></msub><mi>C</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{Course.courseNo, Course.name, Enroll.semester, Course.credit, Enroll.score}(Enroll ⨝_{Enroll.courseNo=Course.courseNo \land Enroll.studentNo=&#x27;200843407&#x27;} Course)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">t</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord"><span class="mord">⨝</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mbin mtight">∧</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">8</span><span class="mord mtight">4</span><span class="mord mtight">3</span><span class="mord mtight">4</span><span class="mord mtight">0</span><span class="mord mtight"><span class="mord mtight">7</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">s</span><span class="mord mathnormal">e</span><span class="mclose">)</span></span></span></span></span></p>
+<p>©</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>S</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>N</mi><mi>o</mi><mo separator="true">,</mo><mi>S</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo separator="true">,</mo><mi>S</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>e</mi><mi>x</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>s</mi><mi>e</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>t</mi><mi>e</mi><mi>r</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mn>2011</mn><mo>−</mo><msup><mn>1</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mtext> </mtext><mi>l</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>c</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi><mi>N</mi><mi>o</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>G</mi><mn>6103000</mn><msup><mn>9</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></msub><mo stretchy="false">(</mo><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><mo stretchy="false">)</mo><msub><mo>⋈</mo><mrow><mi>E</mi><mi>n</mi><mi>r</mi><mi>o</mi><mi>l</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo>=</mo><mi>S</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>N</mi><mi>o</mi></mrow></msub><mi>S</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{Student.studentNo,Student.name,Student.sex}(\sigma_{semester=&#x27;2011-1&#x27; \ landcourseNo=&#x27;G61030009&#x27;}(Enroll) \Join _{Enroll.student=Student.studentNo}Student)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">1</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mtight">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace mtight"><span class="mtight"> </span></span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">G</span><span class="mord mtight">6</span><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">3</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight"><span class="mord mtight">9</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⋈</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></p>
+<h2 id="习题二"><a class="markdownIt-Anchor" href="#习题二"></a> 习题二</h2>
+<p>（1）</p>
 <ul>
-<li>Hotel表<ul>
+<li>Hotel表
+<ul>
 <li>主键: hotelNo</li>
 <li>没有外键</li>
 </ul>
 </li>
-<li>Room表<ul>
+<li>Room表
+<ul>
 <li>主键: (roomNo, hotelNo) 的联合主键</li>
 <li>外键: hotelNo (关联到Hotel表的hotelNo)</li>
 </ul>
 </li>
-<li>Booking表<ul>
+<li>Booking表
+<ul>
 <li>主键: (hotelNo, roomNo, guestNo, dateFrom, dateTo) 的联合主键</li>
 <li>外键: hotelNo (关联到Hotel表的hotelNo)，roomNo (关联到Room表的roomNo)，guestNo (关联到Guest表的guestNo)</li>
 </ul>
 </li>
-<li>Guest表<ul>
+<li>Guest表
+<ul>
 <li>主键: guestNo</li>
 <li>没有外键</li>
 </ul>
@@ -342,106 +357,138 @@
 <li>客户在进行网络预订时必须使用有效的身份验证登陆信息，即客户的guestNo和password字段需要有效对应才能完成预订流程。</li>
 </ul>
 <p>(3)</p>
-<p>​	(a)<br>$$<br>\Pi_{Room.type, Hotel.name, Hotel.city}(\sigma_{Room.price &gt; 1500}(Room ⨝ Hotel))<br>$$<br>​	(b)<br>$$<br>\Pi_{Hotel.name, Room.roomNo, Room.price}(<br>    (σ_{Hotel.city &#x3D; ‘长沙’ AND Room.type &#x3D; ‘单人间’}(Hotel ⨝ Room))<br>    -\<br>    (σ_{Booking.dateFrom \leq ‘2019-09-11’ AND Booking.dateTo \geq ‘2019-09-11’}(Booking))<br>)<br>$$</p>
+<p>​	(a)</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mi mathvariant="normal">.</mi><mi>t</mi><mi>y</mi><mi>p</mi><mi>e</mi><mo separator="true">,</mo><mi>H</mi><mi>o</mi><mi>t</mi><mi>e</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo separator="true">,</mo><mi>H</mi><mi>o</mi><mi>t</mi><mi>e</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>i</mi><mi>t</mi><mi>y</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mi mathvariant="normal">.</mi><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo>&gt;</mo><mn>1500</mn></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mtext>⨝</mtext><mi>H</mi><mi>o</mi><mi>t</mi><mi>e</mi><mi>l</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{Room.type, Hotel.name, Hotel.city}(\sigma_{Room.price &gt; 1500}(Room ⨝ Hotel))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">e</span><span class="mrel mtight">&gt;</span><span class="mord mtight">1</span><span class="mord mtight">5</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">o</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mord">⨝</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<p>​	(b)</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>H</mi><mi>o</mi><mi>t</mi><mi>e</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo separator="true">,</mo><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mi mathvariant="normal">.</mi><mi>r</mi><mi>o</mi><mi>o</mi><mi>m</mi><mi>N</mi><mi>o</mi><mo separator="true">,</mo><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mi mathvariant="normal">.</mi><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow></msub><mo stretchy="false">(</mo><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>H</mi><mi>o</mi><mi>t</mi><mi>e</mi><mi>l</mi><mi mathvariant="normal">.</mi><mi>c</mi><mi>i</mi><mi>t</mi><mi>y</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mtext>长</mtext><msup><mtext>沙</mtext><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>A</mi><mi>N</mi><mi>D</mi><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mi mathvariant="normal">.</mi><mi>t</mi><mi>y</mi><mi>p</mi><mi>e</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mtext>单人</mtext><msup><mtext>间</mtext><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></msub><mo stretchy="false">(</mo><mi>H</mi><mi>o</mi><mi>t</mi><mi>e</mi><mi>l</mi><mtext>⨝</mtext><mi>R</mi><mi>o</mi><mi>o</mi><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>−</mo><mspace linebreak="newline"></mspace><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mi>B</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi mathvariant="normal">.</mi><mi>d</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>F</mi><mi>r</mi><mi>o</mi><mi>m</mi><msup><mo>≤</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mn>2019</mn><mo>−</mo><mn>09</mn><mo>−</mo><mn>1</mn><msup><mn>1</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>A</mi><mi>N</mi><mi>D</mi><mi>B</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi mathvariant="normal">.</mi><mi>d</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>T</mi><mi>o</mi><msup><mo>≥</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mn>2019</mn><mo>−</mo><mn>09</mn><mo>−</mo><mn>1</mn><msup><mn>1</mn><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup></mrow></msub><mo stretchy="false">(</mo><mi>B</mi><mi>o</mi><mi>o</mi><mi>k</mi><mi>i</mi><mi>n</mi><mi>g</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{Hotel.name, Room.roomNo, Room.price}(
+    (σ_{Hotel.city = &#x27;长沙&#x27; AND Room.type = &#x27;单人间&#x27;}(Hotel ⨝ Room))
+    -\\
+    (σ_{Booking.dateFrom \leq &#x27;2019-09-11&#x27; AND Booking.dateTo \geq &#x27;2019-09-11&#x27;}(Booking))
+)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">e</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mord mtight">.</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord cjk_fallback mtight">长</span><span class="mord mtight"><span class="mord cjk_fallback mtight">沙</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight">e</span><span class="mrel mtight"><span class="mrel mtight">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord cjk_fallback mtight">单</span><span class="mord cjk_fallback mtight">人</span><span class="mord mtight"><span class="mord cjk_fallback mtight">间</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord">⨝</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">o</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">m</span><span class="mrel mtight"><span class="mrel mtight">≤</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">1</span><span class="mord mtight">9</span><span class="mbin mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">9</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mtight">.</span><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight">o</span><span class="mrel mtight"><span class="mrel mtight">≥</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">1</span><span class="mord mtight">9</span><span class="mbin mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">9</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mord mtight"><span class="mord mtight">1</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal">o</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
 </li>
 </ol>
-<h2 id="习题三"><a href="#习题三" class="headerlink" title="习题三"></a>习题三</h2><ol>
-<li><pre><code class="SQL">SELECT h.name,r.type,COUTT(r.roomNo) AS room_num 
-From Hotel As h
-JOIN Room r ON h.hotelNo=r.hotelNo
-WHERE h.city=&#39;长沙&#39;
-GROUP BY h.name,r.type
-ORDER BY h.name;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. ```sql</span><br><span class="line">   SELECT g.name,b.roomNo</span><br><span class="line">   From Booking b</span><br><span class="line">   JOIN Hotel h ON b.hotelNo=h.hotelNo</span><br><span class="line">   JOIN GUEST g ON b.guestNo=g.guestNo</span><br><span class="line">   WHERE h.city=&#x27;长沙&#x27; AND b.dateFrom&lt;=&#x27;2019-09-29&#x27; AND b.dateTo&gt;=&#x27;2019-09-29&#x27;</span><br><span class="line">   ORDER By g.name;</span><br></pre></td></tr></table></figure>
+<h2 id="习题三"><a class="markdownIt-Anchor" href="#习题三"></a> 习题三</h2>
+<ol>
+<li>
+<pre class="highlight"><code class="SQL"><span class="keyword">SELECT</span> h.name,r.type,COUTT(r.roomNo) <span class="keyword">AS</span> room_num 
+<span class="keyword">From</span> Hotel <span class="keyword">As</span> h
+<span class="keyword">JOIN</span> Room r <span class="keyword">ON</span> h.hotelNo<span class="operator">=</span>r.hotelNo
+<span class="keyword">WHERE</span> h.city<span class="operator">=</span><span class="string">&#x27;长沙&#x27;</span>
+<span class="keyword">GROUP</span> <span class="keyword">BY</span> h.name,r.type
+<span class="keyword">ORDER</span> <span class="keyword">BY</span> h.name;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼0--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT h.name,r.roomNo,r.price
-FROM Hotel h
-JOIN Room r ON h.hotelNo=r.hotelNo
-WHERE h.city=&#39;长沙&#39; AND r.type=&#39;双人间&#39; AND r.price&lt;140
-ORDER BY h.name,r.price;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. ```sql</span><br><span class="line">   SELECT COUNT(DISTINCT b.name)</span><br><span class="line">   FROM Booking b</span><br><span class="line">   WHERE b.dateFrom&gt;=&#x27;2019-08-00&#x27; AND b.dateTo&lt;=&#x27;2019-08-31&#x27;;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> h.name,r.roomNo,r.price
+<span class="keyword">FROM</span> Hotel h
+<span class="keyword">JOIN</span> Room r <span class="keyword">ON</span> h.hotelNo<span class="operator">=</span>r.hotelNo
+<span class="keyword">WHERE</span> h.city<span class="operator">=</span><span class="string">&#x27;长沙&#x27;</span> <span class="keyword">AND</span> r.type<span class="operator">=</span><span class="string">&#x27;双人间&#x27;</span> <span class="keyword">AND</span> r.price<span class="operator">&lt;</span><span class="number">140</span>
+<span class="keyword">ORDER</span> <span class="keyword">BY</span> h.name,r.price;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼1--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT *
-FROM Booking b
-WHERE b.dateTo=NULL;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6. ```sql</span><br><span class="line">   SELECT COUNT(h.hotelNo)</span><br><span class="line">   FROM Hotel h;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> <span class="operator">*</span>
+<span class="keyword">FROM</span> Booking b
+<span class="keyword">WHERE</span> b.dateTo<span class="operator">=</span><span class="keyword">NULL</span>;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼2--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT h.city AVG(r.price) AS avg_price
-FROM Hotel h
-JOIN Room r ON h.hotelNo=r.hotelNo
-GROUP BY h.city;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">8. ```sql</span><br><span class="line">   SELECT h.city,r.type,AVG(r.price) AS avg_price</span><br><span class="line">   FROM Hotel h</span><br><span class="line">   JOIN Room r ON h.hotelNo=r.hotelNo</span><br><span class="line">   GROUP BY h.city,r.type;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> h.city <span class="built_in">AVG</span>(r.price) <span class="keyword">AS</span> avg_price
+<span class="keyword">FROM</span> Hotel h
+<span class="keyword">JOIN</span> Room r <span class="keyword">ON</span> h.hotelNo<span class="operator">=</span>r.hotelNo
+<span class="keyword">GROUP</span> <span class="keyword">BY</span> h.city;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼3--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT h.city,h.name,b.roomNo,g.name,g.guestNo
-FROM Booking b
-JOIN Hotel h ON r.hotelNo=b.hotelNo
-JOIN Guest g ON b.guestNo=b.guestNo
-WHERE g.city=&#39;北京&#39; AND b.dateFrom&lt;=&#39;2019-09-29&#39; AND b.dateTo&gt;=&#39;2019-09-29&#39;;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">10. ```sql</span><br><span class="line">   SELECT SUM(r.price) AS sum_income</span><br><span class="line">   FROM Room r</span><br><span class="line">   JOIN Hotel h ON h.hotelNo=r.hotelNo</span><br><span class="line">   WHERE h.city=&#x27;长沙&#x27;;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> h.city,h.name,b.roomNo,g.name,g.guestNo
+<span class="keyword">FROM</span> Booking b
+<span class="keyword">JOIN</span> Hotel h <span class="keyword">ON</span> r.hotelNo<span class="operator">=</span>b.hotelNo
+<span class="keyword">JOIN</span> Guest g <span class="keyword">ON</span> b.guestNo<span class="operator">=</span>b.guestNo
+<span class="keyword">WHERE</span> g.city<span class="operator">=</span><span class="string">&#x27;北京&#x27;</span> <span class="keyword">AND</span> b.dateFrom<span class="operator">&lt;=</span><span class="string">&#x27;2019-09-29&#x27;</span> <span class="keyword">AND</span> b.dateTo<span class="operator">&gt;=</span><span class="string">&#x27;2019-09-29&#x27;</span>;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼4--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT SUM(r.price) AS sum_income
-FROM Booking b
-JOIN Hotel h ON b.hotelNo=h.hotelNO
-JOIN Room r ON b.hotelNo=r.hotelNo
-WHERE h.city=&#39;长沙&#39; AND b.dateFrom&lt;=&#39;2019-09-29&#39; AND b.dateTo&gt;=&#39;2019-09-29&#39;;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">12. ``` sql</span><br><span class="line">    SELECT r.roomNo</span><br><span class="line">    FROM Room r</span><br><span class="line">    JOIN Hotel h ON h.hotelNo=r.hotelNo</span><br><span class="line">    WHERE h.city=&#x27;长沙&#x27; AND r.roomNo NOT IN&#123;</span><br><span class="line">    		SELECT b.roomNo</span><br><span class="line">    		FROM Booking b</span><br><span class="line">    		WHERE b.dateFrom&lt;=&#x27;2019-09-29&#x27; AND b.dateTo&gt;=&#x27;2019-09-29&#x27;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> <span class="built_in">SUM</span>(r.price) <span class="keyword">AS</span> sum_income
+<span class="keyword">FROM</span> Booking b
+<span class="keyword">JOIN</span> Hotel h <span class="keyword">ON</span> b.hotelNo<span class="operator">=</span>h.hotelNO
+<span class="keyword">JOIN</span> Room r <span class="keyword">ON</span> b.hotelNo<span class="operator">=</span>r.hotelNo
+<span class="keyword">WHERE</span> h.city<span class="operator">=</span><span class="string">&#x27;长沙&#x27;</span> <span class="keyword">AND</span> b.dateFrom<span class="operator">&lt;=</span><span class="string">&#x27;2019-09-29&#x27;</span> <span class="keyword">AND</span> b.dateTo<span class="operator">&gt;=</span><span class="string">&#x27;2019-09-29&#x27;</span>;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼5--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT h.city,h.name,
-            (COUNT(DISTINCT b.roomNo)/COUNT(DISTINCT r.roomNO))*100
-            AS occupancyRate
-FROM Hotel h
-JOIN Room r ON r.hotelNo=h.hotelNo
-JOIN Booking b ON r.hotel=b.hotelNo AND r.roomNo=b.roomNo
-WHERE b.dateFrom&lt;=&#39;2019-09-29&#39; AND b.dateTo&gt;=&#39;2019-09-29&#39;
-GROUP BY h.city,h.name;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">14. ```sql</span><br><span class="line">    SELECT r.roomNo,r.price</span><br><span class="line">    FROM Room r</span><br><span class="line">    JOIN Hotel h ON h.hotelNo=r.hotelNo</span><br><span class="line">    WHERE r.type=&#x27;双人间&#x27; AND h.city=&#x27;长沙&#x27; AND r.roomNo NOT IN &#123;</span><br><span class="line">    			SELECT b.roomNo</span><br><span class="line">    			FROM Booking b</span><br><span class="line">    			WHERE b.dateFrom=&#x27;2019-10-01&#x27; AND b.dateTo=&#x27;2019-10-03&#x27;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> h.city,h.name,
+			(<span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> b.roomNo)<span class="operator">/</span><span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> r.roomNO))<span class="operator">*</span><span class="number">100</span>
+			<span class="keyword">AS</span> occupancyRate
+<span class="keyword">FROM</span> Hotel h
+<span class="keyword">JOIN</span> Room r <span class="keyword">ON</span> r.hotelNo<span class="operator">=</span>h.hotelNo
+<span class="keyword">JOIN</span> Booking b <span class="keyword">ON</span> r.hotel<span class="operator">=</span>b.hotelNo <span class="keyword">AND</span> r.roomNo<span class="operator">=</span>b.roomNo
+<span class="keyword">WHERE</span> b.dateFrom<span class="operator">&lt;=</span><span class="string">&#x27;2019-09-29&#x27;</span> <span class="keyword">AND</span> b.dateTo<span class="operator">&gt;=</span><span class="string">&#x27;2019-09-29&#x27;</span>
+<span class="keyword">GROUP</span> <span class="keyword">BY</span> h.city,h.name;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼6--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">SELECT r.type
-FROM Room r
-JOIN Hotel h ON h.hotelNo=r.hotelNo
-JOIN Booking b ON b.hotelNo=r.hotelNo AND b.roomNo=r.roomNo
-WHERE h.city=&#39;长沙&#39; AND &#39;2019-09-29&#39; BETWEEN b.dateFrom AND b.dateTo
-GROUP BY r.type
-ORDER BY COUNT(*) DESC
-LIMIT 1;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">16. ```sql</span><br><span class="line">    SELECT g.name,g.creditNo,g.city</span><br><span class="line">    FROM Guest g</span><br><span class="line">    JOIN Booking b ON b.guestNo=g.guestNo</span><br><span class="line">    WHERE b.dateFrom&gt;=&#x27;2019-08-01&#x27; AND b.dateTo&lt;=&#x27;2019-08-31&#x27;</span><br><span class="line">    GROUP g.name,g.creditNo,g.city</span><br><span class="line">    HAVING COUNT(b.guest)&gt;5;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> r.type
+<span class="keyword">FROM</span> Room r
+<span class="keyword">JOIN</span> Hotel h <span class="keyword">ON</span> h.hotelNo<span class="operator">=</span>r.hotelNo
+<span class="keyword">JOIN</span> Booking b <span class="keyword">ON</span> b.hotelNo<span class="operator">=</span>r.hotelNo <span class="keyword">AND</span> b.roomNo<span class="operator">=</span>r.roomNo
+<span class="keyword">WHERE</span> h.city<span class="operator">=</span><span class="string">&#x27;长沙&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2019-09-29&#x27;</span> <span class="keyword">BETWEEN</span> b.dateFrom <span class="keyword">AND</span> b.dateTo
+<span class="keyword">GROUP</span> <span class="keyword">BY</span> r.type
+<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">DESC</span>
+LIMIT <span class="number">1</span>;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼7--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">INSERT INTO Hotel(hotelNo,name,city,address,phone) 
-            VALUES (&#39;001&#39;,&#39;天马大酒店&#39;，&#39;长沙&#39;，&#39;岳麓区&#39;，&#39;10086&#39;);
-INSERT INTO Room(roomNo,hotelNo,type,price) 
-            VALUES (&#39;001&#39;,&#39;001&#39;，&#39;十人间&#39;，&#39;10086&#39;);
-INSERT INTO Booking(hotelNo,roomNo,guestNo,dateFrom,dateTo) 
-            VALUES (&#39;001&#39;,&#39;001&#39;，&#39;001&#39;，&#39;2024-03-15&#39;，&#39;2024-03-16&#39;);
-INSERT INTO Guest(guestNo,password,name,city,email,phone,discount,creditNo) 
-            VALUES (&#39;001&#39;,&#39;114514&#39;，&#39;张三&#39;，&#39;长沙&#39;，&#39;999@gmail.com&#39;,&#39;10086&#39;,&#39;0.01&#39;,&#39;3131313313131&#39;);
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">18. ```sql</span><br><span class="line">    UPDATE Room SET price=price*1.05;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Hotel(hotelNo,name,city,address,phone) 
+			<span class="keyword">VALUES</span> (<span class="string">&#x27;001&#x27;</span>,<span class="string">&#x27;天马大酒店&#x27;</span>，<span class="string">&#x27;长沙&#x27;</span>，<span class="string">&#x27;岳麓区&#x27;</span>，<span class="string">&#x27;10086&#x27;</span>);
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> Room(roomNo,hotelNo,type,price) 
+			<span class="keyword">VALUES</span> (<span class="string">&#x27;001&#x27;</span>,<span class="string">&#x27;001&#x27;</span>，<span class="string">&#x27;十人间&#x27;</span>，<span class="string">&#x27;10086&#x27;</span>);
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> Booking(hotelNo,roomNo,guestNo,dateFrom,dateTo) 
+			<span class="keyword">VALUES</span> (<span class="string">&#x27;001&#x27;</span>,<span class="string">&#x27;001&#x27;</span>，<span class="string">&#x27;001&#x27;</span>，<span class="string">&#x27;2024-03-15&#x27;</span>，<span class="string">&#x27;2024-03-16&#x27;</span>);
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> Guest(guestNo,password,name,city,email,phone,discount,creditNo) 
+			<span class="keyword">VALUES</span> (<span class="string">&#x27;001&#x27;</span>,<span class="string">&#x27;114514&#x27;</span>，<span class="string">&#x27;张三&#x27;</span>，<span class="string">&#x27;长沙&#x27;</span>，<span class="string">&#x27;999@gmail.com&#x27;</span>,<span class="string">&#x27;10086&#x27;</span>,<span class="string">&#x27;0.01&#x27;</span>,<span class="string">&#x27;3131313313131&#x27;</span>);
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼8--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">CREATE TABLE archival_booking like Booking;
-INSERT INTO archival_booking 
-            SELECT *
-            FROM Booking 
-            WHERE b.dateFrom&lt;=&#39;2019-01-01&#39;;
-DELETE FROM Booking
-            WHERE dateFrom&lt;=&#39;2019-01-01&#39;;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">20. ```sql</span><br><span class="line">    UPDATE Guest SET Discount=Discount*0.9</span><br><span class="line">    WHERE guestNo&#123;</span><br><span class="line">    	SELECT guestNo</span><br><span class="line">    	From Guest</span><br><span class="line">    	WHERE dateFrom&gt;=&#x27;2019-01-01&#x27; AND dateTo&lt;=&#x27;2019-12-31&#x27;</span><br><span class="line">    				GROUP BY guestNO</span><br><span class="line">    				HAVING COUNT(*)&gt;=12</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> archival_booking <span class="keyword">like</span> Booking;
+<span class="keyword">INSERT</span> <span class="keyword">INTO</span> archival_booking 
+			<span class="keyword">SELECT</span> <span class="operator">*</span>
+			<span class="keyword">FROM</span> Booking 
+			<span class="keyword">WHERE</span> b.dateFrom<span class="operator">&lt;=</span><span class="string">&#x27;2019-01-01&#x27;</span>;
+<span class="keyword">DELETE</span> <span class="keyword">FROM</span> Booking
+			<span class="keyword">WHERE</span> dateFrom<span class="operator">&lt;=</span><span class="string">&#x27;2019-01-01&#x27;</span>;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼9--&gt;</span>
+
 </code></pre>
 </li>
-<li><pre><code class="sql">DELETE FROM Guest 
-            WHERE g.guest NOT IN&#123;
-            SELECT b.guestNo
-            FROM Booking b
-            WHERE b.dateFrom&gt;=&#39;2017-01-01&#39;
-            &#125;;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">22. ```sql</span><br><span class="line">    SELECT g.name,g.creditNo,g.city</span><br><span class="line">    FROM guest g</span><br><span class="line">    		WHERE NOT EXISTS(</span><br><span class="line">    			SELECT h.hotelNO</span><br><span class="line">    			FROM Hotel h</span><br><span class="line">    			WHERE h.city=&#x27;长沙&#x27;</span><br><span class="line">    					AND NOT EXISTS(</span><br><span class="line">                    SELECT b.hotelNo</span><br><span class="line">                    FROM Booking b</span><br><span class="line">                    WHERE b.hotelNo=g.hotelNo </span><br><span class="line">                          AND b.guestNo=g.guestNo</span><br><span class="line">                          AND b.dateFrom BETWEEN &#x27;2019-01-01&#x27; AND &#x27;2019-12-31&#x27;</span><br><span class="line">    		)</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<li>
+<pre class="highlight"><code class="sql"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> Guest 
+			<span class="keyword">WHERE</span> g.guest <span class="keyword">NOT</span> <span class="keyword">IN</span>&#123;
+			<span class="keyword">SELECT</span> b.guestNo
+			<span class="keyword">FROM</span> Booking b
+			<span class="keyword">WHERE</span> b.dateFrom<span class="operator">&gt;=</span><span class="string">&#x27;2017-01-01&#x27;</span>
+			&#125;;
+<span class="operator">&lt;</span><span class="operator">!</span><span class="comment">--code￼10--&gt;</span>
+
 </code></pre>
 </li>
 </ol>
@@ -449,7 +496,7 @@ DELETE FROM Booking
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%80/" data-id="cluzk416w000ciomc3thyatuz" data-title="数据库系统第一、二章课后作业" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%80/" data-id="clv0rpnu3000itsmc1qh4d47y" data-title="数据库系统第一、二章课后作业" class="article-share-link">分享</a>
       
       
       
@@ -469,14 +516,14 @@ DELETE FROM Booking
         
           
           
-            <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="数据库系统第四章课后作业" class="lazyload">
+            <img data-src="/covers/QQ图片20220923083703.jpg" data-sizes="auto" alt="数据库与身份验证" class="lazyload">
           
         
-        <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A2%E8%BD%AF%E4%BB%B62204%E6%88%B4%E8%85%BE%E5%AE%87202226010418/"></a>
+        <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
           
-            数据库系统第四章课后作业
+            数据库与身份验证
           
         </h3>
       </div>
@@ -486,14 +533,14 @@ DELETE FROM Booking
       
         
         
-          <img data-src="/covers/anime-girls-artwork-anime-digital-art-night-car-2269956-wallhere.com.jpg" data-sizes="auto" alt="数据库与身份验证" class="lazyload">
+          <img data-src="/covers/infinity-69874635.jpg" data-sizes="auto" alt="数据库系统第三章课后作业" class="lazyload">
         
       
-      <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"></a>
+      <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%89/"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
         
-          数据库与身份验证
+          数据库系统第三章课后作业
         
       </h3>
     </div>
@@ -536,10 +583,10 @@ DELETE FROM Booking
       
         <div>
           <span class="icon-brush"></span>
-          21.7k
+          39.4k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          01:27
+          02:31
         </div>
       
       
@@ -566,7 +613,7 @@ DELETE FROM Booking
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text">习题二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%B8%89"><span class="toc-number">2.</span> <span class="toc-text">习题三</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text"> 习题二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E4%B8%89"><span class="toc-number">2.</span> <span class="toc-text"> 习题三</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -577,15 +624,15 @@ DELETE FROM Booking
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">10</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">13</div>
   </div>
 </div>
 <div class="sidebar-social">

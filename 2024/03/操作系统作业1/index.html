@@ -25,31 +25,31 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="44-1 可以看到，在每一个时刻，都保持cpu处于忙碌状态，因此cpu利用率位100%; 使用-c指令查看发现符合预期。 4-2 进程二为一个I&#x2F;O操作，因此程序完成的时间与等待I&#x2F;O完成的时间有关； 若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I&#x2F;O发起请求的时间加上I&#x2F;O等待的时间再加上I&#x2F;O执行完成的时间； 即$$4+x+2&amp;">
+  <meta name="description" content="4  4-1  可以看到，在每一个时刻，都保持cpu处于忙碌状态，因此cpu利用率位100%; 使用-c指令查看发现符合预期。  4-2  进程二为一个I&#x2F;O操作，因此程序完成的时间与等待I&#x2F;O完成的时间有关； 若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I&#x2F;O发起请求的时间加上I&#x2F;O等待的时间再加上I&#x2F;O执行完成的时间； 即 4+x+2&#x3D;6+x4+x+2&#x3D;6+x 4+x+2&#x3D;6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统作业1">
 <meta property="og:url" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/index.html">
 <meta property="og:site_name" content="Ycx&#39;Blog">
-<meta property="og:description" content="44-1 可以看到，在每一个时刻，都保持cpu处于忙碌状态，因此cpu利用率位100%; 使用-c指令查看发现符合预期。 4-2 进程二为一个I&#x2F;O操作，因此程序完成的时间与等待I&#x2F;O完成的时间有关； 若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I&#x2F;O发起请求的时间加上I&#x2F;O等待的时间再加上I&#x2F;O执行完成的时间； 即$$4+x+2&amp;">
+<meta property="og:description" content="4  4-1  可以看到，在每一个时刻，都保持cpu处于忙碌状态，因此cpu利用率位100%; 使用-c指令查看发现符合预期。  4-2  进程二为一个I&#x2F;O操作，因此程序完成的时间与等待I&#x2F;O完成的时间有关； 若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I&#x2F;O发起请求的时间加上I&#x2F;O等待的时间再加上I&#x2F;O执行完成的时间； 即 4+x+2&#x3D;6+x4+x+2&#x3D;6+x 4+x+2&#x3D;6">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316210403950.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316210906963.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316211841117.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316214932000.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316221640885.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316221829401.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240317171813950.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240317173008027.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240317173034407.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240317173059810.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240317173127891.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240317173153763.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316210403950.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316210906963.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316211841117.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316214932000.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316221640885.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316221829401.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317171813950.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173008027.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173034407.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173059810.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173127891.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173153763.png">
 <meta property="article:published_time" content="2024-03-21T05:44:57.000Z">
 <meta property="article:modified_time" content="2024-04-12T15:22:22.159Z">
 <meta property="article:author" content="Ycx.Cc">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users/%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97/AppData/Roaming/Typora/typora-user-images/image-20240316210403950.png">
+<meta name="twitter:image" content="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316210403950.png">
   
     <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
   
@@ -210,7 +210,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4"><span class="toc-number">1.</span> <span class="toc-text">4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">1.1.</span> <span class="toc-text">4-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2"><span class="toc-number">1.2.</span> <span class="toc-text">4-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3"><span class="toc-number">1.3.</span> <span class="toc-text">4-3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5"><span class="toc-number">2.</span> <span class="toc-text">5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1"><span class="toc-number">2.1.</span> <span class="toc-text">5-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2"><span class="toc-number">2.2.</span> <span class="toc-text">5-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4"><span class="toc-number">2.3.</span> <span class="toc-text">5-4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7"><span class="toc-number">3.</span> <span class="toc-text">7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1"><span class="toc-number">3.1.</span> <span class="toc-text">7-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2"><span class="toc-number">3.2.</span> <span class="toc-text">7-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3"><span class="toc-number">3.3.</span> <span class="toc-text">7-3</span></a></li></ol></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4"><span class="toc-number">1.</span> <span class="toc-text"> 4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">1.1.</span> <span class="toc-text"> 4-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2"><span class="toc-number">1.2.</span> <span class="toc-text"> 4-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3"><span class="toc-number">1.3.</span> <span class="toc-text"> 4-3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5"><span class="toc-number">2.</span> <span class="toc-text"> 5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1"><span class="toc-number">2.1.</span> <span class="toc-text"> 5-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 5-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4"><span class="toc-number">2.3.</span> <span class="toc-text"> 5-4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7"><span class="toc-number">3.</span> <span class="toc-text"> 7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1"><span class="toc-number">3.1.</span> <span class="toc-text"> 7-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 7-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3"><span class="toc-number">3.3.</span> <span class="toc-text"> 7-3</span></a></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -221,15 +221,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">10</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">13</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -301,63 +301,71 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><h2 id="4-1"><a href="#4-1" class="headerlink" title="4-1"></a>4-1</h2><p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240316210403950.png" alt="image-20240316210403950"></p>
+        <h1 id="4"><a class="markdownIt-Anchor" href="#4"></a> 4</h1>
+<h2 id="4-1"><a class="markdownIt-Anchor" href="#4-1"></a> 4-1</h2>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316210403950.png" alt="image-20240316210403950"></p>
 <p>可以看到，在每一个时刻，都保持cpu处于忙碌状态，因此cpu利用率位100%;</p>
 <p>使用-c指令查看发现符合预期。</p>
-<h2 id="4-2"><a href="#4-2" class="headerlink" title="4-2"></a>4-2</h2><p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240316210906963.png" alt="image-20240316210906963"></p>
-<p>进程二为一个I&#x2F;O操作，因此程序完成的时间与等待I&#x2F;O完成的时间有关；</p>
-<p>若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I&#x2F;O发起请求的时间加上I&#x2F;O等待的时间再加上I&#x2F;O执行完成的时间；</p>
-<p>即<br>$$<br>4+x+2&#x3D;6+x<br>$$<br>如输入-c之后的表，表中I&#x2F;O等待了4个时刻，因此耗费了11个时刻的时间，与预期相符。</p>
-<h2 id="4-3"><a href="#4-3" class="headerlink" title="4-3"></a>4-3</h2><p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240316211841117.png" alt="image-20240316211841117"></p>
-<p>我们可以看到，当交换了程序运行时间后，实际上进行I&#x2F;O操作时仍旧处于阻塞状态，但是不同的是，此时程序二由于cpu空闲而可以运行，这样子就大大提高了cpu利用率，有效缩短了时间，因此交换顺序是很重要的，这样可以大大提高cpu利用率和运行效率。</p>
+<h2 id="4-2"><a class="markdownIt-Anchor" href="#4-2"></a> 4-2</h2>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316210906963.png" alt="image-20240316210906963"></p>
+<p>进程二为一个I/O操作，因此程序完成的时间与等待I/O完成的时间有关；</p>
+<p>若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I/O发起请求的时间加上I/O等待的时间再加上I/O执行完成的时间；</p>
+<p>即</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>4</mn><mo>+</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo>=</mo><mn>6</mn><mo>+</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">4+x+2=6+x
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span></span></p>
+<p>如输入-c之后的表，表中I/O等待了4个时刻，因此耗费了11个时刻的时间，与预期相符。</p>
+<h2 id="4-3"><a class="markdownIt-Anchor" href="#4-3"></a> 4-3</h2>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316211841117.png" alt="image-20240316211841117"></p>
+<p>我们可以看到，当交换了程序运行时间后，实际上进行I/O操作时仍旧处于阻塞状态，但是不同的是，此时程序二由于cpu空闲而可以运行，这样子就大大提高了cpu利用率，有效缩短了时间，因此交换顺序是很重要的，这样可以大大提高cpu利用率和运行效率。</p>
 <p>使用-c指令可以发现答案正确。</p>
-<h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><h2 id="5-1"><a href="#5-1" class="headerlink" title="5-1"></a>5-1</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> x=<span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> rc=fork();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed&quot;</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;child(pid:%d) (x:%d)\n&quot;</span>,(<span class="type">int</span>)getpid(),x);</span><br><span class="line">        </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;parent of %d (pid:%d) (x:%d)\n&quot;</span>,</span><br><span class="line">                                rc,(<span class="type">int</span>)getpid(),x);</span><br><span class="line">          			x=<span class="number">50</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="5"><a class="markdownIt-Anchor" href="#5"></a> 5</h1>
+<h2 id="5-1"><a class="markdownIt-Anchor" href="#5-1"></a> 5-1</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> x=<span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> rc=fork();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed&quot;</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;child(pid:%d) (x:%d)\n&quot;</span>,(<span class="type">int</span>)getpid(),x);</span><br><span class="line">        </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;parent of %d (pid:%d) (x:%d)\n&quot;</span>,</span><br><span class="line">                                rc,(<span class="type">int</span>)getpid(),x);</span><br><span class="line">          			x=<span class="number">50</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在主进程访问x并将100设置为50时，子进程中的值仍为100，这说明子进程与父进程中的x值互不影响。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> x=<span class="number">100</span>;</span><br><span class="line">        <span class="type">int</span> rc=fork();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed&quot;</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">        	x=<span class="number">50</span>;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;child(pid:%d) (x:%d)\n&quot;</span>,(<span class="type">int</span>)getpid(),x);</span><br><span class="line">        </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123; </span><br><span class="line">        	x=<span class="number">150</span>;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;parent of %d (pid:%d) (x:%d)\n&quot;</span>,</span><br><span class="line">                                rc,(<span class="type">int</span>)getpid(),x);</span><br><span class="line">               </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>将父进程中的x设置为50再输出而子进程中的x设置为150输出，可以观察到：</p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240316214932000.png" alt="image-20240316214932000"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316214932000.png" alt="image-20240316214932000"></p>
 <p>因此这更加证明了父进程和子进程中的变量x并不互相影响。</p>
-<h2 id="5-2"><a href="#5-2" class="headerlink" title="5-2"></a>5-2</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span> rc=fork();</span><br><span class="line">        <span class="type">int</span> fd=open(<span class="string">&quot;./op-5-2-open.txt&quot;</span>,O_RDWR);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed&quot;</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;child(fd:%d)\n&quot;</span>,fd);</span><br><span class="line">                <span class="type">char</span> str[]=<span class="string">&quot;child process&quot;</span>;</span><br><span class="line">                write(fd,str,<span class="keyword">sizeof</span>(str));</span><br><span class="line">        </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;parent (fd:%d)\n&quot;</span>,fd);</span><br><span class="line">               </span><br><span class="line">                <span class="type">char</span> str2[]=<span class="string">&quot;parent process&quot;</span>;</span><br><span class="line">                write(fd,str2,<span class="keyword">sizeof</span>(str2));</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<h2 id="5-2"><a class="markdownIt-Anchor" href="#5-2"></a> 5-2</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="type">int</span> rc=fork();</span><br><span class="line">        <span class="type">int</span> fd=open(<span class="string">&quot;./op-5-2-open.txt&quot;</span>,O_RDWR);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed&quot;</span>);</span><br><span class="line">                <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;child(fd:%d)\n&quot;</span>,fd);</span><br><span class="line">                <span class="type">char</span> str[]=<span class="string">&quot;child process&quot;</span>;</span><br><span class="line">                write(fd,str,<span class="keyword">sizeof</span>(str));</span><br><span class="line">        </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;parent (fd:%d)\n&quot;</span>,fd);</span><br><span class="line">               </span><br><span class="line">                <span class="type">char</span> str2[]=<span class="string">&quot;parent process&quot;</span>;</span><br><span class="line">                write(fd,str2,<span class="keyword">sizeof</span>(str2));</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>当他们并发的写入同一个文件中时，可以看到子进程和父进程都可以正常的访问open()返回的文件描述符；打开txt文件后可以发现后运行的子进程覆盖了先运行的父进程，如下面第二张图所示：</p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240316221640885.png" alt="image-20240316221640885"></p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240316221829401.png" alt="image-20240316221829401"></p>
-<h2 id="5-4"><a href="#5-4" class="headerlink" title="5-4"></a>5-4</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> rc=fork();</span><br><span class="line">	<span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed!\n&quot;</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;execl\n&quot;</span>);</span><br><span class="line">		execl(<span class="string">&quot;/bin/ls&quot;</span>,<span class="string">&quot;ls&quot;</span>,<span class="literal">NULL</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">int</span> wc=wait(<span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316221640885.png" alt="image-20240316221640885"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240316221829401.png" alt="image-20240316221829401"></p>
+<h2 id="5-4"><a class="markdownIt-Anchor" href="#5-4"></a> 5-4</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> rc=fork();</span><br><span class="line">	<span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed!\n&quot;</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;execl\n&quot;</span>);</span><br><span class="line">		execl(<span class="string">&quot;/bin/ls&quot;</span>,<span class="string">&quot;ls&quot;</span>,<span class="literal">NULL</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">int</span> wc=wait(<span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行后输出结果如图所示：</p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240317171813950.png" alt="image-20240317171813950"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317171813950.png" alt="image-20240317171813950"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> rc=fork();</span><br><span class="line">	<span class="keyword">if</span>(rc&lt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;fork failed!\n&quot;</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(rc==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;execl\n&quot;</span>);</span><br><span class="line">		<span class="type">const</span> <span class="type">char</span>*arg;</span><br><span class="line">		<span class="type">char</span> *<span class="type">const</span> argv[]=&#123;<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-l&quot;</span>,<span class="literal">NULL</span>&#125;;</span><br><span class="line">		cahr *<span class="type">const</span> envp[]=&#123;<span class="string">&quot;&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="literal">NULL</span>&#125;;</span><br><span class="line">		</span><br><span class="line">		execl(<span class="string">&quot;/bin/ls&quot;</span>,arg,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;execlp\n&quot;</span>);</span><br><span class="line">		execlp(<span class="string">&quot;ls&quot;</span>,arg,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;execle\n&quot;</span>);</span><br><span class="line">		execle(<span class="string">&quot;/bin/ls&quot;</span>,arg,<span class="literal">NULL</span>,envp);</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;execv\n&quot;</span>);</span><br><span class="line">		execv(<span class="string">&quot;/bin/ls&quot;</span>,argv);</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ececvp\n&quot;</span>);</span><br><span class="line">		execvp(<span class="string">&quot;ls&quot;</span>,argv);</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;ececvp\n&quot;</span>);</span><br><span class="line">		execvp(<span class="string">&quot;ls&quot;</span>,argv,envp);</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="type">int</span> wc=wait(<span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <p>分别运行后可以看到如图所示的结果：</p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240317173008027.png" alt="image-20240317173008027"></p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240317173034407.png" alt="image-20240317173034407"></p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240317173059810.png" alt="image-20240317173059810"></p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240317173127891.png" alt="image-20240317173127891"></p>
-<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/Users\南渡的南\AppData\Roaming\Typora\typora-user-images\image-20240317173153763.png" alt="image-20240317173153763"></p>
-<p>__为什么会有这么多的变种__，是因为多种exec()调用的参数传递方式和传递参数不同，这样子就可以更加灵活多样的使用exec()的功能，从而完成更加细致多样的操作来满足不同的需求。</p>
-<h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><h2 id="7-1"><a href="#7-1" class="headerlink" title="7-1"></a>7-1</h2><p>由于三个任务时间相同且在同一时刻到达，因此他们两种方式的响应时间和周转时间分别相同。</p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173008027.png" alt="image-20240317173008027"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173034407.png" alt="image-20240317173034407"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173059810.png" alt="image-20240317173059810"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173127891.png" alt="image-20240317173127891"></p>
+<p><img src="/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/C:%5CUsers%5C%E5%8D%97%E6%B8%A1%E7%9A%84%E5%8D%97%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240317173153763.png" alt="image-20240317173153763"></p>
+<p><strong>为什么会有这么多的变种</strong>，是因为多种exec()调用的参数传递方式和传递参数不同，这样子就可以更加灵活多样的使用exec()的功能，从而完成更加细致多样的操作来满足不同的需求。</p>
+<h1 id="7"><a class="markdownIt-Anchor" href="#7"></a> 7</h1>
+<h2 id="7-1"><a class="markdownIt-Anchor" href="#7-1"></a> 7-1</h2>
+<p>由于三个任务时间相同且在同一时刻到达，因此他们两种方式的响应时间和周转时间分别相同。</p>
 <p><strong>其调度方式为:</strong></p>
 <table>
 <thead>
 <tr>
-<th>SJF&#x2F;FIFO调度顺序</th>
+<th>SJF/FIFO调度顺序</th>
 <th>A</th>
 <th>B</th>
 <th>B</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>运行长度</td>
 <td>200</td>
 <td>200</td>
 <td>200</td>
 </tr>
-</tbody></table>
-<p>其中每个单元格表示：<strong>响应时间&#x2F;周转时间</strong></p>
+</tbody>
+</table>
+<p>其中每个单元格表示：<strong>响应时间/周转时间</strong></p>
 <table>
 <thead>
 <tr>
@@ -367,38 +375,48 @@
 <th>C</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>FIFO</td>
-<td>0&#x2F;200</td>
-<td>200&#x2F;400</td>
-<td>400&#x2F;600</td>
+<td>0/200</td>
+<td>200/400</td>
+<td>400/600</td>
 </tr>
 <tr>
 <td>SJF</td>
-<td>0&#x2F;200</td>
-<td>200&#x2F;400</td>
-<td>400&#x2F;600</td>
+<td>0/200</td>
+<td>200/400</td>
+<td>400/600</td>
 </tr>
-</tbody></table>
-<p><strong>这两种调度方式的平均响应时间为:</strong><br>$$<br>（0+200+400）&#x2F;3&#x3D;200<br>$$<br><strong>这两种调度方式的平均周转时间为：</strong><br>$$<br>(200+400+600)&#x2F;3&#x3D;400<br>$$</p>
-<h2 id="7-2"><a href="#7-2" class="headerlink" title="7-2"></a>7-2</h2><p><strong>其调度方式为:</strong></p>
+</tbody>
+</table>
+<p><strong>这两种调度方式的平均响应时间为:</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>（</mtext><mn>0</mn><mo>+</mo><mn>200</mn><mo>+</mo><mn>400</mn><mtext>）</mtext><mi mathvariant="normal">/</mi><mn>3</mn><mo>=</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">（0+200+400）/3=200
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">（</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span><span class="mord cjk_fallback">）</span><span class="mord">/</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span></span></span></p>
+<p><strong>这两种调度方式的平均周转时间为：</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>200</mn><mo>+</mo><mn>400</mn><mo>+</mo><mn>600</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>3</mn><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">(200+400+600)/3=400
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">0</span></span></span></span></span></p>
+<h2 id="7-2"><a class="markdownIt-Anchor" href="#7-2"></a> 7-2</h2>
+<p><strong>其调度方式为:</strong></p>
 <table>
 <thead>
 <tr>
-<th>SJF&#x2F;FIFO调度顺序</th>
+<th>SJF/FIFO调度顺序</th>
 <th>A</th>
 <th>B</th>
 <th>B</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>运行长度</td>
 <td>100</td>
 <td>200</td>
 <td>300</td>
 </tr>
-</tbody></table>
-<p>其中每个单元格表示：<strong>响应时间&#x2F;周转时间</strong></p>
+</tbody>
+</table>
+<p>其中每个单元格表示：<strong>响应时间/周转时间</strong></p>
 <table>
 <thead>
 <tr>
@@ -408,21 +426,29 @@
 <th>C</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>FIFO</td>
-<td>0&#x2F;100</td>
-<td>100&#x2F;300</td>
-<td>300&#x2F;600</td>
+<td>0/100</td>
+<td>100/300</td>
+<td>300/600</td>
 </tr>
 <tr>
 <td>SJF</td>
-<td>0&#x2F;100</td>
-<td>100&#x2F;300</td>
-<td>300&#x2F;600</td>
+<td>0/100</td>
+<td>100/300</td>
+<td>300/600</td>
 </tr>
-</tbody></table>
-<p><strong>这两种调度方式的平均响应时间为:</strong><br>$$<br>（0+100+300）&#x2F;3&#x3D;133.33<br>$$<br><strong>这两种调度方式的平均周转时间为：</strong><br>$$<br>(100+300+600)&#x2F;3&#x3D;333.33<br>$$</p>
-<h2 id="7-3"><a href="#7-3" class="headerlink" title="7-3"></a>7-3</h2><p>其中每个单元格表示：<strong>响应时间&#x2F;周转时间</strong></p>
+</tbody>
+</table>
+<p><strong>这两种调度方式的平均响应时间为:</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>（</mtext><mn>0</mn><mo>+</mo><mn>100</mn><mo>+</mo><mn>300</mn><mtext>）</mtext><mi mathvariant="normal">/</mi><mn>3</mn><mo>=</mo><mn>133.33</mn></mrow><annotation encoding="application/x-tex">（0+100+300）/3=133.33
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">（</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mord cjk_fallback">）</span><span class="mord">/</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">3</span><span class="mord">3</span><span class="mord">.</span><span class="mord">3</span><span class="mord">3</span></span></span></span></span></p>
+<p><strong>这两种调度方式的平均周转时间为：</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>100</mn><mo>+</mo><mn>300</mn><mo>+</mo><mn>600</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>3</mn><mo>=</mo><mn>333.33</mn></mrow><annotation encoding="application/x-tex">(100+300+600)/3=333.33
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">3</span><span class="mord">3</span><span class="mord">.</span><span class="mord">3</span><span class="mord">3</span></span></span></span></span></p>
+<h2 id="7-3"><a class="markdownIt-Anchor" href="#7-3"></a> 7-3</h2>
+<p>其中每个单元格表示：<strong>响应时间/周转时间</strong></p>
 <table>
 <thead>
 <tr>
@@ -432,19 +458,26 @@
 <th>C</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>RR</td>
-<td>0&#x2F;598</td>
-<td>1&#x2F;599</td>
-<td>2&#x2F;600</td>
+<td>0/598</td>
+<td>1/599</td>
+<td>2/600</td>
 </tr>
-</tbody></table>
-<p><strong>这两种调度方式的平均响应时间为:</strong><br>$$<br>（0+1+2）&#x2F;3&#x3D;1<br>$$<br><strong>这两种调度方式的平均周转时间为：</strong><br>$$<br>(598+599+600)&#x2F;3&#x3D;599<br>$$</p>
+</tbody>
+</table>
+<p><strong>这两种调度方式的平均响应时间为:</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>（</mtext><mn>0</mn><mo>+</mo><mn>1</mn><mo>+</mo><mn>2</mn><mtext>）</mtext><mi mathvariant="normal">/</mi><mn>3</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">（0+1+2）/3=1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">（</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord cjk_fallback">）</span><span class="mord">/</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p><strong>这两种调度方式的平均周转时间为：</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>598</mn><mo>+</mo><mn>599</mn><mo>+</mo><mn>600</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>3</mn><mo>=</mo><mn>599</mn></mrow><annotation encoding="application/x-tex">(598+599+600)/3=599
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mord">9</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mord">9</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">9</span><span class="mord">9</span></span></span></span></span></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/" data-id="cluzk416r0008iomcb02b5i7h" data-title="操作系统作业1" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/" data-id="clv0rpnu0000btsmc76p60u5r" data-title="操作系统作业1" class="article-share-link">分享</a>
       
       
       
@@ -464,7 +497,7 @@
         
           
           
-            <img data-src="/covers/covers.yml" data-sizes="auto" alt="操作系统第四组第二次小班课" class="lazyload">
+            <img data-src="/covers/infinity-1977597.jpg" data-sizes="auto" alt="操作系统第四组第二次小班课" class="lazyload">
           
         
         <a href="/2024/03/%E5%A4%A7%E7%BA%B2%20-%20%E5%89%AF%E6%9C%AC/"></a>
@@ -481,7 +514,7 @@
       
         
         
-          <img data-src="/covers/QQ图片20221115162133.jpg" data-sizes="auto" alt="数据库系统第四章课后作业" class="lazyload">
+          <img data-src="/covers/IMG_20230107_182328.jpg" data-sizes="auto" alt="数据库系统第四章课后作业" class="lazyload">
         
       
       <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A2%E8%BD%AF%E4%BB%B62204%E6%88%B4%E8%85%BE%E5%AE%87202226010418/"></a>
@@ -531,10 +564,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          21.7k
+          39.4k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          01:27
+          02:31
         </div>
       
       
@@ -561,7 +594,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4"><span class="toc-number">1.</span> <span class="toc-text">4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">1.1.</span> <span class="toc-text">4-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2"><span class="toc-number">1.2.</span> <span class="toc-text">4-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3"><span class="toc-number">1.3.</span> <span class="toc-text">4-3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5"><span class="toc-number">2.</span> <span class="toc-text">5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1"><span class="toc-number">2.1.</span> <span class="toc-text">5-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2"><span class="toc-number">2.2.</span> <span class="toc-text">5-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4"><span class="toc-number">2.3.</span> <span class="toc-text">5-4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7"><span class="toc-number">3.</span> <span class="toc-text">7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1"><span class="toc-number">3.1.</span> <span class="toc-text">7-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2"><span class="toc-number">3.2.</span> <span class="toc-text">7-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3"><span class="toc-number">3.3.</span> <span class="toc-text">7-3</span></a></li></ol></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4"><span class="toc-number">1.</span> <span class="toc-text"> 4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">1.1.</span> <span class="toc-text"> 4-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2"><span class="toc-number">1.2.</span> <span class="toc-text"> 4-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3"><span class="toc-number">1.3.</span> <span class="toc-text"> 4-3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5"><span class="toc-number">2.</span> <span class="toc-text"> 5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1"><span class="toc-number">2.1.</span> <span class="toc-text"> 5-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2"><span class="toc-number">2.2.</span> <span class="toc-text"> 5-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4"><span class="toc-number">2.3.</span> <span class="toc-text"> 5-4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7"><span class="toc-number">3.</span> <span class="toc-text"> 7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1"><span class="toc-number">3.1.</span> <span class="toc-text"> 7-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 7-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3"><span class="toc-number">3.3.</span> <span class="toc-text"> 7-3</span></a></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -572,15 +605,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">10</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">11</div>
+    <div class="sidebar-state-number">13</div>
   </div>
 </div>
 <div class="sidebar-social">
