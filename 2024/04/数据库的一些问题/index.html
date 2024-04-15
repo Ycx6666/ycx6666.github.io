@@ -25,12 +25,12 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="#数据库的一些问题            樱春雪                     湖南大学   | 软件工程   | 22级        ### sharp一点想法  1.检索至少选修两门课程的学生学号思路：将选修表做&#x3D;&#x3D;自连接&#x3D;&#x3D;。也就是把自己和自己做笛卡尔积$$SC1*SC2$$如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同">
+  <meta name="description" content="#数据库的一些问题            樱春雪 	       	     湖南大学   | 软件工程   | 22级        ### sharp一点想法  1.检索至少选修两门课程的学生学号 **思路：**将选修表做自连接。也就是把自己和自己做笛卡尔积 SC1∗SC2SC1*SC2 SC1∗SC2 如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同，说明这个人至少选修了两">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库的一些问题">
 <meta property="og:url" content="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Ycx&#39;Blog">
-<meta property="og:description" content="#数据库的一些问题            樱春雪                     湖南大学   | 软件工程   | 22级        ### sharp一点想法  1.检索至少选修两门课程的学生学号思路：将选修表做&#x3D;&#x3D;自连接&#x3D;&#x3D;。也就是把自己和自己做笛卡尔积$$SC1*SC2$$如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同">
+<meta property="og:description" content="#数据库的一些问题            樱春雪 	       	     湖南大学   | 软件工程   | 22级        ### sharp一点想法  1.检索至少选修两门课程的学生学号 **思路：**将选修表做自连接。也就是把自己和自己做笛卡尔积 SC1∗SC2SC1*SC2 SC1∗SC2 如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同，说明这个人至少选修了两">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-04T14:00:00.000Z">
 <meta property="article:modified_time" content="2024-04-15T09:39:23.823Z">
@@ -81,7 +81,9 @@
   
     <script src="/sw.js"></script>
   
-<meta name="generator" content="Hexo 7.1.1"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
 
   <body>
     
@@ -200,7 +202,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">
     樱春雪
-    </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%80%E7%B4%A2%E8%87%B3%E5%B0%91%E9%80%89%E4%BF%AE%E4%B8%A4%E9%97%A8%E8%AF%BE%E7%A8%8B%E7%9A%84%E5%AD%A6%E7%94%9F%E5%AD%A6%E5%8F%B7"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.检索至少选修两门课程的学生学号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.除法运算的应用</span></a></li></ol></li></ol></li></ol></div>
+	</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E6%A3%80%E7%B4%A2%E8%87%B3%E5%B0%91%E9%80%89%E4%BF%AE%E4%B8%A4%E9%97%A8%E8%AF%BE%E7%A8%8B%E7%9A%84%E5%AD%A6%E7%94%9F%E5%AD%A6%E5%8F%B7"><span class="toc-number">1.0.1.</span> <span class="toc-text"> 1.检索至少选修两门课程的学生学号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.0.2.</span> <span class="toc-text"> 2.除法运算的应用</span></a></li></ol></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -296,10 +298,10 @@
   <br>
   </p><h2 style="text-align:center;color:#F4E0EA">
     樱春雪
-    </h2>
+	</h2>
   <br>
   <br>
-    <div style="text-align:center">
+	<div style="text-align:center">
     <a target="_blank" rel="noopener" href="https://codeload.github.com/liangjingkanji/DrakeTyporaTheme/zip/refs/heads/master">湖南大学</a>
   | <a target="_blank" rel="noopener" href="https://theme.typora.io/theme/Drake/">软件工程</a>
   | <a target="_blank" rel="noopener" href="https://github.com/liangjingkanji/DrakeTyporaTheme/blob/master/issues.md">22级</a>
@@ -309,19 +311,33 @@
   <br>
 <p></p>
 ### sharp一点想法
-
-<h4 id="1-检索至少选修两门课程的学生学号"><a href="#1-检索至少选修两门课程的学生学号" class="headerlink" title="1.检索至少选修两门课程的学生学号"></a>1.检索至少选修两门课程的学生学号</h4><p><strong>思路：</strong>将选修表做&#x3D;&#x3D;自连接&#x3D;&#x3D;。也就是把自己和自己做笛卡尔积<br>$$<br>SC1*SC2<br>$$<br>如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同，说明这个人至少选修了两门课程。</p>
-<p>那么就可以做如下运算<br>$$<br>\sigma <em>{sc1.sno&#x3D;sc2.sno\and sc1.cno!&#x3D;sc2.cno}(SC1*SC2)<br>$$<br>最后将学号投影出来<br>$$<br>\Pi</em>{sno}(\sigma _{sc1.sno&#x3D;sc2.sno\and sc1.cno!&#x3D;sc2.cno}(SC1<em>SC2))<br>$$<br><strong>我们对此进行扩展，如果需要至少选择三门课程的</strong><br>$$<br>SC1</em>SC2*SC3<br>$$</p>
-<h4 id="2-除法运算的应用"><a href="#2-除法运算的应用" class="headerlink" title="2.除法运算的应用"></a>2.除法运算的应用</h4><p><strong>例：检索全部学生都选修的课程号和课程名</strong></p>
+<h4 id="1检索至少选修两门课程的学生学号"><a class="markdownIt-Anchor" href="#1检索至少选修两门课程的学生学号"></a> 1.检索至少选修两门课程的学生学号</h4>
+<p>**思路：**将选修表做<mark>自连接</mark>。也就是把自己和自己做笛卡尔积</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mi>C</mi><mn>1</mn><mo>∗</mo><mi>S</mi><mi>C</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">SC1*SC2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord">2</span></span></span></span></span></p>
+<p>如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同，说明这个人至少选修了两门课程。</p>
+<p>那么就可以做如下运算</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \and at position 25: …sc1.sno=sc2.sno\̲a̲n̲d̲ ̲sc1.cno!=sc2.cn…">\sigma _{sc1.sno=sc2.sno\and sc1.cno!=sc2.cno}(SC1*SC2)
+</p>
+<p>最后将学号投影出来</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \and at position 35: …sc1.sno=sc2.sno\̲a̲n̲d̲ ̲sc1.cno!=sc2.cn…">\Pi_{sno}(\sigma _{sc1.sno=sc2.sno\and sc1.cno!=sc2.cno}(SC1*SC2))
+</p>
+<p><strong>我们对此进行扩展，如果需要至少选择三门课程的</strong></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mi>C</mi><mn>1</mn><mo>∗</mo><mi>S</mi><mi>C</mi><mn>2</mn><mo>∗</mo><mi>S</mi><mi>C</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">SC1*SC2*SC3
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord">3</span></span></span></span></span></p>
+<h4 id="2除法运算的应用"><a class="markdownIt-Anchor" href="#2除法运算的应用"></a> 2.除法运算的应用</h4>
+<p><strong>例：检索全部学生都选修的课程号和课程名</strong></p>
 <p><strong>思路：</strong></p>
 <ul>
 <li>获取所有学生的学号</li>
 </ul>
-<p>$$<br>\Pi_{sno}(S)<br>$$</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>s</mi><mi>n</mi><mi>o</mi></mrow></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{sno}(S)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span></span></p>
 <ul>
 <li>获取所有的选课记录，然后除以所有学生学号</li>
 </ul>
-<p>$$<br>\Pi_{cno,sno}(SC)\div\Pi_{sno}(S)<br>$$</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mrow><mi>c</mi><mi>n</mi><mi>o</mi><mo separator="true">,</mo><mi>s</mi><mi>n</mi><mi>o</mi></mrow></msub><mo stretchy="false">(</mo><mi>S</mi><mi>C</mi><mo stretchy="false">)</mo><mo>÷</mo><msub><mi mathvariant="normal">Π</mi><mrow><mi>s</mi><mi>n</mi><mi>o</mi></mrow></msub><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{cno,sno}(SC)\div\Pi_{sno}(S)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">o</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span></span></span></span></p>
 <p><strong>这样子会筛选出选课记录中有全部学号的课程的cno</strong></p>
 <p>只有包含了被除数所有的条目才会将除数中的非sno属性筛选出</p>
 <ul>
@@ -331,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" data-id="clv0rxxpm000su8mcfmw655ij" data-title="数据库的一些问题" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" data-id="clv0toqbr001lvgmc07kkb44c" data-title="数据库的一些问题" class="article-share-link">分享</a>
       
       
       
@@ -351,7 +367,7 @@
         
           
           
-            <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="数据库复习" class="lazyload">
+            <img data-src="/covers/covers.yml" data-sizes="auto" alt="数据库复习" class="lazyload">
           
         
         <a href="/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A01-md/"></a>
@@ -368,7 +384,7 @@
       
         
         
-          <img data-src="/covers/covers.yml" data-sizes="auto" alt="数据库复习2" class="lazyload">
+          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="数据库复习2" class="lazyload">
         
       
       <a href="/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A02-md/"></a>
@@ -418,10 +434,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          39.9k
+          39.4k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          02:33
+          02:31
         </div>
       
       
@@ -450,7 +466,7 @@
   <h3 class="toc-title">文章目录</h3>
   <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">
     樱春雪
-    </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A3%80%E7%B4%A2%E8%87%B3%E5%B0%91%E9%80%89%E4%BF%AE%E4%B8%A4%E9%97%A8%E8%AF%BE%E7%A8%8B%E7%9A%84%E5%AD%A6%E7%94%9F%E5%AD%A6%E5%8F%B7"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.检索至少选修两门课程的学生学号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.除法运算的应用</span></a></li></ol></li></ol></li></ol></div>
+	</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E6%A3%80%E7%B4%A2%E8%87%B3%E5%B0%91%E9%80%89%E4%BF%AE%E4%B8%A4%E9%97%A8%E8%AF%BE%E7%A8%8B%E7%9A%84%E5%AD%A6%E7%94%9F%E5%AD%A6%E5%8F%B7"><span class="toc-number">1.0.1.</span> <span class="toc-text"> 1.检索至少选修两门课程的学生学号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.0.2.</span> <span class="toc-text"> 2.除法运算的应用</span></a></li></ol></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
