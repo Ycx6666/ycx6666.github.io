@@ -329,7 +329,7 @@
       
         
         
-          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="操作系统小班讨论GPU图形接口虚拟化技术" class="lazyload">
+          <img data-src="/covers/infinity-69874635.jpg" data-sizes="auto" alt="操作系统小班讨论GPU图形接口虚拟化技术" class="lazyload">
         
       
     </div>
@@ -342,12 +342,10 @@
       <h2 class="post-title">操作系统小班讨论GPU图形接口虚拟化技术</h2>
       <article class="post-article">
         
-           原理
-GPU图形接口虚拟化的原理主要是通过软件和硬件技术，将单个物理GPU资源虚拟化成多个独立的虚拟显卡资源，从而可以供多个虚拟机或用户同时使用。
+          原理GPU图形接口虚拟化的原理主要是通过软件和硬件技术，将单个物理GPU资源虚拟化成多个独立的虚拟显卡资源，从而可以供多个虚拟机或用户同时使用。
 在没有虚拟化的情况下，物理GPU直接与单一的主机操作系统和应用程序交互，为其提供图形处理能力。虚拟化后，GPU的物理资源（如处理器核心、显存等）被抽象、封装成多个独立的虚拟GPU（vGPU），每个vGPU可以被单独分配给不同的虚拟机。这样，多个虚拟机就能够共享同一个物理GPU的资源，同时享有GPU加速的优势。
- 主流的GPU虚拟化技术：
-
-NVIDIA vGPU: NVIDIA的虚拟GPU(vGPU)技术使得一块物理GPU可以被分割为多个独立的虚
+主流的GPU虚拟化技术：
+NVIDIA vGPU: NVIDIA的虚拟GPU(vGPU)技术使得一块物理GPU可以被分割为多个独立的虚拟GPU
         
       </article>
     </div>
@@ -364,14 +362,14 @@ NVIDIA vGPU: NVIDIA的虚拟GPU(vGPU)技术使得一块物理GPU可以被分割�
       
         
         
-          <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="数据库复习" class="lazyload">
+          <img data-src="/covers/infinity-3196617.jpg" data-sizes="auto" alt="数据库复习" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-04-14</span>
-        <span><span class="icon-pencil"></span>6.7k 字</span>
+        <span><span class="icon-pencil"></span>6.8k 字</span>
         <span><span class="icon-clock"></span>25 分钟</span>
       </div>
       <h2 class="post-title">数据库复习</h2>
@@ -382,10 +380,10 @@ NVIDIA vGPU: NVIDIA的虚拟GPU(vGPU)技术使得一块物理GPU可以被分割�
   
   
     樱春雪
-	
+    
   
   
-	
+    
     湖南大学
   | 软件工程
   | 22级
@@ -394,42 +392,35 @@ NVIDIA vGPU: NVIDIA的虚拟GPU(vGPU)技术使得一块物理GPU可以被分割�
 
   
 
- 一、绪论
- 1.数据库管理的五个问题
 
+
+
+一、绪论1.数据库管理的五个问题
 数据正确性问题
 数据易用性问题
 数据完整性
 数据安全性问题
 数据处理性能问题
 
- 2.数据库技术的演进
-
+2.数据库技术的演进
 分布式数据库
 面向对象数据库
 NoSql数据库
 数据仓库，大数据
 
- 3.数据+有用性=信息
-
-
+3.数据+有用性&amp;#x3D;信息
 类别性:
 每类数据都有很多项，构成一个数据集
 
-
 有用性：
-
 
 语义性：
 
 
- 4.数据库需要解决三个问题：空间距离、交通运输成本、速度
- 5.数据库的特点
+4.数据库需要解决三个问题：空间距离、交通运输成本、速度5.数据库的特点
+数据库的组成：数据库有表组成，表包括模式和数据
 
- 数据库的组成：
-数据库有表组成，表包括模式和数据
-
-
+数据库
         
       </article>
     </div>
@@ -447,14 +438,14 @@ NoSql数据库
       
         
         
-          <img data-src="/covers/QQ图片20221115162133.jpg" data-sizes="auto" alt="数据库的一些问题" class="lazyload">
+          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="数据库的一些问题" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-04-04</span>
-        <span><span class="icon-pencil"></span>319 字</span>
+        <span><span class="icon-pencil"></span>302 字</span>
         <span><span class="icon-clock"></span>1 分钟</span>
       </div>
       <h2 class="post-title">数据库的一些问题</h2>
@@ -465,10 +456,10 @@ NoSql数据库
   
   
     樱春雪
-	
+    
   
   
-	
+    
     湖南大学
   | 软件工程
   | 22级
@@ -478,16 +469,9 @@ NoSql数据库
   
 
 ### sharp一点想法
- 1.检索至少选修两门课程的学生学号
-**思路：**将选修表做自连接。也就是把自己和自己做笛卡尔积
-SC1∗SC2SC1*SC2
-SC1∗SC2
-如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同，说明这个人至少选修了两门课程。
-那么就可以做如下运算
-\sigma _{sc1.sno=sc2.sno\and sc1.cno!=sc2.cno}(SC1*SC2)
 
-最后将学号投影出来
-\Pi_{sno}(\sigma 
+1.检索至少选修两门课程的学生学号思路：将选修表做&amp;#x3D;&amp;#x3D;自连接&amp;#x3D;&amp;#x3D;。也就是把自己和自己做笛卡尔积$$SC1*SC2$$如果SC1和SC2的sno(学号)相同，但是cno(课程编号)不同，说明这个人至少选修了两门课程。
+那么就可以做如下运算$$\sigma {sc1.sno&amp;#x3D;sc2.sno\and sc1.cno!&amp;#x3D;sc2.cno}(SC1*SC2)$$最后将学号
         
       </article>
     </div>
@@ -511,8 +495,8 @@ SC1∗SC2
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-04-04</span>
-        <span><span class="icon-pencil"></span>9.1k 字</span>
-        <span><span class="icon-clock"></span>32 分钟</span>
+        <span><span class="icon-pencil"></span>9.2k 字</span>
+        <span><span class="icon-clock"></span>33 分钟</span>
       </div>
       <h2 class="post-title">数据库复习2</h2>
       <article class="post-article">
@@ -522,10 +506,10 @@ SC1∗SC2
   
   
     樱春雪
-	
+    
   
   
-	
+    
     湖南大学
   | 软件工程
   | 22级
@@ -534,13 +518,16 @@ SC1∗SC2
 
   
 
- 六.数据库定义功能2
- 1.索引查询
-定义
+
+
+
+
+六.数据库定义功能21.索引查询定义
 12create [unique] [cluster] index 索引名on 表名 (列名[asc|desc] [,列名 asc|desc])
 
+
 unique：唯一性索引，不允许表中不同的行在索引列上取相同值。若已经有相同值存在，则系统给出相关信息，不坚辞索引。系统拒绝未被唯一性的插入和更新
-cluster：聚簇索引，表中元组按照索引项的值排序并物理的聚簇在一起(索引码到指针的则是非物理聚簇)。一个基本表上
+cluster：聚簇索引，表中元组按照索引项的值排序并物理的聚簇在一起(索引码到指针的则是非物理聚簇)
         
       </article>
     </div>
@@ -558,28 +545,27 @@ cluster：聚簇索引，表中元组按照索引项的值排序并物理的聚�
       
         
         
-          <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="Node.js入门" class="lazyload">
+          <img data-src="/covers/infinity-1977597.jpg" data-sizes="auto" alt="Node.js入门" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-03-21</span>
-        <span><span class="icon-pencil"></span>5.7k 字</span>
-        <span><span class="icon-clock"></span>22 分钟</span>
+        <span><span class="icon-pencil"></span>5.8k 字</span>
+        <span><span class="icon-clock"></span>23 分钟</span>
       </div>
       <h2 class="post-title">Node.js入门</h2>
       <article class="post-article">
         
-           Node.js使用教程
-
+          Node.js使用教程
   
   
     樱春雪
-	
+    
   
   
-	
+    
     湖南大学
   | 软件工程
   | 2204
@@ -589,17 +575,22 @@ cluster：聚簇索引，表中元组按照索引项的值排序并物理的聚�
 
   
 
- 1.读取文件内容
- fs文件系统模块
-fs模块时node.js 官方提供的用来操作文件的模块
+
+
+
+
+
+
+1.读取文件内容fs文件系统模块fs模块时node.js 官方提供的用来操作文件的模块
 
 fs.readFile.()方法，用来读取指定文件中的内容
 fs.writeFile()方法，用来向指定的文件中写入文件
 
 入股要在js代码中，使用fs模块操作文件，需要用到require函数调用模块
 1const fs=require(&amp;#x27;fs&amp;#x27;)
+
 ###fs.readFile()的语法格式
-如果在参数列表中的参数被中括号包括起来，表
+如果在参数列表中的参数被中括
         
       </article>
     </div>
@@ -616,7 +607,7 @@ fs.writeFile()方法，用来向指定的文件中写入文件
       
         
         
-          <img data-src="/covers/anime-girls-artwork-anime-digital-art-night-car-2269956-wallhere.com.jpg" data-sizes="auto" alt="协变返回类型" class="lazyload">
+          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="协变返回类型" class="lazyload">
         
       
     </div>
@@ -629,10 +620,8 @@ fs.writeFile()方法，用来向指定的文件中写入文件
       <h2 class="post-title">协变返回类型</h2>
       <article class="post-article">
         
-           协变返回类型
- 定义
-定义	导出类中被覆盖的方法可以返回积累芳芳的返回类型的某种到处类型
-12345678910111213141516171819202122232425262728//polymorphism/CovariantReturn.javapackage polymorphism;class Grain &amp;#123;  public String toString() &amp;#123; return &amp;quot;Grain&amp;quot;; &amp;#125;&amp;#125;class Wheat extends Grain &amp;#123;  public String toString() &amp;#
+          协变返回类型定义&amp;#x3D;&amp;#x3D;定义&amp;#x3D;&amp;#x3D;	导出类中被覆盖的方法可以返回积累芳芳的返回类型的某种到处类型
+12345678910111213141516171819202122232425262728//polymorphism/CovariantReturn.javapackage polymorphism;class Grain &amp;#123;  public String toString() &amp;#123; return &amp;quot;Grain&amp;quot;; &amp;#125;&amp;#125;class Wheat extends Grain &amp;#123;  public 
         
       </article>
     </div>
@@ -650,7 +639,7 @@ fs.writeFile()方法，用来向指定的文件中写入文件
       
         
         
-          <img data-src="/covers/covers.yml" data-sizes="auto" alt="操作系统第四组第二次小班课" class="lazyload">
+          <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="操作系统第四组第二次小班课" class="lazyload">
         
       
     </div>
@@ -663,16 +652,13 @@ fs.writeFile()方法，用来向指定的文件中写入文件
       <h2 class="post-title">操作系统第四组第二次小班课</h2>
       <article class="post-article">
         
-           操作系统第四组第二次小班课
+          操作系统第四组第二次小班课
+代码实现利用多进程实现 C&amp;#x2F;S 模式聊天程序，启动一个服务器，单个和多个客户端，服务端接收到新的客户端请求就创建一个进程与客户端通信。
 
-代码实现利用多进程实现 C/S 模式聊天程序，启动一个服务器，单个和多个客户端，服务端接收到新的客户端请求就创建一个进程与客户端通信。
+CS 架构和 BS 架构常见的软件架构有两种：CS、BS。不管是哪种，真正的核心处理逻辑都是在服务器上：
 
- CS 架构和 BS 架构
-常见的软件架构有两种：CS、BS。不管是哪种，真正的核心处理逻辑都是在服务器上：
-
-
-CS：Client/Server（客户端 / 服务器），采取这种架构的软件，在用户本地需要下载并安装客户端程序，在远程有一个服务器端程序。比如：QQ、steam。
-优点：事先下载好所有资源，用户体验好。缺点：需要开发客户端和服务端，开发、部署、维护麻烦，服务端更新时，客户端也需要更新。CS架构适合定制专业化的办公类
+CS：Client&amp;#x2F;Server（客户端 &amp;#x2F; 服务器），采取这种架构的软件，在用户本地需要下载并安装客户端程序，在远程有一个服务器端程序。比如：QQ、steam。
+优点：事先下载好所有资源，用户体验好。缺点：需要开发客户端和服务端，开发、部署、维护麻烦，服务端更新时，客户端也需要更新。CS架构适
         
       </article>
     </div>
@@ -689,35 +675,28 @@ CS：Client/Server（客户端 / 服务器），采取这种架构的软件，�
       
         
         
-          <img data-src="/covers/covers.yml" data-sizes="auto" alt="操作系统作业1" class="lazyload">
+          <img data-src="/covers/infinity-1977597.jpg" data-sizes="auto" alt="操作系统作业1" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-03-21</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
+        <span><span class="icon-pencil"></span>1.4k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
       </div>
       <h2 class="post-title">操作系统作业1</h2>
       <article class="post-article">
         
-           4
- 4-1
-
+          44-1
 可以看到，在每一个时刻，都保持cpu处于忙碌状态，因此cpu利用率位100%;
 使用-c指令查看发现符合预期。
- 4-2
-
-进程二为一个I/O操作，因此程序完成的时间与等待I/O完成的时间有关；
-若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I/O发起请求的时间加上I/O等待的时间再加上I/O执行完成的时间；
-即
-4+x+2=6+x4+x+2=6+x
-4+x+2=6+x
-如输入-c之后的表，表中I/O等待了4个时刻，因此耗费了11个时刻的时间，与预期相符。
- 4-3
-
-我们可以看到，当交换了程序运行时间后，实际上进行I/O操作时仍旧处于阻塞状态，但是不同的是，此
+4-2
+进程二为一个I&amp;#x2F;O操作，因此程序完成的时间与等待I&amp;#x2F;O完成的时间有关；
+若设这个时间位x，那么所需要的总时间就为进程0的执行时间加上I&amp;#x2F;O发起请求的时间加上I&amp;#x2F;O等待的时间再加上I&amp;#x2F;O执行完成的时间；
+即$$4+x+2&amp;#x3D;6+x$$如输入-c之后的表，表中I&amp;#x2F;O等待了4个时刻，因此耗费了11个时刻的时间，与预期相符。
+4-3
+我们可以看到，当交换了程序运行时间后，实际上进行I&amp;#x2F;O操作时仍旧
         
       </article>
     </div>
@@ -735,7 +714,7 @@ CS：Client/Server（客户端 / 服务器），采取这种架构的软件，�
       
         
         
-          <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="数据库系统第四章课后作业" class="lazyload">
+          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="数据库系统第四章课后作业" class="lazyload">
         
       
     </div>
@@ -748,14 +727,8 @@ CS：Client/Server（客户端 / 服务器），采取这种架构的软件，�
       <h2 class="post-title">数据库系统第四章课后作业</h2>
       <article class="post-article">
         
-           第四章课后作业
- 1.
-某酒店集团公司在全国各城市开有酒店。每个酒店都有客房，客户可在网上先登录，然后预订，也可入店时现场预订。其住宿业务数据库中有如下4个表：
-Hotel(hotelNo, name, city, address, phone)
-Room(roomNo, hotelNo, type, price)
-Booking (hotelNo, roomNo, guestNo, dateFrom, dateTo)
-Guest(guestNo, password, name, city, email, phone, discount, creditNo)
-其中房间类型type字段的取值有
+          第四章课后作业1.某酒店集团公司在全国各城市开有酒店。每个酒店都有客房，客户可在网上先登录，然后预订，也可入店时现场预订。其住宿业务数据库中有如下4个表：
+Hotel(hotelNo, name, city, address, phone)Room(roomNo, hotelNo, type, price)Booking (hotelNo, roomNo, guestNo, dateFrom, dateTo)Guest(guestNo, password, name, city, email, phone, discount, creditNo)其中房间类型type字段的取值有单人间、双人间、
         
       </article>
     </div>
@@ -766,60 +739,27 @@ Guest(guestNo, password, name, city, email, phone, discount, creditNo)
   
   <div class="post-wrap-right wow fadeInUp">
     
-    <a class="post-link" href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"></a>
+    <a class="post-link" href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%89/"></a>
     
     <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/39835d2c0c77fc39bbdbf18327eb980dc512e672.jpg@1256w_708h_!web-article-pic.webp" data-sizes="auto" alt="数据库与身份验证" class="lazyload">
+          <img data-src="/covers/anime-girls-artwork-anime-digital-art-night-car-2269956-wallhere.com.jpg" data-sizes="auto" alt="数据库系统第三章课后作业" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-03-21</span>
-        <span><span class="icon-pencil"></span>3.6k 字</span>
-        <span><span class="icon-clock"></span>14 分钟</span>
+        <span><span class="icon-pencil"></span>622 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
       </div>
-      <h2 class="post-title">数据库与身份验证</h2>
+      <h2 class="post-title">数据库系统第三章课后作业</h2>
       <article class="post-article">
         
-           数据库与身份验证
-
-  
-  
-    樱春雪
-	
-  
-  
-	
-    湖南大学
-  | 软件工程
-  | 2204
-
-
-
-
-  
-
- 1.数据库的基本概念
- 1.1什么是数据库
-
-数据库是用来组织、存储和管理数据的仓库
-
- 1.2常见的数据库及其分类
-
-MySQL数据库(最广泛、流行度最高的开源免费数据库
-Oracle数据库
-SQL Server数据库
-Mongodb数据库
-
- 2.安装并配置MySql相关的服务
- 2.1了解
-
-MySql server :专门用来提供数据存储和服务的软件
-MySQL Workbench :可视化的MySQL管理工具，通过它，可以方便的操作存储在MyS
+          数据库作业三习题一大学教务管理数据库中，操作系统(courseNo为H61030008)是一门专业核心课，请为2019级软件工程专业（专业编号为‘24）的每个学生，向选课表enroll（studentNo, courseNo,semester,score)中添加一行选修该课的记录。将这个操作定义为一个事务。学号的样式为yyyyddssccnm.其中yyyy表示是哪一年级，dd表示所属学院的编号，ss表示专业编号。
+123456789101112TRANSACTION BEGININSERT INTO Enroll (studentNo,courseNo,semester,score) VALU
         
       </article>
     </div>
@@ -862,10 +802,10 @@ MySQL Workbench :可视化的MySQL管理工具，通过它，可以方便的操�
       
         <div>
           <span class="icon-brush"></span>
-          39.4k
+          39.9k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          02:31
+          02:33
         </div>
       
       
