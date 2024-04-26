@@ -25,12 +25,12 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="8-1 数据库设计要解决什么问题?数据库设计面临哪些挑战?获取业务需求的5个途径是什么?数据库设计为什么是一门专业知识?对设计出来的数据库模式，如何判断它是否合理?关系型数据库中的表有什么特征? 问题：  数据冗余问题 数据丢失问题 数据添加被抵制 数据不一致问题 数据结果错误  5个途径：  查看业务规章制度的文档 收集已有的业务表单 面对面沟通交流 观察业务的运转情况 分析、推理、研究、归纳">
+  <meta name="description" content="8-1数据库设计要解决什么问题?数据库设计面临哪些挑战?获取业务需求的5个途径是什么?数据库设计为什么是一门专业知识?对设计出来的数据库模式，如何判断它是否合理?关系型数据库中的表有什么特征? 问题：  数据冗余问题 数据丢失问题 数据添加被抵制 数据不一致问题 数据结果错误  5个途径：  查看业务规章制度的文档 收集已有的业务表单 面对面沟通交流 观察业务的运转情况 分析、推理、研究、归纳提炼">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库作业第八章">
 <meta property="og:url" content="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E7%AC%AC%E5%85%AB%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Ycx&#39;Blog">
-<meta property="og:description" content="8-1 数据库设计要解决什么问题?数据库设计面临哪些挑战?获取业务需求的5个途径是什么?数据库设计为什么是一门专业知识?对设计出来的数据库模式，如何判断它是否合理?关系型数据库中的表有什么特征? 问题：  数据冗余问题 数据丢失问题 数据添加被抵制 数据不一致问题 数据结果错误  5个途径：  查看业务规章制度的文档 收集已有的业务表单 面对面沟通交流 观察业务的运转情况 分析、推理、研究、归纳">
+<meta property="og:description" content="8-1数据库设计要解决什么问题?数据库设计面临哪些挑战?获取业务需求的5个途径是什么?数据库设计为什么是一门专业知识?对设计出来的数据库模式，如何判断它是否合理?关系型数据库中的表有什么特征? 问题：  数据冗余问题 数据丢失问题 数据添加被抵制 数据不一致问题 数据结果错误  5个途径：  查看业务规章制度的文档 收集已有的业务表单 面对面沟通交流 观察业务的运转情况 分析、推理、研究、归纳提炼">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/fd126074-5c9c-4040-a21e-83a310c1179e.png">
 <meta property="og:image" content="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/45faaedd-c43e-4f1e-b6c0-19702276d9f6.png">
@@ -203,7 +203,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1"><span class="toc-number">1.</span> <span class="toc-text"> 8-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2"><span class="toc-number">2.</span> <span class="toc-text"> 8-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3"><span class="toc-number">3.</span> <span class="toc-text"> 8-3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4"><span class="toc-number">4.</span> <span class="toc-text"> 8-4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5"><span class="toc-number">5.</span> <span class="toc-text"> 8-5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">6.</span> <span class="toc-text"> 8-6</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1"><span class="toc-number">1.</span> <span class="toc-text">8-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2"><span class="toc-number">2.</span> <span class="toc-text">8-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3"><span class="toc-number">3.</span> <span class="toc-text">8-3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4"><span class="toc-number">4.</span> <span class="toc-text">8-4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5"><span class="toc-number">5.</span> <span class="toc-text">8-5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">6.</span> <span class="toc-text">8-6</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -294,8 +294,7 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="8-1"><a class="markdownIt-Anchor" href="#8-1"></a> 8-1</h2>
-<p>数据库设计要解决什么问题?数据库设计面临哪些挑战?获取业务需求的5个途径是什么?数据库设计为什么是一门专业知识?对设计出来的数据库模式，如何判断它是否合理?关系型数据库中的表有什么特征?</p>
+        <h2 id="8-1"><a href="#8-1" class="headerlink" title="8-1"></a>8-1</h2><p>数据库设计要解决什么问题?数据库设计面临哪些挑战?获取业务需求的5个途径是什么?数据库设计为什么是一门专业知识?对设计出来的数据库模式，如何判断它是否合理?关系型数据库中的表有什么特征?</p>
 <p><strong>问题：</strong></p>
 <ol>
 <li>数据冗余问题</li>
@@ -328,18 +327,16 @@
 <li>每张表都有一个主键字段，用于唯一标识一条记录。</li>
 <li>表之间可以通过键的关联，形成数据之间的关系。</li>
 </ol>
-<h2 id="8-2"><a class="markdownIt-Anchor" href="#8-2"></a> 8-2</h2>
-<p>已知关系R(A，B，C，D)，有函数依赖集<code>F=&#123;A→C；B→D；B，D→A&#125;</code>，求R的所有候选键。判断R是否满足所有范式。如果不满足，对其进行分解，直至满足3NF，并判断所有函数依赖是否得到了保留。</p>
+<h2 id="8-2"><a href="#8-2" class="headerlink" title="8-2"></a>8-2</h2><p>已知关系R(A，B，C，D)，有函数依赖集<code>F=&#123;A→C；B→D；B，D→A&#125;</code>，求R的所有候选键。判断R是否满足所有范式。如果不满足，对其进行分解，直至满足3NF，并判断所有函数依赖是否得到了保留。</p>
 <p><strong>R的所有候选键：</strong></p>
 <p><code>&#123;B，D&#125;</code></p>
 <p><strong>判断</strong></p>
 <p>满足第一范式，满足第二范式，不满足第三范式</p>
 <p><strong>分解</strong></p>
-<p><code>R1&#123;A,B,D&#125;</code></p>
-<p><code>R2&#123;A,C&#125;</code></p>
+<p><code>R1&#123;A,B,D&#125;</code> </p>
+<p><code>R2&#123;A,C&#125;</code> </p>
 <p><strong>都得到了保留</strong></p>
-<h2 id="8-3"><a class="markdownIt-Anchor" href="#8-3"></a> 8-3</h2>
-<p>出租车公司有出租车、出租车司机和客户。出租车用车牌号标识，司机以工号标识，客户以编号标识。客户每租用一辆出租车，公司便派一个司机，产生一个出租工单RentSheet。出租工单包含如下数据项：businessNo(工单编号)、rentDate(出租日期)、rentTime(出租时间)、driverNo(司机工号)、driverName(司机姓名)、vehicleNo(车辆的车牌号码)、clientNo(客户编号)、clientName(客户姓名)、pickSite(接客地址)、destination(目的地)、endTime(完成时间)、price(费用)。每张出租工单都有唯一的工单编号。收费规则是按照租车时长来计算，每辆车的租车价位也不相同。</p>
+<h2 id="8-3"><a href="#8-3" class="headerlink" title="8-3"></a>8-3</h2><p>出租车公司有出租车、出租车司机和客户。出租车用车牌号标识，司机以工号标识，客户以编号标识。客户每租用一辆出租车，公司便派一个司机，产生一个出租工单RentSheet。出租工单包含如下数据项：businessNo(工单编号)、rentDate(出租日期)、rentTime(出租时间)、driverNo(司机工号)、driverName(司机姓名)、vehicleNo(车辆的车牌号码)、clientNo(客户编号)、clientName(客户姓名)、pickSite(接客地址)、destination(目的地)、endTime(完成时间)、price(费用)。每张出租工单都有唯一的工单编号。收费规则是按照租车时长来计算，每辆车的租车价位也不相同。</p>
 <p>1)基于对业务的理解，针对出租工单，列出其中包含的所有的函数依赖。</p>
 <p>2)列出RentSheet的所有候选键。</p>
 <p>3)将关系RentSheet分解到第三范式。</p>
@@ -352,12 +349,11 @@
 <p><code>R1&#123;A,B,C,D,G,I,J,L,L&#125;</code></p>
 <p><code>R2&#123;D,E,F&#125;</code></p>
 <p><code>R3&#123;G,H&#125;</code></p>
-<h2 id="8-4"><a class="markdownIt-Anchor" href="#8-4"></a> 8-4</h2>
-<p>图书馆的图书包括编号、书名、作者、出版社、类别、IBSN等属性。每本图书有多个副本，每个副本有一个副本号。读者到图书馆注册后方可借书，每次借阅不得超过4本。每本图书都有借阅天数的限制。过期不还图书者要罚款。罚款按过期天数计算。如果图书丢失，则要按书价的两倍赔偿。读者借阅时，可先查阅每本图书是否已全部借出。对于丢失了的图书，在赔偿处理之后，将其删掉。</p>
+<h2 id="8-4"><a href="#8-4" class="headerlink" title="8-4"></a>8-4</h2><p>图书馆的图书包括编号、书名、作者、出版社、类别、IBSN等属性。每本图书有多个副本，每个副本有一个副本号。读者到图书馆注册后方可借书，每次借阅不得超过4本。每本图书都有借阅天数的限制。过期不还图书者要罚款。罚款按过期天数计算。如果图书丢失，则要按书价的两倍赔偿。读者借阅时，可先查阅每本图书是否已全部借出。对于丢失了的图书，在赔偿处理之后，将其删掉。</p>
 <p>1)设计该图书馆的图书借阅业务的ER图。</p>
 <p>2)将所设计的ER图转化为关系模式，指明每个关系的主键，有外键的指明外键。</p>
 <p><strong>1)</strong></p>
-<p><img src="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/fd126074-5c9c-4040-a21e-83a310c1179e.png" alt></p>
+<p><img src="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/fd126074-5c9c-4040-a21e-83a310c1179e.png"></p>
 <p><strong>2)</strong></p>
 <p>在这个ER图中，包含了以下实体：</p>
 <ul>
@@ -370,21 +366,18 @@
 </ul>
 <p>2）将ER图转化为关系模式，有以下关系：</p>
 <ul>
-<li><strong>PUBLISHER（出版社）</strong>
-<ul>
+<li><strong>PUBLISHER（出版社）</strong><ul>
 <li>PublisherID (PK)</li>
 <li>Name</li>
 <li>Address</li>
 </ul>
 </li>
-<li><strong>CATEGORY（类别）</strong>
-<ul>
+<li><strong>CATEGORY（类别）</strong><ul>
 <li>CategoryID (PK)</li>
 <li>Name</li>
 </ul>
 </li>
-<li><strong>BOOK（图书）</strong>
-<ul>
+<li><strong>BOOK（图书）</strong><ul>
 <li>BookID (PK)</li>
 <li>Title</li>
 <li>Author</li>
@@ -393,22 +386,19 @@
 <li>CategoryID (FK)</li>
 </ul>
 </li>
-<li><strong>COPY（副本）</strong>
-<ul>
+<li><strong>COPY（副本）</strong><ul>
 <li>CopyID (PK)</li>
 <li>BookID (FK)</li>
 <li>LoanStatus</li>
 </ul>
 </li>
-<li><strong>READER（读者）</strong>
-<ul>
+<li><strong>READER（读者）</strong><ul>
 <li>ReaderID (PK)</li>
 <li>Name</li>
 <li>RegistrationDate</li>
 </ul>
 </li>
-<li><strong>LOAN（借阅）</strong>
-<ul>
+<li><strong>LOAN（借阅）</strong><ul>
 <li>LoanID (PK)</li>
 <li>ReaderID (FK)</li>
 <li>CopyID (FK)</li>
@@ -419,8 +409,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="8-5"><a class="markdownIt-Anchor" href="#8-5"></a> 8-5</h2>
-<p>一驾校的业务情况为：有不同的培训科目，每个科目有收费额；有教员和几个培训组。驾校对教员每天考勤。每个培训组都有一些教员，有一个组长，至少负责一个科目。每个教员只能属于一个培训组。驾校定期开培训班，招收学员。学员报名时，选定一个培训班和一个科目。报名结束后，驾校根据报名情况，对每个科目给出一个排课详单，每个科目的教学班不得超过30名学员。学员参加一个培训班后，学习合格将获得合格证书。</p>
+<h2 id="8-5"><a href="#8-5" class="headerlink" title="8-5"></a>8-5</h2><p>一驾校的业务情况为：有不同的培训科目，每个科目有收费额；有教员和几个培训组。驾校对教员每天考勤。每个培训组都有一些教员，有一个组长，至少负责一个科目。每个教员只能属于一个培训组。驾校定期开培训班，招收学员。学员报名时，选定一个培训班和一个科目。报名结束后，驾校根据报名情况，对每个科目给出一个排课详单，每个科目的教学班不得超过30名学员。学员参加一个培训班后，学习合格将获得合格证书。</p>
 <p>1)设计该驾校培训业务的ER图。</p>
 <p>2)将所设计的ER图转化为关系模式，指明每个关系的主键，有外键的指明外键。</p>
 <p>3)对照范式检查每个关系是否满足所有范式?如果不满足，设法使之满足。</p>
@@ -429,39 +418,33 @@
 <p><img src="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/45faaedd-c43e-4f1e-b6c0-19702276d9f6.png" alt="ER Diagram for Driving School"></p>
 <p><strong>2)</strong></p>
 <ol>
-<li>Training Subject ( <strong>subject_id</strong>, name, fee )
-<ul>
+<li>Training Subject ( <strong>subject_id</strong>, name, fee )<ul>
 <li>主键: subject_id</li>
 </ul>
 </li>
-<li>Trainer ( <strong>trainer_id</strong>, name, group_id )
-<ul>
+<li>Trainer ( <strong>trainer_id</strong>, name, group_id )<ul>
 <li>主键: trainer_id</li>
 <li>外键: group_id 引用 Training Group(group_id)</li>
 </ul>
 </li>
-<li>Training Group ( <strong>group_id</strong>, leader_id )
-<ul>
+<li>Training Group ( <strong>group_id</strong>, leader_id )<ul>
 <li>主键: group_id</li>
 <li>外键: leader_id 引用 Trainer(trainer_id)</li>
 </ul>
 </li>
-<li>Class ( <strong>class_id</strong>, subject_id, group_id )
-<ul>
+<li>Class ( <strong>class_id</strong>, subject_id, group_id )<ul>
 <li>主键: class_id</li>
 <li>外键: subject_id 引用 Training Subject(subject_id)</li>
 <li>外键: group_id 引用 Training Group(group_id)</li>
 </ul>
 </li>
-<li>Student ( <strong>student_id</strong>, name, class_id, subject_id )
-<ul>
+<li>Student ( <strong>student_id</strong>, name, class_id, subject_id )<ul>
 <li>主键: student_id</li>
 <li>外键: class_id 引用 Class(class_id)</li>
 <li>外键: subject_id 引用 Training Subject(subject_id)</li>
 </ul>
 </li>
-<li>Attendance ( <strong>attendance_id</strong>, date, trainer_id )
-<ul>
+<li>Attendance ( <strong>attendance_id</strong>, date, trainer_id )<ul>
 <li>主键: attendance_id</li>
 </ul>
 </li>
@@ -473,8 +456,7 @@
 <li>调度员对未交费客户的工单调度限制：只有当客户完成支付后，才能被安排到工单中。这个规则保证了公司资金的流动和服务提供的前提条件。</li>
 <li>旅游车的状态更新和调度：旅游车的状态（维修、待命、派出）关系到调度的可行性和调度员的工作效率。任何状态的变化都需要及时更新，确保所有调度在车辆可用的情况下进行。</li>
 </ol>
-<h2 id="8-6"><a class="markdownIt-Anchor" href="#8-6"></a> 8-6</h2>
-<p>旅游公司开辟了一些旅游线路，对外承接旅游接待业务。旅游线路包括线路名称、游玩路线出发时间、游玩时长、价格。对于一条旅游线路，一天中有多个出发时间。客户预订时，要填写姓名、身份证号、联系电话、微信号、email、旅游日期、选择的旅游线路、出发时间、人数。公司有一些旅游车，有一些司机、导游、调度员。公司员工都有工号、姓名、电话、月工资。旅游车有车牌号、座位数、车辆状态。车辆状态有“维修”“待命”“派出”三种。调度员每天安排游览时，根据游客预订情况以及车辆状态来进行调度安排。每车安排一个司机、一个导游、以工单进行调度。工单包括工单号、车牌号、线路名称、出发时间、司机、导游、游客。工单一旦排出，就马上短信通知游客、司机、导游。调度员派工单时，只安排交了费的游客，对没有交费的游客，则短信提醒交费。游客以微信方式交费。一旦交费，便会收到短信提示，包括交费方的微信号、交费额。请设计一个数据库来支持公司的业务开展，尽量实现业务处理的自动化。另外，公司为了拉动业务，奖励老游客介绍新游客。游客预定时，可填上介绍人的微信号。</p>
+<h2 id="8-6"><a href="#8-6" class="headerlink" title="8-6"></a>8-6</h2><p>旅游公司开辟了一些旅游线路，对外承接旅游接待业务。旅游线路包括线路名称、游玩路线出发时间、游玩时长、价格。对于一条旅游线路，一天中有多个出发时间。客户预订时，要填写姓名、身份证号、联系电话、微信号、email、旅游日期、选择的旅游线路、出发时间、人数。公司有一些旅游车，有一些司机、导游、调度员。公司员工都有工号、姓名、电话、月工资。旅游车有车牌号、座位数、车辆状态。车辆状态有“维修”“待命”“派出”三种。调度员每天安排游览时，根据游客预订情况以及车辆状态来进行调度安排。每车安排一个司机、一个导游、以工单进行调度。工单包括工单号、车牌号、线路名称、出发时间、司机、导游、游客。工单一旦排出，就马上短信通知游客、司机、导游。调度员派工单时，只安排交了费的游客，对没有交费的游客，则短信提醒交费。游客以微信方式交费。一旦交费，便会收到短信提示，包括交费方的微信号、交费额。请设计一个数据库来支持公司的业务开展，尽量实现业务处理的自动化。另外，公司为了拉动业务，奖励老游客介绍新游客。游客预定时，可填上介绍人的微信号。</p>
 <p>1)设计旅游经营业务的ER图。</p>
 <p>2)将所设计的ER图转化为关系模式，指明每个关系的主键，有外键的指明外键。</p>
 <p>3)对照范式检查，看每个关系是否满足所有范式?如果不满足，则设法使之满足。</p>
@@ -483,29 +465,24 @@
 <p><img src="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/a3c2b075-3179-4a78-b54d-64e8713745dd.png" alt="旅游经营业务ER图"></p>
 <p><strong>2)</strong></p>
 <ol>
-<li>TourRoute ( route_name, departure_times, duration, price )
-<ul>
+<li>TourRoute ( route_name, departure_times, duration, price )<ul>
 <li>主键: route_name</li>
 </ul>
 </li>
-<li>Customer ( customer_id, name, identity_number, phone_number, wechat_id, email, tour_date, selected_route_name, selected_departure_time, number_of_people, referrer_wechat_id )
-<ul>
+<li>Customer ( customer_id, name, identity_number, phone_number, wechat_id, email, tour_date, selected_route_name, selected_departure_time, number_of_people, referrer_wechat_id )<ul>
 <li>主键: customer_id</li>
 <li>外键: selected_route_name 引用 TourRoute.route_name</li>
 </ul>
 </li>
-<li>Vehicle ( license_plate, seats, status )
-<ul>
+<li>Vehicle ( license_plate, seats, status )<ul>
 <li>主键: license_plate</li>
 </ul>
 </li>
-<li>Employee ( employee_id, name, phone_number, position, monthly_salary )
-<ul>
+<li>Employee ( employee_id, name, phone_number, position, monthly_salary )<ul>
 <li>主键: employee_id</li>
 </ul>
 </li>
-<li>JobOrder ( order_id, license_plate, route_name, departure_time, driver_id, guide_id, customer_id )
-<ul>
+<li>JobOrder ( order_id, license_plate, route_name, departure_time, driver_id, guide_id, customer_id )<ul>
 <li>主键: order_id</li>
 <li>外键: license_plate 引用 Vehicle.license_plate</li>
 <li>外键: route_name 引用 TourRoute.route_name</li>
@@ -514,8 +491,7 @@
 <li>外键: customer_id 引用 Customer.customer_id</li>
 </ul>
 </li>
-<li>Payment ( payment_id, customer_id, amount, wechat_id )
-<ul>
+<li>Payment ( payment_id, customer_id, amount, wechat_id )<ul>
 <li>主键: payment_id</li>
 <li>外键: customer_id 引用 Customer.customer_id</li>
 </ul>
@@ -532,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E7%AC%AC%E5%85%AB%E7%AB%A0/" data-id="clvgs0zju000ti8mcf5r89bqg" data-title="数据库作业第八章" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E7%AC%AC%E5%85%AB%E7%AB%A0/" data-id="clvgt164r000tewmc9dkr5y8v" data-title="数据库作业第八章" class="article-share-link">分享</a>
       
       
       
@@ -552,7 +528,7 @@
         
           
           
-            <img data-src="/covers/QQ图片20221115162133.jpg" data-sizes="auto" alt="" class="lazyload">
+            <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="" class="lazyload">
           
         
         <a href="/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E5%85%AB%E7%AB%A0(%E8%A1%A5%E5%85%85)/"></a>
@@ -569,7 +545,7 @@
       
         
         
-          <img data-src="/covers/infinity-69874635.jpg" data-sizes="auto" alt="Bomb Lab实验" class="lazyload">
+          <img data-src="/covers/infinity-1977597.jpg" data-sizes="auto" alt="Bomb Lab实验" class="lazyload">
         
       
       <a href="/2024/04/Bomb%E5%AE%9E%E9%AA%8C/"></a>
@@ -619,10 +595,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          52.2k
+          52.7k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          03:28
+          03:30
         </div>
       
       
@@ -649,7 +625,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1"><span class="toc-number">1.</span> <span class="toc-text"> 8-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2"><span class="toc-number">2.</span> <span class="toc-text"> 8-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3"><span class="toc-number">3.</span> <span class="toc-text"> 8-3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4"><span class="toc-number">4.</span> <span class="toc-text"> 8-4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5"><span class="toc-number">5.</span> <span class="toc-text"> 8-5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">6.</span> <span class="toc-text"> 8-6</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1"><span class="toc-number">1.</span> <span class="toc-text">8-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2"><span class="toc-number">2.</span> <span class="toc-text">8-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3"><span class="toc-number">3.</span> <span class="toc-text">8-3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4"><span class="toc-number">4.</span> <span class="toc-text">8-4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5"><span class="toc-number">5.</span> <span class="toc-text">8-5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">6.</span> <span class="toc-text">8-6</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">

@@ -201,7 +201,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">1.</span> <span class="toc-text"> 8-6</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">1.</span> <span class="toc-text">8-6</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -309,8 +309,7 @@
 <li>调度员对未交费客户的工单调度限制：只有当客户完成支付后，才能被安排到工单中。这个规则保证了公司资金的流动和服务提供的前提条件。</li>
 <li>旅游车的状态更新和调度：旅游车的状态（维修、待命、派出）关系到调度的可行性和调度员的工作效率。任何状态的变化都需要及时更新，确保所有调度在车辆可用的情况下进行。</li>
 </ol>
-<h2 id="8-6"><a class="markdownIt-Anchor" href="#8-6"></a> 8-6</h2>
-<p>旅游公司开辟了一些旅游线路，对外承接旅游接待业务。旅游线路包括线路名称、游玩路线出发时间、游玩时长、价格。对于一条旅游线路，一天中有多个出发时间。客户预订时，要填写姓名、身份证号、联系电话、微信号、email、旅游日期、选择的旅游线路、出发时间、人数。公司有一些旅游车，有一些司机、导游、调度员。公司员工都有工号、姓名、电话、月工资。旅游车有车牌号、座位数、车辆状态。车辆状态有“维修”“待命”“派出”三种。调度员每天安排游览时，根据游客预订情况以及车辆状态来进行调度安排。每车安排一个司机、一个导游、以工单进行调度。工单包括工单号、车牌号、线路名称、出发时间、司机、导游、游客。工单一旦排出，就马上短信通知游客、司机、导游。调度员派工单时，只安排交了费的游客，对没有交费的游客，则短信提醒交费。游客以微信方式交费。一旦交费，便会收到短信提示，包括交费方的微信号、交费额。请设计一个数据库来支持公司的业务开展，尽量实现业务处理的自动化。另外，公司为了拉动业务，奖励老游客介绍新游客。游客预定时，可填上介绍人的微信号。</p>
+<h2 id="8-6"><a href="#8-6" class="headerlink" title="8-6"></a>8-6</h2><p>旅游公司开辟了一些旅游线路，对外承接旅游接待业务。旅游线路包括线路名称、游玩路线出发时间、游玩时长、价格。对于一条旅游线路，一天中有多个出发时间。客户预订时，要填写姓名、身份证号、联系电话、微信号、email、旅游日期、选择的旅游线路、出发时间、人数。公司有一些旅游车，有一些司机、导游、调度员。公司员工都有工号、姓名、电话、月工资。旅游车有车牌号、座位数、车辆状态。车辆状态有“维修”“待命”“派出”三种。调度员每天安排游览时，根据游客预订情况以及车辆状态来进行调度安排。每车安排一个司机、一个导游、以工单进行调度。工单包括工单号、车牌号、线路名称、出发时间、司机、导游、游客。工单一旦排出，就马上短信通知游客、司机、导游。调度员派工单时，只安排交了费的游客，对没有交费的游客，则短信提醒交费。游客以微信方式交费。一旦交费，便会收到短信提示，包括交费方的微信号、交费额。请设计一个数据库来支持公司的业务开展，尽量实现业务处理的自动化。另外，公司为了拉动业务，奖励老游客介绍新游客。游客预定时，可填上介绍人的微信号。</p>
 <p>1)设计旅游经营业务的ER图。</p>
 <p>2)将所设计的ER图转化为关系模式，指明每个关系的主键，有外键的指明外键。</p>
 <p>3)对照范式检查，看每个关系是否满足所有范式?如果不满足，则设法使之满足。</p>
@@ -319,29 +318,24 @@
 <p><img src="https://sf-bot-studio-plugin-resource.coze.com/obj/bot-studio-platform-plugin-sg/plantuml/a3c2b075-3179-4a78-b54d-64e8713745dd.png" alt="旅游经营业务ER图"></p>
 <p><strong>2)</strong></p>
 <ol>
-<li>TourRoute ( route_name, departure_times, duration, price )
-<ul>
+<li>TourRoute ( route_name, departure_times, duration, price )<ul>
 <li>主键: route_name</li>
 </ul>
 </li>
-<li>Customer ( customer_id, name, identity_number, phone_number, wechat_id, email, tour_date, selected_route_name, selected_departure_time, number_of_people, referrer_wechat_id )
-<ul>
+<li>Customer ( customer_id, name, identity_number, phone_number, wechat_id, email, tour_date, selected_route_name, selected_departure_time, number_of_people, referrer_wechat_id )<ul>
 <li>主键: customer_id</li>
 <li>外键: selected_route_name 引用 TourRoute.route_name</li>
 </ul>
 </li>
-<li>Vehicle ( license_plate, seats, status )
-<ul>
+<li>Vehicle ( license_plate, seats, status )<ul>
 <li>主键: license_plate</li>
 </ul>
 </li>
-<li>Employee ( employee_id, name, phone_number, position, monthly_salary )
-<ul>
+<li>Employee ( employee_id, name, phone_number, position, monthly_salary )<ul>
 <li>主键: employee_id</li>
 </ul>
 </li>
-<li>JobOrder ( order_id, license_plate, route_name, departure_time, driver_id, guide_id, customer_id )
-<ul>
+<li>JobOrder ( order_id, license_plate, route_name, departure_time, driver_id, guide_id, customer_id )<ul>
 <li>主键: order_id</li>
 <li>外键: license_plate 引用 Vehicle.license_plate</li>
 <li>外键: route_name 引用 TourRoute.route_name</li>
@@ -350,8 +344,7 @@
 <li>外键: customer_id 引用 Customer.customer_id</li>
 </ul>
 </li>
-<li>Payment ( payment_id, customer_id, amount, wechat_id )
-<ul>
+<li>Payment ( payment_id, customer_id, amount, wechat_id )<ul>
 <li>主键: payment_id</li>
 <li>外键: customer_id 引用 Customer.customer_id</li>
 </ul>
@@ -368,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E5%85%AB%E7%AB%A0(%E8%A1%A5%E5%85%85)/" data-id="clvgs0zjw0013i8mcbvo5146d" data-title="" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC%E5%85%AB%E7%AB%A0(%E8%A1%A5%E5%85%85)/" data-id="clvgt164v0013ewmc4hfj6gw9" data-title="" class="article-share-link">分享</a>
       
       
       
@@ -386,7 +379,7 @@
         
           
           
-            <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="" class="lazyload">
+            <img data-src="/covers/anime-girls-artwork-anime-digital-art-night-car-2269956-wallhere.com.jpg" data-sizes="auto" alt="" class="lazyload">
           
         
         <a href="/2024/04/%E7%94%B5%E5%AD%90%E6%B5%8B%E8%AF%95%E5%B9%B3%E5%8F%B01/"></a>
@@ -403,7 +396,7 @@
       
         
         
-          <img data-src="/covers/anime-girls-artwork-anime-digital-art-night-car-2269956-wallhere.com.jpg" data-sizes="auto" alt="数据库作业第八章" class="lazyload">
+          <img data-src="/covers/covers.yml" data-sizes="auto" alt="数据库作业第八章" class="lazyload">
         
       
       <a href="/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E7%AC%AC%E5%85%AB%E7%AB%A0/"></a>
@@ -453,10 +446,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          52.2k
+          52.7k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          03:28
+          03:30
         </div>
       
       
@@ -483,7 +476,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">1.</span> <span class="toc-text"> 8-6</span></a></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6"><span class="toc-number">1.</span> <span class="toc-text">8-6</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
