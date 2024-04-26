@@ -32,18 +32,16 @@
 <meta property="og:site_name" content="Ycx&#39;Blog">
 <meta property="og:description" content="2.61  123456789101112#include&quot;stdio.h&quot;#include&quot;stdlib.h&quot;int judge(int x)&#123;    return ((x+1)||x||(!(x&gt;&gt;24)+1)||(!(x&amp;0xff)));&#125;int main()&#123;  int x;  scanf(&amp;quo">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324110351074.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112741611.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112902304.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142831618.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142847715.png">
-<meta property="og:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324152512538.png">
+<meta property="og:image" content="https://s2.loli.net/2024/04/17/STKGgMaBrZ6nmDz.png">
+<meta property="og:image" content="https://s2.loli.net/2024/04/17/mJMZvxKTrpCDeLB.png">
+<meta property="og:image" content="https://s2.loli.net/2024/04/17/oGp2Iferd3UOKmT.png">
+<meta property="og:image" content="https://s2.loli.net/2024/04/17/RJPhfCDMlaqnvop.png">
 <meta property="article:published_time" content="2024-03-21T05:44:57.000Z">
-<meta property="article:modified_time" content="2024-04-15T10:46:28.060Z">
+<meta property="article:modified_time" content="2024-04-17T08:45:26.445Z">
 <meta property="article:author" content="Ycx.Cc">
 <meta property="article:tag" content="计算机系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ycx6666.github.io/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324110351074.png">
+<meta name="twitter:image" content="https://s2.loli.net/2024/04/17/STKGgMaBrZ6nmDz.png">
   
     <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
   
@@ -217,15 +215,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">14</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">16</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -298,15 +296,13 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="261"><a class="markdownIt-Anchor" href="#261"></a> 2.61</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324110351074.png" alt="image-20240324110351074"></p>
+<p><img src="https://s2.loli.net/2024/04/17/STKGgMaBrZ6nmDz.png" alt="image-20240417164034220"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">judge</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ((x+<span class="number">1</span>)||x||(!(x&gt;&gt;<span class="number">24</span>)+<span class="number">1</span>)||(!(x&amp;<span class="number">0xff</span>)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="type">int</span> x;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;x);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, judge(x));</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="271"><a class="markdownIt-Anchor" href="#271"></a> 2.71</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112741611.png" alt="image-20240324112741611"></p>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324112902304.png" alt="image-20240324112902304"></p>
+<p><img src="https://s2.loli.net/2024/04/17/mJMZvxKTrpCDeLB.png" alt="image-20240417164208817"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">packed_t</span>; </span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">xbyte</span><span class="params">(<span class="type">packed_t</span> word, <span class="type">int</span> bytenum)</span> </span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">return</span> ((<span class="type">int</span>)(word&lt;&lt;((<span class="number">3</span>-bytenum)&lt;&lt;<span class="number">3</span>)))&gt;&gt;<span class="number">24</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="type">int</span> x,num;-</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%d %d&quot;</span>, &amp;x,&amp;num);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;0x%hx&quot;</span>, xbyte(x,num));</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="287"><a class="markdownIt-Anchor" href="#287"></a> 2.87</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142831618.png" alt="image-20240324142831618"></p>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324142847715.png" alt="image-20240324142847715"></p>
+<p><img src="https://s2.loli.net/2024/04/17/oGp2Iferd3UOKmT.png" alt="image-20240417164500099"></p>
 <table>
 <thead>
 <tr>
@@ -362,7 +358,7 @@
 </tbody>
 </table>
 <h3 id="288"><a class="markdownIt-Anchor" href="#288"></a> 2.88</h3>
-<p><img src="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A1/image-20240324152512538.png" alt="image-20240324152512538"></p>
+<p><img src="https://s2.loli.net/2024/04/17/RJPhfCDMlaqnvop.png" alt="image-20240417164517178"></p>
 <p>**A:**正确，int转float，double转float有可能小数部分损失，但两者仍然相等</p>
 <p>**B:**错误，当x、y其中一者为INT_MAX，其他一个为整数时，会导致int溢出，导致两者不相等</p>
 <p>**C:**正确，改变运算顺序并不影响浮点数相加运算</p>
@@ -392,7 +388,7 @@
         
           
           
-            <img data-src="/covers/39835d2c0c77fc39bbdbf18327eb980dc512e672.jpg@1256w_708h_!web-article-pic.webp" data-sizes="auto" alt="数据库系统第三章课后作业" class="lazyload">
+            <img data-src="/covers/infinity-3196617.jpg" data-sizes="auto" alt="数据库系统第三章课后作业" class="lazyload">
           
         
         <a href="/2024/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%9C%E4%B8%9A%E4%B8%89/"></a>
@@ -409,14 +405,14 @@
       
         
         
-          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="Express" class="lazyload">
+          <img data-src="/covers/infinity-3196617.jpg" data-sizes="auto" alt="计算机系统第四章课后作业" class="lazyload">
         
       
-      <a href="/2019/11/Express%E4%BD%BF%E7%94%A8/"></a>
+      <a href="/2024/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A2.71-3.66/"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
         
-          Express
+          计算机系统第四章课后作业
         
       </h3>
     </div>
@@ -459,10 +455,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          39.4k
+          52.2k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          02:31
+          03:28
         </div>
       
       
@@ -500,15 +496,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">14</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">16</div>
   </div>
 </div>
 <div class="sidebar-social">
