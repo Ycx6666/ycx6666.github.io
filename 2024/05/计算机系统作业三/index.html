@@ -1,0 +1,935 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <title>
+    
+    Ycx&#39;Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css">
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="/css/loader.css">
+
+  <meta name="description" content="第六章6.30  A:    11 10 9 8 7 6 5 4 3 2 1 0    CT CT CT CT CT CT CT CT C1 C1 C0 C0   B:    操作 地址 命中? 读出的值    读 0x409 未命中 &#x2F;   写 0x40A 命中 &#x2F;   读 0x833 命中 0xD0   6.32  A：    12 11 10 9 8 7 6 5 4 3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ycx&#39;Blog">
+<meta property="og:url" content="https://ycx6666.github.io/2024/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/index.html">
+<meta property="og:site_name" content="Ycx&#39;Blog">
+<meta property="og:description" content="第六章6.30  A:    11 10 9 8 7 6 5 4 3 2 1 0    CT CT CT CT CT CT CT CT C1 C1 C0 C0   B:    操作 地址 命中? 读出的值    读 0x409 未命中 &#x2F;   写 0x40A 命中 &#x2F;   读 0x833 命中 0xD0   6.32  A：    12 11 10 9 8 7 6 5 4 3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161908191-17156747529251.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161926375-17156747677432.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161947169-17156747882633.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162003467-17156748044434.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162021137-17156748224395.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162034408-17156748358946.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162046677-17156748478707.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162100332-17156748610638.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162137990-17156748993089.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162152706-171567491350810.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162230268-171567495121111.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162241240-171567496378812.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162253699-171567497464713.png">
+<meta property="article:published_time" content="2024-05-14T08:17:05.171Z">
+<meta property="article:modified_time" content="2024-05-14T14:31:29.005Z">
+<meta property="article:author" content="Ycx.Cc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ycx6666.github.io/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161908191-17156747529251.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/katex@0.16.9/dist/katex.min.css">
+
+  
+  
+  
+  
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/wowjs@1.1.3/css/libs/animate.css">
+
+    
+<script src="https://npm.webcache.cn/wowjs@1.1.3/dist/wow.min.js"></script>
+
+    <script>
+      new WOW({
+        offset: 0,
+        mobile: true,
+        live: false
+      }).init();
+    </script>
+  
+  
+    <script src="/sw.js"></script>
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+          <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    const startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    const endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('load', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/">首页</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+</div>
+<header id="header">
+  
+    <img fetchpriority="high" src="/images/banner.jpg" alt="">
+  
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div id="logo-wrap">
+        
+          
+          
+            <a href="/" id="logo">
+              <h1>Ycx&#39;Blog</h1>
+            </a>
+          
+        
+      </div>
+      
+        
+        <h2 id="subtitle-wrap">
+          
+            <a href="/" id="subtitle">今天怎么不下雨</a>
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="outer">
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第六章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-30"><span class="toc-number">1.1.</span> <span class="toc-text">6.30</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-32"><span class="toc-number">1.2.</span> <span class="toc-text">6.32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-35"><span class="toc-number">1.3.</span> <span class="toc-text">6.35</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-42"><span class="toc-number">1.4.</span> <span class="toc-text">6.42</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第九章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-13"><span class="toc-number">2.1.</span> <span class="toc-text">9.13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-14"><span class="toc-number">2.2.</span> <span class="toc-text">9.14</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第五章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-19"><span class="toc-number">3.1.</span> <span class="toc-text">5.19</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-21"><span class="toc-number">3.2.</span> <span class="toc-text">5.21</span></a></li></ol></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Ycx.Cc" class="lazyload">
+  <div class="sidebar-author-name">Ycx.Cc</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">28</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class=icon-github>
+      <a href=https://github.com/Ycx6666 itemprop="url" target="_blank" aria-label="github"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+</div>
+    
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  </div>
+
+  
+</aside>
+
+          
+          <section id="main"><article id="post-计算机系统作业三" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/" class="article-date-link">
+    <time datetime="2024-05-14T08:17:05.171Z" itemprop="datePublished">2024-05-14</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><h3 id="6-30"><a href="#6-30" class="headerlink" title="6.30"></a>6.30</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161908191-17156747529251.png" alt="image-20240514161908191"></p>
+<p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161926375-17156747677432.png" alt="image-20240514161926375"></p>
+<p><strong>A:</strong></p>
+<table>
+<thead>
+<tr>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CT</td>
+<td>CT</td>
+<td>CT</td>
+<td>CT</td>
+<td>CT</td>
+<td>CT</td>
+<td>CT</td>
+<td>CT</td>
+<td>C1</td>
+<td>C1</td>
+<td>C0</td>
+<td>C0</td>
+</tr>
+</tbody></table>
+<p><strong>B:</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>地址</th>
+<th>命中?</th>
+<th>读出的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读</td>
+<td>0x409</td>
+<td>未命中</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>写</td>
+<td>0x40A</td>
+<td>命中</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>读</td>
+<td>0x833</td>
+<td>命中</td>
+<td>0xD0</td>
+</tr>
+</tbody></table>
+<h3 id="6-32"><a href="#6-32" class="headerlink" title="6.32"></a>6.32</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514161947169-17156747882633.png" alt="image-20240514161947169"></p>
+<p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162003467-17156748044434.png" alt="image-20240514162003467"></p>
+<p><strong>A：</strong></p>
+<table>
+<thead>
+<tr>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p><strong>B：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>块偏移量</td>
+<td>0x0</td>
+</tr>
+<tr>
+<td>索引</td>
+<td>0x6</td>
+</tr>
+<tr>
+<td>高速缓存示记</td>
+<td>0x38</td>
+</tr>
+<tr>
+<td>高速缓存命中</td>
+<td>命中</td>
+</tr>
+<tr>
+<td>返回的高速缓存值</td>
+<td>0xFA</td>
+</tr>
+</tbody></table>
+<h3 id="6-35"><a href="#6-35" class="headerlink" title="6.35"></a>6.35</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162021137-17156748224395.png" alt="image-20240514162021137"></p>
+<p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162034408-17156748358946.png" alt="image-20240514162034408"></p>
+<p><strong>dst数组</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>m</td>
+<td>h</td>
+<td>h</td>
+<td>h</td>
+</tr>
+<tr>
+<td>1</td>
+<td>m</td>
+<td>h</td>
+<td>h</td>
+<td>h</td>
+</tr>
+<tr>
+<td>2</td>
+<td>m</td>
+<td>h</td>
+<td>h</td>
+<td>h</td>
+</tr>
+<tr>
+<td>3</td>
+<td>m</td>
+<td>h</td>
+<td>h</td>
+<td>h</td>
+</tr>
+</tbody></table>
+<p><strong>src数组</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+</tr>
+<tr>
+<td>1</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+</tr>
+<tr>
+<td>2</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+</tr>
+<tr>
+<td>3</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+<td>m</td>
+</tr>
+</tbody></table>
+<h3 id="6-42"><a href="#6-42" class="headerlink" title="6.42"></a>6.42</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162046677-17156748478707.png" alt="image-20240514162046677"></p>
+<p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162100332-17156748610638.png" alt="image-20240514162100332"></p>
+<p>当其按列读取时，会先读取<code>buffer[i][j].r</code>，发生未命中，然后将<code>.g,.b,.a</code>三个char型数据放入缓存，因此其不命中率为<code>25%</code></p>
+<h2 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h2><h3 id="9-13"><a href="#9-13" class="headerlink" title="9.13"></a>9.13</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162137990-17156748993089.png" alt="image-20240514162137990"></p>
+<p><strong>A:</strong></p>
+<table>
+<thead>
+<tr>
+<th>13</th>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPN</td>
+<td>VPO</td>
+<td>VPO</td>
+<td>VPO</td>
+<td>VPO</td>
+<td>VPO</td>
+<td>VPO</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p><strong>B:</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VPN</td>
+<td>0b 0000001</td>
+</tr>
+<tr>
+<td>TLB索引</td>
+<td>0b 01</td>
+</tr>
+<tr>
+<td>TLB标记</td>
+<td>0b 000000</td>
+</tr>
+<tr>
+<td>TLB是否命中</td>
+<td>否</td>
+</tr>
+<tr>
+<td>是否缺页</td>
+<td>是</td>
+</tr>
+<tr>
+<td>PPN</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p><strong>C、D：</strong>不存在物理地址</p>
+<h3 id="9-14"><a href="#9-14" class="headerlink" title="9.14"></a>9.14</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162152706-171567491350810.png" alt="image-20240514162152706"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/mman.h&gt;</span> <span class="comment">// 为mmap函数提供声明</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span>  <span class="comment">// 为文件操作提供声明</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span> <span class="comment">// 为close函数提供声明</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span> <span class="comment">// 为strlen函数提供声明</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> file = open( <span class="string">&quot;hello.txt&quot;</span>, O_RDWR ); <span class="comment">// 打开文件，以读-写方式</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (file &lt; <span class="number">0</span>) <span class="comment">// 如果文件打开失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">&quot;Error opening file for writing&quot;</span>); <span class="comment">// 输出错误信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">off_t</span> size = lseek(file, <span class="number">0</span>, SEEK_END); <span class="comment">// 获取文件大小</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用mmap映射文件到内存</span></span><br><span class="line">    <span class="type">char</span>* data = mmap(<span class="number">0</span>, size, PROT_READ | PROT_WRITE, MAP_SHARED, file, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (data == MAP_FAILED) <span class="comment">// 如果映射失败</span></span><br><span class="line">    &#123;</span><br><span class="line">        close(file);</span><br><span class="line">        perror(<span class="string">&quot;Error mmapping the file&quot;</span>); <span class="comment">// 输出错误信息</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data[<span class="number">0</span>] = <span class="string">&#x27;J&#x27;</span>; <span class="comment">// 改变映射内存的第一个字符</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (msync(data, size, MS_SYNC) == <span class="number">-1</span>) <span class="comment">// 同步内存映射区的内容到文件中</span></span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">&quot;Could not sync the file to disk&quot;</span>); <span class="comment">// 如果同步失败，输出错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放内存映射区</span></span><br><span class="line">    <span class="keyword">if</span> (munmap(data, size) == <span class="number">-1</span>) &#123;</span><br><span class="line">        close(file);</span><br><span class="line">        perror(<span class="string">&quot;Error un-mmapping the file&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    close(file); <span class="comment">// 关闭文件</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><h3 id="5-19"><a href="#5-19" class="headerlink" title="5.19"></a>5.19</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162230268-171567495121111.png" alt="image-20240514162230268"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stddef.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> *<span class="title function_">optimized_memset</span><span class="params">(<span class="type">void</span> *s, <span class="type">int</span> c, <span class="type">size_t</span> n)</span> &#123;</span><br><span class="line">    <span class="type">size_t</span> k = <span class="keyword">sizeof</span>(<span class="type">unsigned</span> <span class="type">long</span>);</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> *byte_ptr = (<span class="type">unsigned</span> <span class="type">char</span> *)s;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> value = (<span class="type">unsigned</span> <span class="type">char</span>)c;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用无符号长字节（unsigned long）填充值，使用移位和 OR 运算以获得连续的同值字节</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> word_value = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">        word_value |= ((<span class="type">unsigned</span> <span class="type">long</span>)value &lt;&lt; (i * <span class="number">8</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首先处理直至对齐的字节</span></span><br><span class="line">    <span class="keyword">while</span> (((<span class="type">unsigned</span> <span class="type">long</span>)byte_ptr % k != <span class="number">0</span>) &amp;&amp; n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        *byte_ptr++ = value;</span><br><span class="line">        --n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 接下来，以字（word）为单位来进行填充</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> *word_ptr = (<span class="type">unsigned</span> <span class="type">long</span> *)byte_ptr;</span><br><span class="line">    <span class="keyword">while</span> (n &gt;= k) &#123;</span><br><span class="line">        *word_ptr++ = word_value;</span><br><span class="line">        n -= k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理剩余的字节</span></span><br><span class="line">    byte_ptr = (<span class="type">unsigned</span> <span class="type">char</span> *)word_ptr;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        *byte_ptr++ = value;</span><br><span class="line">        --n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-21"><a href="#5-21" class="headerlink" title="5.21"></a>5.21</h3><p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162241240-171567496378812.png" alt="image-20240514162241240"></p>
+<p><img src="/../images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/image-20240514162253699-171567497464713.png" alt="image-20240514162253699"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//psum1</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">psum1</span> <span class="params">(<span class="type">float</span> a[] , <span class="type">float</span> p [] , <span class="type">long</span> <span class="type">int</span> n)</span> </span><br><span class="line">&#123; </span><br><span class="line"><span class="type">long</span> <span class="type">int</span> i; </span><br><span class="line">p[O] = a[O]; </span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++) </span><br><span class="line">p[i] = p[i<span class="number">-1</span>] + a[i]; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>优化后的版本如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">psum1</span><span class="params">(<span class="type">float</span> a[], <span class="type">float</span> p[], <span class="type">long</span> <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">int</span> i;</span><br><span class="line">  	<span class="type">float</span> val;</span><br><span class="line">  	<span class="type">float</span> tmp1,tmp2,tmp3,tmp4;</span><br><span class="line">    val = p[<span class="number">0</span>] = a[<span class="number">0</span>]; </span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n - <span class="number">4</span>; i += <span class="number">4</span>) &#123;</span><br><span class="line">      tmp1 = val + a[i];</span><br><span class="line">      tmp2 = tmp1 + a[i+<span class="number">1</span>];</span><br><span class="line">      tmp3 = tmp2 + a[i+<span class="number">2</span>];</span><br><span class="line">      tmp4 = tmp3 + a[i+<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">      p[i] = tmp1;</span><br><span class="line">      p[i+<span class="number">1</span>] = tmp2;</span><br><span class="line">      p[i+<span class="number">2</span>] = tmp3;</span><br><span class="line">      p[i+<span class="number">3</span>] = tmp4;</span><br><span class="line"></span><br><span class="line">      val = val + (a[i] + a[i+<span class="number">1</span>] + a[i+<span class="number">2</span>] + a[i+<span class="number">3</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  	<span class="keyword">for</span>(;i&lt;n;i++)&#123;</span><br><span class="line">       val += a[i];</span><br><span class="line">       p[i] = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ycx6666.github.io/2024/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/" data-id="clwbswv5a001wpcmc07xfahdi" data-title="" class="article-share-link">分享</a>
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/39835d2c0c77fc39bbdbf18327eb980dc512e672.jpg@1256w_708h_!web-article-pic.webp" data-sizes="auto" alt="操作系统作业28章" class="lazyload">
+          
+        
+        <a href="/2024/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            操作系统作业28章
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="操作系统作业第二十章" class="lazyload">
+        
+      
+      <a href="/2024/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          操作系统作业第二十章
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+        </div>
+        <footer id="footer" class="wow fadeInUp">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        [object Object]
+      
+      <div>
+        <span class="icon-copyright"></span>
+        2020-2024
+        <span class="footer-info-sep"></span>
+        Ycx.Cc
+      </div>
+      
+        <div>
+          基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+          Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+        </div>
+      
+      
+        <div>
+          <span class="icon-brush"></span>
+          63.7k
+          &nbsp;|&nbsp;
+          <span class="icon-coffee"></span>
+          04:18
+        </div>
+      
+      
+        <div>
+          <span class="icon-eye"></span>
+          <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+          &nbsp;|&nbsp;
+          <span class="icon-user"></span>
+          <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+        </div>
+      
+    </div>
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第六章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-30"><span class="toc-number">1.1.</span> <span class="toc-text">6.30</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-32"><span class="toc-number">1.2.</span> <span class="toc-text">6.32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-35"><span class="toc-number">1.3.</span> <span class="toc-text">6.35</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-42"><span class="toc-number">1.4.</span> <span class="toc-text">6.42</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第九章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-13"><span class="toc-number">2.1.</span> <span class="toc-text">9.13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-14"><span class="toc-number">2.2.</span> <span class="toc-text">9.14</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第五章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-19"><span class="toc-number">3.1.</span> <span class="toc-text">5.19</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-21"><span class="toc-number">3.2.</span> <span class="toc-text">5.21</span></a></li></ol></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Ycx.Cc" class="lazyload">
+  <div class="sidebar-author-name">Ycx.Cc</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">28</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class=icon-github>
+      <a href=https://github.com/Ycx6666 itemprop="url" target="_blank" aria-label="github"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    <div class="site-search">
+      <div class="reimu-popup popup">
+        <div class="reimu-search">
+          <span class="reimu-search-input-icon"></span>
+          <div class="reimu-search-input" id="reimu-search-input"></div>
+        </div>
+        <div class="reimu-results">
+          <div id="reimu-stats"></div>
+          <div id="reimu-hits"></div>
+          <div id="reimu-pagination" class="reimu-pagination"></div>
+        </div>
+        <span class="popup-btn-close"></span>
+      </div>
+    </div>
+    
+<script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/generator_search.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+  
+<script src="/js/algolia_search.js"></script>
+
+  <script>
+    var CONFIG = {
+      root: '/',
+      algolia: {
+        applicationID: "",
+        apiKey: "ac97a6a139ee23819efc64577e213254",
+        indexName: "hexo",
+        hits: {
+          "per_page": parseInt("4")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果(用时 ${time} ms)"
+        }
+      }
+    };
+  </script>
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    firework(JSON.parse('{"excludeElements":["a"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.1.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

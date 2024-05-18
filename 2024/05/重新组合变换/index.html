@@ -1,0 +1,649 @@
+
+  <!DOCTYPE html>
+  <html lang="zh-CN"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+
+  
+  <title>
+    
+    Ycx&#39;Blog
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css">
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="/css/loader.css">
+
+  <meta name="description" content="OpenMPOpenMP 的工作原理 基于线程的并行模型： OpenMP 采用线程并行模型来执行任务。程序启动时开始执行一个主线程，当遇到并行区域时，主线程会创建一组线程来并行执行区域内的任务。完成后，这些线程同步合并回主线程，并继续顺序执行。   编译器指令（Pragmas）： OpenMP 通过预处理器指令（比如#pragma）向编译器传达并行执行的信息。这些指令指明随后的代码块（通常是循环）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ycx&#39;Blog">
+<meta property="og:url" content="https://ycx6666.github.io/2024/05/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Ycx&#39;Blog">
+<meta property="og:description" content="OpenMPOpenMP 的工作原理 基于线程的并行模型： OpenMP 采用线程并行模型来执行任务。程序启动时开始执行一个主线程，当遇到并行区域时，主线程会创建一组线程来并行执行区域内的任务。完成后，这些线程同步合并回主线程，并继续顺序执行。   编译器指令（Pragmas）： OpenMP 通过预处理器指令（比如#pragma）向编译器传达并行执行的信息。这些指令指明随后的代码块（通常是循环）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516185334209-17158568152943.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516190654403.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516185423078-17158568643604.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516190714261.png">
+<meta property="article:published_time" content="2024-05-18T07:40:28.233Z">
+<meta property="article:modified_time" content="2024-05-18T07:40:28.236Z">
+<meta property="article:author" content="Ycx.Cc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ycx6666.github.io/images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516185334209-17158568152943.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/katex@0.16.9/dist/katex.min.css">
+
+  
+  
+  
+  
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/wowjs@1.1.3/css/libs/animate.css">
+
+    
+<script src="https://npm.webcache.cn/wowjs@1.1.3/dist/wow.min.js"></script>
+
+    <script>
+      new WOW({
+        offset: 0,
+        mobile: true,
+        live: false
+      }).init();
+    </script>
+  
+  
+    <script src="/sw.js"></script>
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+          <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    const startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    const endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('load', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/">首页</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/archives">归档</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/about">关于</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/friend">友链</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+    
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
+  </nav>
+</div>
+<header id="header">
+  
+    <img fetchpriority="high" src="/images/banner.jpg" alt="">
+  
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div id="logo-wrap">
+        
+          
+          
+            <a href="/" id="logo">
+              <h1>Ycx&#39;Blog</h1>
+            </a>
+          
+        
+      </div>
+      
+        
+        <h2 id="subtitle-wrap">
+          
+            <a href="/" id="subtitle">今天怎么不下雨</a>
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="outer">
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenMP"><span class="toc-number">1.</span> <span class="toc-text">OpenMP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenMP-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">OpenMP 的工作原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">源码:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">优化:</span></a></li></ol></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Ycx.Cc" class="lazyload">
+  <div class="sidebar-author-name">Ycx.Cc</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">28</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class=icon-github>
+      <a href=https://github.com/Ycx6666 itemprop="url" target="_blank" aria-label="github"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+</div>
+    
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  </div>
+
+  
+</aside>
+
+          
+          <section id="main"><article id="post-重新组合变换" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/05/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/" class="article-date-link">
+    <time datetime="2024-05-18T07:40:28.233Z" itemprop="datePublished">2024-05-18</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="OpenMP"><a href="#OpenMP" class="headerlink" title="OpenMP"></a>OpenMP</h2><h3 id="OpenMP-的工作原理"><a href="#OpenMP-的工作原理" class="headerlink" title="OpenMP 的工作原理"></a>OpenMP 的工作原理</h3><ol>
+<li><strong>基于线程的并行模型</strong>：<ul>
+<li>OpenMP 采用线程并行模型来执行任务。程序启动时开始执行一个主线程，当遇到并行区域时，主线程会创建一组线程来并行执行区域内的任务。完成后，这些线程同步合并回主线程，并继续顺序执行。</li>
+</ul>
+</li>
+<li><strong>编译器指令（Pragmas）</strong>：<ul>
+<li>OpenMP 通过预处理器指令（比如<code>#pragma</code>）向编译器传达并行执行的信息。这些指令指明随后的代码块（通常是循环）应该并行执行。开发者可以使用不同的指令来控制并行性的粒度和类型，如并行区域的创建、循环迭代的分配、同步机制等。</li>
+</ul>
+</li>
+<li><strong>运行时环境</strong>：<ul>
+<li>OpenMP 提供了一系列的运行时环境变量，允许在程序运行时对并行执行进行细粒度控制，例如设置线程数、调节负载平衡策略等。</li>
+</ul>
+</li>
+<li><strong>内存模型</strong>：<ul>
+<li>OpenMP 使用共享内存模型，即所有线程可以访问相同的内存空间。这简化了数据交换和通信，但也要求开发者小心处理数据依赖和竞争条件等问题。OpenMP 提供了机制来保护数据，例如临界区（critical sections）和原子操作（atomic operations）。</li>
+</ul>
+</li>
+<li><strong>负载均衡</strong>：<ul>
+<li>OpenMP 支持动态地将任务负载分配给线程，确保所有核心尽可能均匀忙碌，最大化资源利用。</li>
+</ul>
+</li>
+</ol>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码:"></a>源码:</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"></span><br><span class="line">ll <span class="title function_">sum_array_optimized</span><span class="params">(<span class="type">int</span> *x, <span class="type">int</span> *y, <span class="type">int</span> length, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">    ll sum = <span class="number">0</span>;</span><br><span class="line">    ll i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; i &lt; length; i++) </span><br><span class="line">        sum += x[i] * y[i]+c;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">  ll length = <span class="number">99999999</span>; <span class="comment">// 数组长度</span></span><br><span class="line">  <span class="type">int</span> *x = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>)*length);</span><br><span class="line">  <span class="type">int</span> *y = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>)*length);</span><br><span class="line">  ll i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (; i &lt; length;i++)&#123;</span><br><span class="line">    x[i] = <span class="number">10</span>, y[i] = <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="type">int</span> c = <span class="number">-4</span>; <span class="comment">// 示例常数c</span></span><br><span class="line"></span><br><span class="line">  <span class="type">clock_t</span> start, end;</span><br><span class="line">  <span class="type">double</span> cpu_time_used;</span><br><span class="line"></span><br><span class="line">  start = clock();</span><br><span class="line">  ll result = sum_array_optimized(x, y, length, c);</span><br><span class="line">  end = clock();</span><br><span class="line"></span><br><span class="line">  cpu_time_used = ((<span class="type">double</span>)(end - start)) / CLOCKS_PER_SEC;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;运算结果: %lld\n&quot;</span>, result);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;运算花费时长: %f 秒\n&quot;</span>, cpu_time_used);</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">free</span>(x); <span class="comment">// 释放分配的内存</span></span><br><span class="line">  <span class="built_in">free</span>(y);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果(c为整数int型):</p>
+<p><img src="/../images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516185334209-17158568152943.png" alt="image-20240516185334209"></p>
+<p>运行结果(c为浮点double型):</p>
+<p><img src="/../images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516190654403.png" alt="image-20240516190654403"></p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化:"></a>优化:</h3><p>考虑以下的优化方法：</p>
+<ol>
+<li>分支预测优化: 尽量减少或重组代码中的条件语句，避免处理器分支预测失败导致的性能损失。</li>
+<li>并行计算: 如果使用的编译器和硬件支持，可以利用并行计算来提升性能，如 OpenMP 用于在多核心处理器上自动分配计算。</li>
+</ol>
+<p>基于这两种思路来修改代码。就得到了如下进行优化后的代码:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用CSAPP中的方法优化的函数</span></span><br><span class="line">ll <span class="title function_">sum_array_optimized</span><span class="params">(<span class="type">int</span> *x, <span class="type">int</span> *y, <span class="type">int</span> length, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">    ll sum = <span class="number">0</span>;</span><br><span class="line">    ll i = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> limit = length - <span class="number">1</span>; <span class="comment">// 提前计算循环上界，减少每次循环的计算量</span></span><br><span class="line">    <span class="type">int</span> temp_sum = <span class="number">0</span>; <span class="comment">// 使用局部变量减少内存访问</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; limit; i += <span class="number">2</span>) &#123; <span class="comment">// 双倍增加步长以减少循环次数</span></span><br><span class="line">        temp_sum += x[i] * y[i] + c;</span><br><span class="line">        temp_sum += x[i+<span class="number">1</span>] * y[i+<span class="number">1</span>] + c; <span class="comment">// 展开循环内的计算以增加指令级并行性</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理尾部可能未对齐的元素</span></span><br><span class="line">    <span class="keyword">for</span> (; i &lt; length; ++i) &#123;</span><br><span class="line">        temp_sum += x[i] * y[i] + c;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sum = temp_sum;</span><br><span class="line">    <span class="keyword">return</span> sum; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    ll length = <span class="number">99999999</span>; <span class="comment">// 数组长度</span></span><br><span class="line">    <span class="type">int</span> *x = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * length);</span><br><span class="line">    <span class="type">int</span> *y = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * length);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 确保分配的内存是对齐的，提高存取效率</span></span><br><span class="line">    <span class="keyword">if</span> (x == <span class="literal">NULL</span> || y == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Memory allocation failed&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化数组元素，以便测试</span></span><br><span class="line">    ll i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; i &lt; length; i++)&#123;</span><br><span class="line">        x[i] = <span class="number">10</span>;</span><br><span class="line">        y[i] = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> c = <span class="number">-4</span>; <span class="comment">// 示例常数c</span></span><br><span class="line"></span><br><span class="line">    <span class="type">clock_t</span> start, end;</span><br><span class="line">    <span class="type">double</span> cpu_time_used;</span><br><span class="line"></span><br><span class="line">    start = clock(); <span class="comment">// 记录起始时间</span></span><br><span class="line">    ll result = sum_array_optimized(x, y, length, c);</span><br><span class="line">    end = clock(); <span class="comment">// 记录结束时间</span></span><br><span class="line"></span><br><span class="line">    cpu_time_used = ((<span class="type">double</span>)(end - start)) / CLOCKS_PER_SEC;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;运算结果: %lld\n&quot;</span>, result);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;运算花费时长: %f 秒\n&quot;</span>, cpu_time_used);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(x); <span class="comment">// 释放分配的内存</span></span><br><span class="line">    <span class="built_in">free</span>(y);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经过运行，其运行时间为:</p>
+<p>c为整数int型:</p>
+<p><img src="/../images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516185423078-17158568643604.png" alt="image-20240516185423078"></p>
+<p>c为浮点double型</p>
+<p><img src="/../images/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/image-20240516190714261.png" alt="image-20240516190714261"></p>
+<p>可以看到运行速度大幅提升.</p>
+<p>但是当c为浮点型时，由于OpenMP是多核心并行执行最后结果相加，最后得到的结果会有所不同</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ycx6666.github.io/2024/05/%E9%87%8D%E6%96%B0%E7%BB%84%E5%90%88%E5%8F%98%E6%8D%A2/" data-id="clwbswv7x003hpcmc8gy4cdzk" data-title="" class="article-share-link">分享</a>
+      
+      
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="" class="lazyload">
+          
+        
+        <a href="/2024/05/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+          
+            (no title)
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/xingyeai.jpeg" data-sizes="auto" alt="openMP" class="lazyload">
+        
+      
+      <a href="/2024/05/OpenMP/"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+        
+          openMP
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+        </div>
+        <footer id="footer" class="wow fadeInUp">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+        [object Object]
+      
+      <div>
+        <span class="icon-copyright"></span>
+        2020-2024
+        <span class="footer-info-sep"></span>
+        Ycx.Cc
+      </div>
+      
+        <div>
+          基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+          Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+        </div>
+      
+      
+        <div>
+          <span class="icon-brush"></span>
+          63.7k
+          &nbsp;|&nbsp;
+          <span class="icon-coffee"></span>
+          04:18
+        </div>
+      
+      
+        <div>
+          <span class="icon-eye"></span>
+          <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+          &nbsp;|&nbsp;
+          <span class="icon-user"></span>
+          <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+        </div>
+      
+    </div>
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">文章目录</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenMP"><span class="toc-number">1.</span> <span class="toc-text">OpenMP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenMP-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">OpenMP 的工作原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">源码:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">优化:</span></a></li></ol></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Ycx.Cc" class="lazyload">
+  <div class="sidebar-author-name">Ycx.Cc</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">28</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">17</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+    <div class=icon-github>
+      <a href=https://github.com/Ycx6666 itemprop="url" target="_blank" aria-label="github"></a>
+    </div>
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">首页</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">归档</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">关于</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">友链</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    <div class="site-search">
+      <div class="reimu-popup popup">
+        <div class="reimu-search">
+          <span class="reimu-search-input-icon"></span>
+          <div class="reimu-search-input" id="reimu-search-input"></div>
+        </div>
+        <div class="reimu-results">
+          <div id="reimu-stats"></div>
+          <div id="reimu-hits"></div>
+          <div id="reimu-pagination" class="reimu-pagination"></div>
+        </div>
+        <span class="popup-btn-close"></span>
+      </div>
+    </div>
+    
+<script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/generator_search.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+
+
+
+  
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+  
+<script src="/js/algolia_search.js"></script>
+
+  <script>
+    var CONFIG = {
+      root: '/',
+      algolia: {
+        applicationID: "",
+        apiKey: "ac97a6a139ee23819efc64577e213254",
+        indexName: "hexo",
+        hits: {
+          "per_page": parseInt("4")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果(用时 ${time} ms)"
+        }
+      }
+    };
+  </script>
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    firework(JSON.parse('{"excludeElements":["a"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.1.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+

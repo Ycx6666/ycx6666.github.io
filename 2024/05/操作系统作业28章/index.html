@@ -11,6 +11,7 @@
 
   
   <title>
+    操作系统作业28章 |
     
     Ycx&#39;Blog
   </title>
@@ -24,17 +25,26 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="函数依赖（Functional Dependency）是数据库理论中的重要概念，用于描述关系数据库表中属性之间的约束关系。如果一个表中的某一个属性值能够唯一确定另一个属性的值，那么我们可以说后者依赖于前者。这种依赖关系帮助我们判断数据在逻辑上的相关性。 为了判定一个表中属性之间的函数依赖关系，您可以遵循以下步骤：  确定候选键：首先识别表中的所有候选键，候选键是可以唯一识别表中每一行的最小字段集。">
+  <meta name="description" content="虚拟机用户名称ycx66  1.首先用标志-p flag.s 运行 x86.py。该代码通过一个内存标志“实现”锁。你能理解汇编代码试图做什么吗？  答: 输入 .&#x2F;x86.py -p flag.s 运行，得到如下结果  可以看到，在该程序中，存在着两个进程在执行，当进程0执行完毕之后，才开始执行进程1: 其可能是如下c代码： 12345678910111213141516171819202122">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ycx&#39;Blog">
-<meta property="og:url" content="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:title" content="操作系统作业28章">
+<meta property="og:url" content="https://ycx6666.github.io/2024/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Ycx&#39;Blog">
-<meta property="og:description" content="函数依赖（Functional Dependency）是数据库理论中的重要概念，用于描述关系数据库表中属性之间的约束关系。如果一个表中的某一个属性值能够唯一确定另一个属性的值，那么我们可以说后者依赖于前者。这种依赖关系帮助我们判断数据在逻辑上的相关性。 为了判定一个表中属性之间的函数依赖关系，您可以遵循以下步骤：  确定候选键：首先识别表中的所有候选键，候选键是可以唯一识别表中每一行的最小字段集。">
+<meta property="og:description" content="虚拟机用户名称ycx66  1.首先用标志-p flag.s 运行 x86.py。该代码通过一个内存标志“实现”锁。你能理解汇编代码试图做什么吗？  答: 输入 .&#x2F;x86.py -p flag.s 运行，得到如下结果  可以看到，在该程序中，存在着两个进程在执行，当进程0执行完毕之后，才开始执行进程1: 其可能是如下c代码： 12345678910111213141516171819202122">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-17T13:30:27.698Z">
-<meta property="article:modified_time" content="2024-04-21T07:33:21.108Z">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510105507396-17153097089842.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240509215227646-17152627494991.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510105411284-17153096529601.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/beff9d4f05feb4b8d8355510001caaf.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510110051643.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/1136ff0f101b9c1301d8b5c156fc05f.png">
+<meta property="og:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/7dfb03068b56aae318e0fc174811a0e.png">
+<meta property="article:published_time" content="2024-05-17T13:44:57.000Z">
+<meta property="article:modified_time" content="2024-05-18T07:42:14.385Z">
 <meta property="article:author" content="Ycx.Cc">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ycx6666.github.io/images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510105507396-17153097089842.png">
   
     <link rel="alternate" href="/atom.xml" title="Ycx'Blog" type="application/atom+xml">
   
@@ -166,7 +176,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.jpg" alt="">
+    <img fetchpriority="high" src="/images/banner.jpg" alt="操作系统作业28章">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -175,7 +185,7 @@
           
           
             <a href="/" id="logo">
-              <h1>Ycx&#39;Blog</h1>
+              <h1>操作系统作业28章</h1>
             </a>
           
         
@@ -183,8 +193,6 @@
       
         
         <h2 id="subtitle-wrap">
-          
-            <a href="/" id="subtitle">今天怎么不下雨</a>
           
         </h2>
       
@@ -199,7 +207,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2.</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -210,7 +218,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">28</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -218,7 +226,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">17</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -269,16 +277,20 @@
 </aside>
 
           
-          <section id="main"><article id="post-数据库设计" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-操作系统作业28章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     <div class="article-meta">
       <div class="article-date wow slideInLeft">
-  <a href="/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" class="article-date-link">
-    <time datetime="2024-04-17T13:30:27.698Z" itemprop="datePublished">2024-04-17</time>
+  <a href="/2024/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/" class="article-date-link">
+    <time datetime="2024-05-17T13:44:57.000Z" itemprop="datePublished">2024-05-17</time>
   </a>
 </div>
 
       
+  <div class="article-category wow slideInLeft">
+    <a class="article-category-link" href="/categories/%E4%BD%9C%E4%B8%9A/">作业</a>
+  </div>
+
 
     </div>
     <div class="hr-line"></div>
@@ -286,26 +298,41 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>函数依赖（Functional Dependency）是数据库理论中的重要概念，用于描述关系数据库表中属性之间的约束关系。如果一个表中的某一个属性值能够唯一确定另一个属性的值，那么我们可以说后者依赖于前者。这种依赖关系帮助我们判断数据在逻辑上的相关性。</p>
-<p>为了判定一个表中属性之间的函数依赖关系，您可以遵循以下步骤：</p>
-<ol>
-<li>确定候选键：首先识别表中的所有候选键，候选键是可以唯一识别表中每一行的最小字段集。</li>
-<li>定义依赖：查看表中其他非候选键属性是否可以被候选键的子集或整体唯一确定。其形式为 X → Y，这意味着如果我们知道X的值，则可以确定Y的值。</li>
-<li>观察数据：根据表中的实际数据，观察是否存在两行，它们在X属性上具有相同的值，且在Y属性上也具有相同的值。</li>
-<li>推理规则：利用已知的函数依赖和推理规则（例如传递规则、增广规则和分解规则）来识别其他可能的函数依赖。</li>
-<li>验证依赖：对于推断出的函数依赖关系，您可以通过添加数据或假设新的数据场景来验证其是否真实存在。</li>
-</ol>
+        <p>虚拟机用户名称ycx66</p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510105507396-17153097089842.png" alt="image-20240510105507396"></p>
+<h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2><p><strong>首先用标志-p flag.s 运行 x86.py。该代码通过一个内存标志“实现”锁。你能理解汇编代码试图做什么吗？</strong> </p>
+<p>答:</p>
+<p>输入 <code>./x86.py -p flag.s</code> 运行，得到如下结果</p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240509215227646-17152627494991.png" alt="image-20240509215227646"></p>
+<p>可以看到，在该程序中，存在着两个进程在执行，当进程0执行完毕之后，才开始执行进程1:</p>
+<p>其可能是如下c代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  <span class="title">lock_t</span> &#123;</span> </span><br><span class="line">        <span class="type">int</span> flag; </span><br><span class="line">&#125; <span class="type">lock_t</span>; </span><br><span class="line"></span><br><span class="line"><span class="type">lock_t</span> lock;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">(<span class="type">lock_t</span> *lock)</span> &#123; </span><br><span class="line">     lock-&gt;flag = <span class="number">0</span>; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line"><span class="type">void</span> <span class="title function_">lock</span><span class="params">(<span class="type">lock_t</span> *lock)</span> &#123; </span><br><span class="line">  <span class="keyword">while</span> (TestAndSet(&amp;lock-&gt;flag, <span class="number">1</span>) == <span class="number">1</span>) <span class="number">12</span>           ; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line"><span class="type">void</span> <span class="title function_">unlock</span><span class="params">(<span class="type">lock_t</span> *lock)</span> &#123; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pthread_t</span> thread1, thread2;</span><br><span class="line">		init(lock);</span><br><span class="line">    pthread_create(&amp;thread1, <span class="literal">NULL</span>, &amp;threadFunc, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_create(&amp;thread2, <span class="literal">NULL</span>, &amp;threadFunc, <span class="literal">NULL</span>);</span><br><span class="line">		<span class="comment">//第一个线程</span></span><br><span class="line">  	lock(lock)</span><br><span class="line">    pthread_join(thread1, <span class="literal">NULL</span>);</span><br><span class="line">  	count++;</span><br><span class="line">  	unlock(lock)</span><br><span class="line">    <span class="comment">//第二个线程</span></span><br><span class="line">    lock(lock)</span><br><span class="line">    pthread_join(thread2, <span class="literal">NULL</span>);</span><br><span class="line">		count++;</span><br><span class="line">  	unlock(lock)</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Final count is %d\n&quot;</span>, count);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里使用了<strong>测试并设置</strong>的思想来来实现两个线程的并发模式控制。</p>
+<p>当flag&#x3D;0时，其中一个线程运行并上“锁”，另外一个线程需要等到这个线程flag被设置为1后，才能尝试运行，否则则保持自旋状态。</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2><p><strong>使用默认值运行时，flag.s 是否按预期工作？</strong><br><strong>它会产生正确的结果吗？使用-M 和-R 标志跟踪变量和寄存器（并打开-c 查看它们的值）。你能预测代码运行时标志最终会变成什么值吗？</strong> </p>
+<p>答：</p>
+<p>使用指令：<code>./x86.py -p flag.s -R ax,bx -M flag,count -c</code>运行后结果如下：</p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510105411284-17153096529601.png" alt="image-20240510105411284"></p>
+<p>可以看出，在线程1和线程2上锁的过程中，变量flag确实被设置成了1，并且只有这一个线程被设置为1，当线程1运行结束之后，count++变为1。</p>
+<p>同理当线程2运行完成之后，count++变为2,根据上一个问题得出的代码得出的推断与实际运行的结果相符，也就是能够进行预测。</p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/beff9d4f05feb4b8d8355510001caaf.png" alt="beff9d4f05feb4b8d8355510001caaf"></p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/image-20240510110051643.png" alt="image-20240510110051643"></p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/1136ff0f101b9c1301d8b5c156fc05f.png" alt="1136ff0f101b9c1301d8b5c156fc05f"></p>
+<p><img src="/../images/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/7dfb03068b56aae318e0fc174811a0e.png" alt="7dfb03068b56aae318e0fc174811a0e"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://ycx6666.github.io/2024/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" data-id="clvgt32rf0016o8mc4s7252xc" data-title="" class="article-share-link">分享</a>
+      <a data-url="https://ycx6666.github.io/2024/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A28%E7%AB%A0/" data-id="clwbswv4t000kpcmc2l3k85v6" data-title="操作系统作业28章" class="article-share-link">分享</a>
       
       
       
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
 
     </footer>
   </div>
@@ -317,14 +344,14 @@
         
           
           
-            <img data-src="/covers/QQ图片20221115162133.jpg" data-sizes="auto" alt="计算机系统复习" class="lazyload">
+            <img data-src="/covers/QQ图片20220927181409.jpg" data-sizes="auto" alt="openMP" class="lazyload">
           
         
-        <a href="/2024/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0(%E7%AE%97%E6%98%AF)/"></a>
+        <a href="/2024/05/OpenMP/"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
           
-            计算机系统复习
+            openMP
           
         </h3>
       </div>
@@ -334,14 +361,14 @@
       
         
         
-          <img data-src="/covers/IMG_20230107_182328.jpg" data-sizes="auto" alt="操作系统小班讨论GPU图形接口虚拟化技术" class="lazyload">
+          <img data-src="/covers/39835d2c0c77fc39bbdbf18327eb980dc512e672.jpg@1256w_708h_!web-article-pic.webp" data-sizes="auto" alt="" class="lazyload">
         
       
-      <a href="/2024/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B0%8F%E7%8F%AD%E8%AE%A8%E8%AE%BAGPU%E5%9B%BE%E5%BD%A2%E6%8E%A5%E5%8F%A3%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E3%80%81%20-%20%E5%89%AF%E6%9C%AC/"></a>
+      <a href="/2024/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%9C%E4%B8%9A%E4%B8%89/"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
         
-          操作系统小班讨论GPU图形接口虚拟化技术
+          (no title)
         
       </h3>
     </div>
@@ -384,10 +411,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          52.7k
+          63.7k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          03:30
+          04:18
         </div>
       
       
@@ -414,7 +441,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">文章目录</h3>
-  <div class="sidebar-toc-wrapper"></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2.</span></a></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -425,7 +452,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">21</div>
+    <div class="sidebar-state-number">28</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -433,7 +460,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">17</div>
   </div>
 </div>
 <div class="sidebar-social">
